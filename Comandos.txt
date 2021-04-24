@@ -1,0 +1,11 @@
+Ingresar a postgres
+
+Cargar DB y tablas
+\i 'ruta_carpeta/dbCreate.sql'
+Poblar tablas
+\i 'ruta_carpeta/loadData.sql'
+Sentencias
+
+para eliminar filas
+
+DELETE FROM SQUEMA.tabla * ;

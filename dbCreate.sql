@@ -1,6 +1,7 @@
 CREATE DATABASE db_deptos;
 
 \c db_deptos;
+
 CREATE TABLE comuna(
 	id SERIAL PRIMARY KEY,
 	nombre character varying(100) NOT NULL,
@@ -38,16 +39,17 @@ CREATE TABLE pago_gasto_edificio(
 	gasto_edificio_id SERIAL references gasto_edificio(id)
 );
 
-CREATE TABLE gasto_comun(
-	id SERIAL PRIMARY KEY,
-	edificio_id SERIAL references edificio(id)
-);
-
 CREATE TABLE tipo_gc(
 	id SERIAL PRIMARY KEY,
 	tipo character varying(100) NOT NULL,
-	monto_asociado INT NOT NULL,
-	gasto_comun_id SERIAL references gasto_comun(id)
+	monto_asociado INT NOT NULL
+);
+
+CREATE TABLE gasto_comun(
+	id SERIAL PRIMARY KEY,
+	edificio_id SERIAL references edificio(id),
+	tipo_gc_id SERIAL references edificio(id)
+
 );
 
 CREATE TABLE tipo_depto(
@@ -69,9 +71,9 @@ CREATE TABLE departamento(
 
 CREATE TABLE pago_gc_depto(
 	id SERIAL PRIMARY KEY,
-	Pagado BOOLEAN NOT NULL,
 	fecha_inicio TIMESTAMP NOT NULL,
 	fecha_termino TIMESTAMP NOT NULL,
+	pagado BOOLEAN NOT NULL,
 	departamento_id SERIAL references departamento(id),
 	gasto_comun_id SERIAL references gasto_comun(id)
 );
