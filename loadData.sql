@@ -66,7 +66,7 @@ VALUES ('Santiago','Santiago');
 INSERT INTO public.comuna (nombre, provincia)
 VALUES ('Vitacura','Santiago');
 
-
+/*administrador (8)*/
 INSERT INTO administrador(nombre, rut, email, telefono)
 VALUES('Oliva Vergara','21540887-6','silyas_milano3@jimong.com','48251685');
 INSERT INTO administrador(nombre, rut, email, telefono)
@@ -84,6 +84,7 @@ VALUES('Adolfo Mata','23565443-1','hamza-r@convitco.com','66524113');
 INSERT INTO administrador(nombre, rut, email, telefono)
 VALUES('Cipriano Valdes','15375724-0','uanass@humsito.com','58552112');
 
+/*edificio (16)*/
 INSERT INTO edificio(nombre_edificio, numeracion, direccion, comuna_id, administrador_id)
 VALUES('Torre A1',23,'Avenida Pedro De Valdivia',1,5);
 INSERT INTO edificio(nombre_edificio, numeracion, direccion, comuna_id, administrador_id)
@@ -116,3 +117,267 @@ INSERT INTO edificio(nombre_edificio, numeracion, direccion, comuna_id, administ
 VALUES('Torre C4',8987,'Avenida Apoquindo',4,2);
 INSERT INTO edificio(nombre_edificio, numeracion, direccion, comuna_id, administrador_id)
 VALUES('Torre D4',123,'Calle Martín De Poveda',3,1);
+
+/*gasto_edificio (64)*/
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Mantención',100000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Limpieza',400000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Seguridad',500000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Reparaciones',300000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Mantención',130000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Limpieza',400000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Seguridad',500000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Mantención',410000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Limpieza',400000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Seguridad',500000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Mantención',420000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Limpieza',500000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Seguridad',600000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Reparaciones',800000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Mantención',400000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Limpieza',500000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Seguridad',600000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Mantención',420000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Limpieza',600000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Seguridad',700000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Reparaciones',500000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Mantención',390000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Limpieza',500000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Seguridad',700000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Mantención',100000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Limpieza',400000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Seguridad',500000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Reparaciones',300000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Mantención',130000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Limpieza',400000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Seguridad',500000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Mantención',410000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Limpieza',400000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Seguridad',500000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Mantención',420000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Limpieza',500000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Seguridad',600000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Reparaciones',800000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Mantención',400000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Limpieza',500000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Seguridad',600000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Mantención',420000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Limpieza',600000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Seguridad',700000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Reparaciones',500000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Mantención',390000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Limpieza',500000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Seguridad',700000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Mantención',100000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Limpieza',400000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Seguridad',500000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Reparaciones',300000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Mantención',130000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Limpieza',400000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Seguridad',500000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Mantención',410000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Limpieza',400000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Seguridad',500000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Mantención',420000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Limpieza',500000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Seguridad',600000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Reparaciones',800000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Mantención',400000);
+INSERT INTO gasto_edificio(tipo, monto)
+VALUES('Limpieza',500000);
+
+
+
+/*pago_gasto_edificio (64)*/
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-08-01 12:00:00','2020-08-30 12:00:00',1,1);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-09-01 12:00:00','2020-09-30 12:00:00',1,2);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-10-01 12:00:00','2020-10-30 12:00:00',1,3);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-11-01 12:00:00','2020-11-30 12:00:00',1,4);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-08-01 12:00:00','2020-08-30 12:00:00',2,5);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-09-01 12:00:00','2020-09-30 12:00:00',2,6);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-10-01 12:00:00','2020-10-30 12:00:00',2,7);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-11-01 12:00:00','2020-11-30 12:00:00',2,8);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-08-01 12:00:00','2020-08-30 12:00:00',3,9);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-09-01 12:00:00','2020-09-30 12:00:00',3,10);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-10-01 12:00:00','2020-10-30 12:00:00',3,11);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-11-01 12:00:00','2020-11-30 12:00:00',3,12);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-08-01 12:00:00','2020-08-30 12:00:00',4,13);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-09-01 12:00:00','2020-09-30 12:00:00',4,14);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-10-01 12:00:00','2020-10-30 12:00:00',4,15);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-11-01 12:00:00','2020-11-30 12:00:00',4,16);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-08-01 12:00:00','2020-08-30 12:00:00',5,17);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-09-01 12:00:00','2020-09-30 12:00:00',5,18);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-10-01 12:00:00','2020-10-30 12:00:00',5,19);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-11-01 12:00:00','2020-11-30 12:00:00',5,20);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-08-01 12:00:00','2020-08-30 12:00:00',6,21);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-09-01 12:00:00','2020-09-30 12:00:00',6,22);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-10-01 12:00:00','2020-10-30 12:00:00',6,23);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-11-01 12:00:00','2020-11-30 12:00:00',6,24);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-08-01 12:00:00','2020-08-30 12:00:00',7,25);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-09-01 12:00:00','2020-09-30 12:00:00',7,26);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-10-01 12:00:00','2020-10-30 12:00:00',7,27);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-11-01 12:00:00','2020-11-30 12:00:00',7,28);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-08-01 12:00:00','2020-08-30 12:00:00',8,29);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-09-01 12:00:00','2020-09-30 12:00:00',8,30);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-10-01 12:00:00','2020-10-30 12:00:00',8,31);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-11-01 12:00:00','2020-11-30 12:00:00',8,32);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-08-01 12:00:00','2020-08-30 12:00:00',9,33);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-09-01 12:00:00','2020-09-30 12:00:00',9,34);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-10-01 12:00:00','2020-10-30 12:00:00',9,35);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-11-01 12:00:00','2020-11-30 12:00:00',9,36);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-08-01 12:00:00','2020-08-30 12:00:00',10,37);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-09-01 12:00:00','2020-09-30 12:00:00',10,38);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-10-01 12:00:00','2020-10-30 12:00:00',10,39);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-11-01 12:00:00','2020-11-30 12:00:00',10,40);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-08-01 12:00:00','2020-08-30 12:00:00',11,41);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-09-01 12:00:00','2020-09-30 12:00:00',11,42);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-10-01 12:00:00','2020-10-30 12:00:00',11,43);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-11-01 12:00:00','2020-11-30 12:00:00',11,44);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-08-01 12:00:00','2020-08-30 12:00:00',12,45);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-09-01 12:00:00','2020-09-30 12:00:00',12,46);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-10-01 12:00:00','2020-10-30 12:00:00',12,47);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-11-01 12:00:00','2020-11-30 12:00:00',12,48);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-08-01 12:00:00','2020-08-30 12:00:00',13,49);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-09-01 12:00:00','2020-09-30 12:00:00',13,50);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-10-01 12:00:00','2020-10-30 12:00:00',13,51);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-11-01 12:00:00','2020-11-30 12:00:00',13,52);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-08-01 12:00:00','2020-08-30 12:00:00',14,53);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-09-01 12:00:00','2020-09-30 12:00:00',14,54);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-10-01 12:00:00','2020-10-30 12:00:00',14,55);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-11-01 12:00:00','2020-11-30 12:00:00',14,56);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-08-01 12:00:00','2020-08-30 12:00:00',15,57);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-09-01 12:00:00','2020-09-30 12:00:00',15,58);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-10-01 12:00:00','2020-10-30 12:00:00',15,59);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-11-01 12:00:00','2020-11-30 12:00:00',15,60);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-08-01 12:00:00','2020-08-30 12:00:00',16,62);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-09-01 12:00:00','2020-09-30 12:00:00',16,62);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-10-01 12:00:00','2020-10-30 12:00:00',16,63);
+INSERT INTO pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
+VALUES('2020-11-01 12:00:00','2020-11-30 12:00:00',16,64);
+
+
