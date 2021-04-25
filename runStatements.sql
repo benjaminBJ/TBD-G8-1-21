@@ -22,7 +22,6 @@ ORDER BY SUM(tg.monto_asociado) DESC;
 
 
 
-
 /*7) Departamento con más habitantes por piso, por edificio.(Daniel O.)*/
 
 SELECT E.nombre_edificio, Z.numero, Z.habitantes
@@ -49,3 +48,11 @@ FROM(SELECT E.nombre_edificio, ET.total
                                   ORDER BY ge.monto DESC) GE ON PGE.gasto_edificio_id = GE.idGasto) GA
                 GROUP BY GA.edificio_id) ET ON E.id = ET.edificio_id) E
 ORDER BY E.total DESC;
+
+
+/* 3) Total de gastos del edificio pagados por mes (Oscar) */
+
+SELECT e.nombre_edificio AS Edificio, to_char(pge.fecha_inicio, 'Month') AS Mes, ge.monto AS Gastos
+FROM edificio e, gasto_edificio ge, pago_gasto_edificio pge
+WHERE e.id=pge.edificio_id AND pge.gasto_edificio_id=ge.id
+ORDER BY Edificio;
