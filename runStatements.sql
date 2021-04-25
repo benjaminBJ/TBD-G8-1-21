@@ -21,3 +21,31 @@ GROUP BY e.id
 ORDER BY SUM(tg.monto_asociado) DESC;
 
 
+
+
+/*7) Departamento con más habitantes por piso, por edificio.(Daniel O.)*/
+
+SELECT E.nombre_edificio, Z.numero, Z.habitantes
+FROM edificio E
+INNER JOIN (SELECT b.edificio_id, b.numero, max(b.habitantes) as habitantes
+            FROM (SELECT DISTINCT *
+    		       FROM departamento D
+    		       ORDER BY D.habitantes DESC) b
+            GROUP BY b.edificio_id) Z ON E.id = Z.edificio_id;
+
+
+
+
+/*9) Lista de edificios que más gasta por mes (Daniel O.).*/
+
+SELECT *
+FROM(SELECT E.nombre_edificio, ET.total
+     FROM edificio E
+     INNER JOIN(SELECT GA.edificio_id, SUM(GA.monto) as total
+                FROM (SELECT PGE.edificio_id, GE.monto
+                      FROM pago_gasto_edificio PGE
+                      INNER JOIN (SELECT ge.id as idGasto, ge.monto
+                                  FROM gasto_edificio ge
+                                  ORDER BY ge.monto DESC) GE ON PGE.gasto_edificio_id = GE.idGasto) GA
+                GROUP BY GA.edificio_id) ET ON E.id = ET.edificio_id) E
+ORDER BY E.total DESC;
