@@ -33,6 +33,16 @@ INNER JOIN (SELECT b.edificio_id, b.numero, max(b.habitantes) as habitantes
             GROUP BY b.edificio_id) Z ON E.id = Z.edificio_id;
 
 
+/*8) Lista de tipos de departamento por edificio, mostrar la cantidad de departamentos por tipo. (Jordan)*/
+
+SELECT E.nombre_edificio as Nombre_edificio, Z.modelo as Modelo_departamento, COUNT(*) as Cantidad
+FROM Edificio E
+INNER JOIN (SELECT idEdificio, modelo
+FROM Departamento D
+INNER JOIN Tipo_Depto TD ON D.idTipoDpto = TD.id) Z ON E.id = Z.idEdificio
+GROUP BY E.nombre_edificio, Z.modelo
+ORDER BY E.id
+
 
 
 /*9) Lista de edificios que más gasta por mes (Daniel O.).*/
