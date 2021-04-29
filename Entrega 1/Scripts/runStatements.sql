@@ -57,13 +57,14 @@ LIMIT 1;
 
 --7) Departamento con más habitantes por piso, por edificio.
 
-SELECT E.nombre_edificio, Z.numero, Z.habitantes
-FROM edificio E
-INNER JOIN (SELECT B.edificio_id, B.numero, max(B.habitantes) as habitantes
-            FROM (SELECT *
-    		       FROM departamento D
-    		       ORDER BY D.habitantes DESC) B
-            GROUP BY B.edificio_id) Z ON E.id = Z.edificio_id;
+SELECT DISTINCT *
+FROM (SELECT ED.edificio_id, ED.piso, ED.numero, ED.habitantes, ED.nombre_edificio
+	  FROM (SELECT *
+			FROM (SELECT D.id as idDepto, D.piso, D.numero, D.habitantes, D.edificio_id
+			      FROM departamento D
+			      ORDER BY D.habitantes DESC) D
+	  INNER JOIN edificio E on D.edificio_id = E.id) ED) FI
+ORDER BY FI.habitantes DESC
 
 
 --8) Lista de tipos de departamento por edificio, mostrar la cantidad de departamentos por tipo (modelo depto). 
