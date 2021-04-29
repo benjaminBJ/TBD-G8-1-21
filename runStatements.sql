@@ -1,4 +1,4 @@
-/*inlcuir DB si se corre por consola */
+﻿/*inlcuir DB si se corre por consola */
 \c db_deptos;
 
 
@@ -82,5 +82,14 @@ FROM(SELECT E.nombre_edificio, ET.total
                                   ORDER BY ge.monto DESC) GE ON PGE.gasto_edificio_id = GE.idGasto) GA
                 GROUP BY GA.edificio_id) ET ON E.id = ET.edificio_id) E
 ORDER BY E.total DESC;
+
+--10) Lista de tipos de departamentos más pequeños por edificio.
+
+SELECT e.id as Edificio, min(td.tamano) as menor_tamano
+FROM   Tipo_Depto td, Departamento d, Edificio e
+WHERE (e.id=d.edificio_id) and (d.tipo_depto_id=td.id)
+GROUP BY e.id
+ORDER BY e.id
+
 
 
