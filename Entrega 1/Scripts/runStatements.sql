@@ -1,6 +1,4 @@
-﻿/*inlcuir DB si se corre por consola */
 \c db_deptos;
-
 
 --1) Lista de departamentos morosos en gastos comunes de los últimos tres meses por edificio
  
@@ -26,7 +24,17 @@ FROM edificio e, gasto_edificio ge, pago_gasto_edificio pge
 WHERE e.id=pge.edificio_id AND pge.gasto_edificio_id=ge.id
 ORDER BY Edificio;
 
+--4) Tipo de depto con los gastos comunes más caros
+
+SELECT td.id, td.modelo, MAX(monto_asociado) AS monto
+FROM tipo_depto td
+LEFT JOIN tipo_gc tg ON tg.id=td.tipo_gc_id
+GROUP BY td.id
+ORDER BY monto DESC;
+
+
 --5) Lista de edificios por comuna con la cantidad de departamentos
+
 SELECT co.nombre as comuna, ed.id as id_edificio, ed.departamentos
 FROM comuna co
 INNER JOIN ( SELECT e.id, count(d.id) AS departamentos, e.comuna_id
@@ -35,7 +43,7 @@ INNER JOIN ( SELECT e.id, count(d.id) AS departamentos, e.comuna_id
         GROUP BY e.id
         ORDER BY count(d.id) DESC ) AS ed
 ON ed.comuna_id = co.id
-ORDER BY co.nombre
+ORDER BY co.nombre;
 
 --6) Administrador con más edificios a cargo.
 
@@ -46,27 +54,28 @@ GROUP BY ad.id
 ORDER BY cargos DESC
 LIMIT 1;
 
+
 --7) Departamento con más habitantes por piso, por edificio.
 
 SELECT E.nombre_edificio, Z.numero, Z.habitantes
 FROM edificio E
-INNER JOIN (SELECT b.edificio_id, b.numero, max(b.habitantes) as habitantes
-            FROM (SELECT DISTINCT *
+INNER JOIN (SELECT B.edificio_id, B.numero, max(B.habitantes) as habitantes
+            FROM (SELECT *
     		       FROM departamento D
-    		       ORDER BY D.habitantes DESC) b
-            GROUP BY b.edificio_id) Z ON E.id = Z.edificio_id;
+    		       ORDER BY D.habitantes DESC) B
+            GROUP BY B.edificio_id) Z ON E.id = Z.edificio_id;
 
 
---8) Lista de tipos de departamento por edificio, mostrar la cantidad de departamentos por tipo. 
+--8) Lista de tipos de departamento por edificio, mostrar la cantidad de departamentos por tipo (modelo depto). 
+
 
 SELECT E.nombre_edificio as Nombre_edificio, Z.modelo as Modelo_departamento, COUNT(*) as Cantidad
-FROM Edificio E
-INNER JOIN (SELECT idEdificio, modelo
-FROM Departamento D
-INNER JOIN Tipo_Depto TD ON D.idTipoDpto = TD.id) Z ON E.id = Z.idEdificio
+FROM edificio E
+INNER JOIN (SELECT edificio_id, modelo
+FROM departamento D
+INNER JOIN tipo_depto TD ON D.tipo_depto_id = TD.id) Z ON E.id = Z.edificio_id
 GROUP BY E.nombre_edificio, Z.modelo
-ORDER BY E.id
-
+ORDER BY E.nombre_edificio;
 
 
 --9) Lista de edificios que más gasta por mes
@@ -89,7 +98,7 @@ SELECT e.id as Edificio, min(td.tamano) as menor_tamano
 FROM   Tipo_Depto td, Departamento d, Edificio e
 WHERE (e.id=d.edificio_id) and (d.tipo_depto_id=td.id)
 GROUP BY e.id
-ORDER BY e.id
+ORDER BY e.id;
 
 
 

@@ -7,5 +7,7 @@ Poblar tablas
 Sentencias
 
 para eliminar filas
-
 DELETE FROM SQUEMA.tabla * ;
+
+para eliminar DB
+DROP DATABASE db_deptos;

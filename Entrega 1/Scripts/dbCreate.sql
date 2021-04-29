@@ -1,3 +1,5 @@
+DROP DATABASE dp_deptos;
+
 CREATE DATABASE db_deptos;
 
 \c db_deptos;
