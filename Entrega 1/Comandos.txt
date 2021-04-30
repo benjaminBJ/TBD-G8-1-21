@@ -1,13 +1,20 @@
 Ingresar a postgres
 
 Cargar DB y tablas
-\i 'ruta_carpeta/dbCreate.sql'
+\i 'ruta_archivo/dbCreate.sql'
 Poblar tablas
-\i 'ruta_carpeta/loadData.sql'
-Sentencias
+\i 'ruta_archivo/loadData.sql'
+Correr Sentencias
+\i 'ruta_archivo/runStatements.sql'
+
+Enlace de video
+
+https://youtu.be/u3CqWT7qSUk
 
 para eliminar filas
 DELETE FROM SQUEMA.tabla * ;
 
 para eliminar DB
 DROP DATABASE db_deptos;
+
+
