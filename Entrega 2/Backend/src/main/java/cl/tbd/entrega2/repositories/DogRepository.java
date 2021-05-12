@@ -1,6 +1,6 @@
-package cl.tbd.ejemplo1.repositories;
+package cl.tbd.entrega2.repositories;
 import java.util.List;
-import cl.tbd.ejemplo1.models.Dog;
+import cl.tbd.entrega2.models.Dog;
 
 public interface DogRepository {
     public int countDogs();

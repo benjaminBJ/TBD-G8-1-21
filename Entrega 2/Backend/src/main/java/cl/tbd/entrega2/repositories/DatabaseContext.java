@@ -1,4 +1,4 @@
-package cl.tbd.ejemplo1.repositories;
+package cl.tbd.entrega2.repositories;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

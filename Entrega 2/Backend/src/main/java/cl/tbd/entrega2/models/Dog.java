@@ -1,4 +1,4 @@
-package cl.tbd.ejemplo1.models;
+package cl.tbd.entrega2.models;
 
 public class Dog {
     private Integer id;

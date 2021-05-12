@@ -1,4 +1,4 @@
-package cl.tbd.ejemplo1;
+package cl.tbd.entrega2;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

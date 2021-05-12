@@ -1,7 +1,7 @@
-package cl.tbd.ejemplo1.services;
+package cl.tbd.entrega2.services;
 
-import cl.tbd.ejemplo1.models.Dog;
-import cl.tbd.ejemplo1.repositories.DogRepository;
+import cl.tbd.entrega2.models.Dog;
+import cl.tbd.entrega2.repositories.DogRepository;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
