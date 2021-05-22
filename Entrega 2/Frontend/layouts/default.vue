@@ -1,6 +1,6 @@
 <template>
   <v-app dark>
-    <v-navigation-drawer
+    <v-navigation-drawer class="cyan lighten-4"
       v-model="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
@@ -24,7 +24,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar
+    <v-app-bar class="cyan darken-1"
       :clipped-left="clipped"
       fixed
       app
@@ -93,7 +93,7 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
+      title: 'Sistema de Reclutas para Emergencias (SRE)'
     }
   }
 }

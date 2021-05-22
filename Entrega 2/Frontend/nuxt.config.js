@@ -5,7 +5,7 @@ export default {
   ssr: false,
 
   server: {
-    port: 8000 // default: 3000
+    port: 8081 // default: 3000
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -50,8 +50,15 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      light: true,
+      dark: false,
       themes: {
+        light: {
+          primary: colors.cyan,
+          secondary: colors.blue.darken,
+          accent: colors.grey.darken3,
+          error: colors.red.accent3,
+        },
         dark: {
           primary: colors.blue.darken2,
           accent: colors.grey.darken3,
