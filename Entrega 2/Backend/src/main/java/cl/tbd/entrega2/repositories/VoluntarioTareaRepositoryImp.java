@@ -35,7 +35,7 @@ public class VoluntarioTareaRepositoryImp implements VoluntarioTareaRepository {
     }
 
     @Override
-    public Voluntario_Tarea createVol(Voluntario_Tarea volTarea) {
+    public Voluntario_Tarea createVolTarea(Voluntario_Tarea volTarea) {
         try(Connection conn = sql2o.open()){
             int insertedId = (int) conn.createQuery("INSERT INTO voluntario_tarea (nombre) values (:volTareaName)", true)
                     .addParameter("volTareaName", volTarea.getNombre())

@@ -4,6 +4,6 @@ import cl.tbd.entrega2.models.Habilidad;
 
 public interface HabilidadRepository {
     public int countHabilidades();
-    public List<Habilidad> getAllEst();
-    public Habilidad createVol(Habilidad hab);
+    public List<Habilidad> getAllHab();
+    public Habilidad createHab(Habilidad hab);
 }

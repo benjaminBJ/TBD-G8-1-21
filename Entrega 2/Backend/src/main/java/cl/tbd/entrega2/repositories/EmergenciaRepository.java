@@ -5,5 +5,5 @@ import cl.tbd.entrega2.models.Emergencia;
 public interface EmergenciaRepository {
     public int countEmergencias();
     public List<Emergencia> getAllEmrgs();
-    public Emergencia createVol(Emergencia emg);
+    public Emergencia createEmrgs(Emergencia emg);
 }

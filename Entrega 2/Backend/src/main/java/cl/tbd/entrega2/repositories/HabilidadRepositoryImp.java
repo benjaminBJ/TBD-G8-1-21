@@ -25,7 +25,7 @@ public class HabilidadRepositoryImp implements HabilidadRepository{
     }
 
     @Override
-    public List<Habilidad> getAllEst() {
+    public List<Habilidad> getAllHab() {
         try(Connection conn = sql2o.open()){
             return conn.createQuery("select * from habilidad")
                     .executeAndFetch(Habilidad.class);
@@ -36,7 +36,7 @@ public class HabilidadRepositoryImp implements HabilidadRepository{
     }
 
     @Override
-    public Habilidad createVol(Habilidad est) {
+    public Habilidad createHab(Habilidad est) {
         try(Connection conn = sql2o.open()){
             int insertedId = (int) conn.createQuery("INSERT INTO habilidad (descripcion) values (:estadoDesc)", true)
                     .addParameter("estadoDesc", est.getDescripcion())

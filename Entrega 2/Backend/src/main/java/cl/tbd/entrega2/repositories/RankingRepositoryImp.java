@@ -35,7 +35,7 @@ public class RankingRepositoryImp implements RankingRepository{
     }
 
     @Override
-    public Ranking createVol(Ranking rnk) {
+    public Ranking createRanking(Ranking rnk) {
         try(Connection conn = sql2o.open()){
             int insertedId = (int) conn.createQuery("INSERT INTO ranking (puntaje) values (:rnkPuntaje)", true)
                     .addParameter("rnkPuntaje", rnk.getPuntaje())

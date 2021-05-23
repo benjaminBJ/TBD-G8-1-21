@@ -36,7 +36,7 @@ public class EstadoTareaRepositoryImp implements EstadoTareaRepository{
     }
 
     @Override
-    public Estado_Tarea createVol(Estado_Tarea est) {
+    public Estado_Tarea createEst(Estado_Tarea est) {
         try(Connection conn = sql2o.open()){
             int insertedId = (int) conn.createQuery("INSERT INTO estado_tarea (descripcion) values (:estadoDesc)", true)
                     .addParameter("estadoDesc", est.getDescripcion())

@@ -5,5 +5,5 @@ import cl.tbd.entrega2.models.Ranking;
 public interface RankingRepository {
     public int countRankings();
     public List<Ranking> getAllRanks();
-    public Ranking createVol(Ranking rnk);
+    public Ranking createRanking(Ranking rnk);
 }
