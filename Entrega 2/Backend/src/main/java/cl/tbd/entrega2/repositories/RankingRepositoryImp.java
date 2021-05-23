@@ -18,7 +18,9 @@ public class RankingRepositoryImp implements RankingRepository{
     public int countRankings() {
         int total = 0;
         try(Connection conn = sql2o.open()){
-            total = conn.createQuery("SELECT COUNT(*) FROM ranking").executeScalar(Integer.class);
+            String sql = "SELECT COUNT(*) " + 
+                         "FROM ranking";            
+            total = conn.createQuery(sql).executeScalar(Integer.class);
         }
         return total;
     }
@@ -26,7 +28,9 @@ public class RankingRepositoryImp implements RankingRepository{
     @Override
     public List<Ranking> getAllRanks() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from ranking")
+            String sql = "SELECT * " + 
+                         "FROM ranking";            
+            return conn.createQuery(sql)
                     .executeAndFetch(Ranking.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -37,8 +41,15 @@ public class RankingRepositoryImp implements RankingRepository{
     @Override
     public Ranking createRanking(Ranking rnk) {
         try(Connection conn = sql2o.open()){
-            int insertedId = (int) conn.createQuery("INSERT INTO ranking (puntaje) values (:rnkPuntaje)", true)
-                    .addParameter("rnkPuntaje", rnk.getPuntaje())
+            String sql = 
+            "INSERT INTO ranking (Puntaje, flg_participa, flg_invitado, id_voluntario, id_tarea)" +
+            "values (:Puntaje,:flg_participa,:flg_invitado,:id_voluntario,:id_tarea)";            
+            int insertedId = (int) conn.createQuery(sql, true)
+                    .addParameter("Puntaje", rnk.getPuntaje())
+                    .addParameter("flg_participa", rnk.getFlg_participa())
+                    .addParameter("flg_invitado", rnk.getFlg_invitado())
+                    .addParameter("id_voluntario", rnk.getId_voluntario())
+                    .addParameter("id_tarea", rnk.getId_tarea())
                     .executeUpdate().getKey();
             rnk.setId(insertedId);
             return rnk;        

@@ -18,7 +18,9 @@ public class TareaRepositoryImp implements TareaRepository{
     public int countTareas() {
         int total = 0;
         try(Connection conn = sql2o.open()){
-            total = conn.createQuery("SELECT COUNT(*) FROM tarea").executeScalar(Integer.class);
+            String sql = "SELECT COUNT(*) " + 
+                         "FROM tarea";             
+            total = conn.createQuery(sql).executeScalar(Integer.class);
         }
         return total;
     }
@@ -26,7 +28,9 @@ public class TareaRepositoryImp implements TareaRepository{
     @Override
     public List<Tarea> getAllTareas() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from tarea")
+            String sql = "SELECT * " + 
+                         "FROM tarea";             
+            return conn.createQuery(sql)
                     .executeAndFetch(Tarea.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -37,8 +41,17 @@ public class TareaRepositoryImp implements TareaRepository{
     @Override
     public Tarea createTarea(Tarea tarea) {
         try(Connection conn = sql2o.open()){
-            int insertedId = (int) conn.createQuery("INSERT INTO tarea (nombre) values (:tareaName)", true)
-                    .addParameter("tareaName", tarea.getNombre())
+            String sql = 
+            "INSERT INTO tarea (nombre, descripcion, vol_requeridos, finicio, ffin, id_emergencia, id_estado)" + 
+            "values (:nombre, :descripcion, :vol_requeridos, :finicio, :ffin, :id_emergencia, :id_estado)";           
+            int insertedId = (int) conn.createQuery(sql, true)
+                    .addParameter("nombre", tarea.getNombre())
+                    .addParameter("descripcion", tarea.getNombre())
+                    .addParameter("vol_requeridos", tarea.getNombre())
+                    .addParameter("finicio", tarea.getNombre())
+                    .addParameter("ffin", tarea.getNombre())
+                    .addParameter("id_emergencia", tarea.getNombre())
+                    .addParameter("id_estado", tarea.getNombre())
                     .executeUpdate().getKey();
             tarea.setId(insertedId);
             return tarea;        

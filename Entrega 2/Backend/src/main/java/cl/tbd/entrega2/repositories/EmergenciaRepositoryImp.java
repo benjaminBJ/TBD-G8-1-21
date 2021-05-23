@@ -18,7 +18,9 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     public int countEmergencias() {
         int total = 0;
         try(Connection conn = sql2o.open()){
-            total = conn.createQuery("SELECT COUNT(*) FROM emergencia").executeScalar(Integer.class);
+            String sql = "SELECT COUNT(*)" +
+                         "FROM emergencia";
+            total = conn.createQuery(sql).executeScalar(Integer.class);
         }
         return total;
     }
@@ -26,7 +28,9 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     @Override
     public List<Emergencia> getAllEmrgs() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from emergencia")
+            String sql = "SELECT * " + 
+                         "FROM emergencia";
+            return conn.createQuery(sql)
                     .executeAndFetch(Emergencia.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -37,8 +41,15 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     @Override
     public Emergencia createEmrgs(Emergencia emg) {
         try(Connection conn = sql2o.open()){
-            int insertedId = (int) conn.createQuery("INSERT INTO emergencia (nombre) values (:emgName)", true)
-                    .addParameter("emgName", emg.getNombre())
+            String sql = 
+            "INSERT INTO emergencia (nombre, descripcion, fecha_inicio, fecha_fin, id_institucion) "+
+            "values (:nombre, :descripcion, :fecha_inicio, :fecha_fin, :id_institucion )";
+            int insertedId = (int) conn.createQuery(sql, true)
+                    .addParameter("nombre", emg.getNombre())
+                    .addParameter("descripcion", emg.getDescripcion())
+                    .addParameter("fecha_inicio", emg.getFecha_fin())
+                    .addParameter("fecha_fin", emg.getFecha_fin())
+                    .addParameter("id_institucion", emg.getId_institucion())
                     .executeUpdate().getKey();
             emg.setId(insertedId);
             return emg;        

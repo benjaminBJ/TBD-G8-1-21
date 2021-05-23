@@ -19,7 +19,9 @@ public class HabilidadRepositoryImp implements HabilidadRepository{
     public int countHabilidades() {
         int total = 0;
         try(Connection conn = sql2o.open()){
-            total = conn.createQuery("SELECT COUNT(*) FROM habilidad").executeScalar(Integer.class);
+            String sql = "SELECT COUNT(*)" +
+                         "FROM habilidad";            
+            total = conn.createQuery(sql).executeScalar(Integer.class);
         }
         return total;
     }
@@ -27,7 +29,9 @@ public class HabilidadRepositoryImp implements HabilidadRepository{
     @Override
     public List<Habilidad> getAllHab() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from habilidad")
+            String sql = "SELECT * " + 
+                         "FROM habilidad";
+            return conn.createQuery(sql)
                     .executeAndFetch(Habilidad.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -38,8 +42,11 @@ public class HabilidadRepositoryImp implements HabilidadRepository{
     @Override
     public Habilidad createHab(Habilidad est) {
         try(Connection conn = sql2o.open()){
-            int insertedId = (int) conn.createQuery("INSERT INTO habilidad (descripcion) values (:estadoDesc)", true)
-                    .addParameter("estadoDesc", est.getDescripcion())
+            String sql = 
+            "INSERT INTO habilidad (descripcion)" +
+            "values (:descripcion)";        
+            int insertedId = (int) conn.createQuery(sql, true)
+                    .addParameter("descripcion", est.getDescripcion())
                     .executeUpdate().getKey();
             est.setId(insertedId);
             return est;        

@@ -18,7 +18,9 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
     public int countVoluntarios() {
         int total = 0;
         try(Connection conn = sql2o.open()){
-            total = conn.createQuery("SELECT COUNT(*) FROM voluntario").executeScalar(Integer.class);
+            String sql = "SELECT COUNT(*) " + 
+                         "FROM voluntario";             
+            total = conn.createQuery(sql).executeScalar(Integer.class);
         }
         return total;
     }
@@ -26,7 +28,9 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
     @Override
     public List<Voluntario> getAllVols() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from voluntario")
+            String sql = "SELECT * " + 
+                         "FROM voluntario";            
+            return conn.createQuery(sql)
                     .executeAndFetch(Voluntario.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -37,8 +41,14 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
     @Override
     public Voluntario createVol(Voluntario vol) {
         try(Connection conn = sql2o.open()){
-            int insertedId = (int) conn.createQuery("INSERT INTO voluntario (nombre) values (:voluntarioName)", true)
-                    .addParameter("voluntarioName", vol.getNombre())
+            String sql = 
+            "INSERT INTO voluntario (nombre, rut, email, telefono)" +
+            "values (:nombre, :rut, :email, :telefono)";          
+            int insertedId = (int) conn.createQuery(sql, true)
+                    .addParameter("nombre", vol.getNombre())
+                    .addParameter("rut", vol.getRut())
+                    .addParameter("email", vol.getEmail())
+                    .addParameter("telefono", vol.getTelefono())
                     .executeUpdate().getKey();
             vol.setId(insertedId);
             return vol;        

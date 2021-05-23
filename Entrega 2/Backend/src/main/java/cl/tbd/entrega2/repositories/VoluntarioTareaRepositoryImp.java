@@ -18,7 +18,9 @@ public class VoluntarioTareaRepositoryImp implements VoluntarioTareaRepository {
     public int countVoluntariosTareas() {
         int total = 0;
         try(Connection conn = sql2o.open()){
-            total = conn.createQuery("SELECT COUNT(*) FROM voluntario_tarea").executeScalar(Integer.class);
+            String sql = "SELECT COUNT(*)" +
+                         "FROM voluntario_tarea";            
+            total = conn.createQuery(sql).executeScalar(Integer.class);
         }
         return total;
     }
@@ -26,7 +28,9 @@ public class VoluntarioTareaRepositoryImp implements VoluntarioTareaRepository {
     @Override
     public List<Voluntario_Tarea> getAllVolTareas() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from voluntario_tarea")
+            String sql = "SELECT * " + 
+                         "FROM voluntario_tarea";            
+            return conn.createQuery(sql)
                     .executeAndFetch(Voluntario_Tarea.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -37,8 +41,14 @@ public class VoluntarioTareaRepositoryImp implements VoluntarioTareaRepository {
     @Override
     public Voluntario_Tarea createVolTarea(Voluntario_Tarea volTarea) {
         try(Connection conn = sql2o.open()){
-            int insertedId = (int) conn.createQuery("INSERT INTO voluntario_tarea (nombre) values (:volTareaName)", true)
-                    .addParameter("volTareaName", volTarea.getNombre())
+            String sql =
+            "INSERT INTO voluntario_tarea (nombre, rut, id_voluntario, id_tarea) " +
+            "values (:nombre, :rut, :id_voluntario, :id_tarea)";             
+            int insertedId = (int) conn.createQuery(sql, true)
+                    .addParameter("nombre", volTarea.getNombre())
+                    .addParameter("rut", volTarea.getRut())
+                    .addParameter("id_voluntario", volTarea.getId_voluntario())
+                    .addParameter("id_tarea", volTarea.getId_tarea())
                     .executeUpdate().getKey();
             volTarea.setId(insertedId);
             return volTarea;        

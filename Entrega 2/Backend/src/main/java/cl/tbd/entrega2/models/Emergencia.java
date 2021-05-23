@@ -8,9 +8,16 @@ public class Emergencia {
     private String descripcion;
     private Date fecha_inicio;
     private Date fecha_fin;
-    //private Integer id_institucion;
+    private Integer id_institucion;
+    
     public Integer getId() {
         return id;
+    }
+    public Integer getId_institucion() {
+        return id_institucion;
+    }
+    public void setId_institucion(Integer id_institucion) {
+        this.id_institucion = id_institucion;
     }
     public void setId(Integer id) {
         this.id = id;
