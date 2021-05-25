@@ -1,7 +1,7 @@
 package cl.tbd.entrega2.services;
 
 import cl.tbd.entrega2.models.Voluntario_Tarea;
-import cl.tbd.entrega2.repositories.VoluntarioTareaRepository;
+import cl.tbd.entrega2.repositories.Voluntario_TareaRepository;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +15,8 @@ import java.util.List;
 @CrossOrigin
 @RestController
 public class VoluntarioTareaService {
-	private final VoluntarioTareaRepository voluntarioTareaRepository;
-	VoluntarioTareaService(VoluntarioTareaRepository voluntarioTareaRepository){
+	private final Voluntario_TareaRepository voluntarioTareaRepository;
+	VoluntarioTareaService(Voluntario_TareaRepository voluntarioTareaRepository){
 		this.voluntarioTareaRepository = voluntarioTareaRepository;
 	}
 
