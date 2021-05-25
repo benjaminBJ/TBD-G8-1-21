@@ -2,13 +2,7 @@ package cl.tbd.entrega2.services;
 
 import cl.tbd.entrega2.models.Ranking;
 import cl.tbd.entrega2.repositories.RankingRepository;
-
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,19 +15,33 @@ public class RankingService {
 	}
 
 	@GetMapping("/rankings")
-	public List<Ranking> getAllRanks(){
-		return rankingRepository.getAllRanks();
+	public List<Ranking> getAllRanking(){
+		return rankingRepository.getAllRanking();
 	}
 
-	@GetMapping("/rankings/count")
-	public int countRankings(){
-		return rankingRepository.countRankings();
-	}
+	@GetMapping(value = "/rankings/{id}")
+    public Ranking getRanking(@PathVariable int id){
+        Ranking result = rankingRepository.getRanking(id);
+        return result;
+    }
 
 	@PostMapping("/rankings")
 	@ResponseBody
-	public Ranking createRanking(@RequestBody Ranking rank){
-		Ranking ranking = rankingRepository.createRanking(rank);
-		return ranking;
+	public Ranking createRanking(@RequestBody Ranking ranking){
+		Ranking result = rankingRepository.createRanking(ranking);
+		return result;
 	}
+
+	@PutMapping ("/rankings/up")
+    @ResponseBody
+    public Ranking upRanking(@RequestBody Ranking ranking){
+        Ranking result = rankingRepository.upRanking(ranking);
+        return result;
+    }
+
+    @DeleteMapping(value = "/rankings/delete/{id}")
+    @ResponseBody
+    public void deleteRanking(@PathVariable int id){
+        rankingRepository.deleteRanking(id);
+    }
 }

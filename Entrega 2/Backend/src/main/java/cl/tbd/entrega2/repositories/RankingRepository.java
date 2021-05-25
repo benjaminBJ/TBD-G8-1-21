@@ -3,7 +3,9 @@ import java.util.List;
 import cl.tbd.entrega2.models.Ranking;
 
 public interface RankingRepository {
-    public int countRankings();
-    public List<Ranking> getAllRanks();
-    public Ranking createRanking(Ranking rnk);
+    public List<Ranking> getAllRanking();
+    public Ranking getRanking(int id);    
+    public Ranking createRanking(Ranking ranking);
+    public Ranking upRanking(Ranking ranking);
+    public void deleteRanking(int id);
 }

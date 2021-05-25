@@ -16,22 +16,9 @@ public class EstadoTareaRepositoryImp implements EstadoTareaRepository{
     private Sql2o sql2o;
 
     @Override
-    public int countEstado_Tareas() {
-        int total = 0;
-        try(Connection conn = sql2o.open()){
-            String sql = "SELECT COUNT(*)" +
-                         "FROM estado_tarea";
-            total = conn.createQuery(sql).executeScalar(Integer.class);
-        }
-        return total;
-    }
-
-    @Override
-    public List<Estado_Tarea> getAllEst() {
-        try(Connection conn = sql2o.open()){
-            String sql = "SELECT * " + 
-                         "FROM estado_tarea";            
-            return conn.createQuery(sql)
+    public List<Estado_Tarea> getAllEstado_Tarea() {
+        try(Connection conn = sql2o.open()){            
+            return conn.createQuery("SELECT * FROM estado_tarea")
                     .executeAndFetch(Estado_Tarea.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -40,20 +27,68 @@ public class EstadoTareaRepositoryImp implements EstadoTareaRepository{
     }
 
     @Override
-    public Estado_Tarea createEst(Estado_Tarea est) {
+    public Estado_Tarea getEstado_Tarea(int id) {
         try(Connection conn = sql2o.open()){
-            String sql =
-            "INSERT INTO estado_tarea (descripcion) "+
-            "values (:descripcion)";
-            int insertedId = (int) conn.createQuery(sql, true)
-                    .addParameter("descripcion", est.getDescripcion())
-                    .executeUpdate().getKey();
-            est.setId(insertedId);
-            return est;        
+
+            String sql = "select * from estado_tarea WHERE id = :id";
+
+            Estado_Tarea estado_tarea = conn.createQuery(sql, true)
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Estado_Tarea.class);
+            return estado_tarea;
         }catch(Exception e){
             System.out.println(e.getMessage());
             return null;
         }
     }
-    
+
+    @Override
+    public Estado_Tarea createEstado_Tarea(Estado_Tarea estado_Tarea) {
+        try(Connection conn = sql2o.open()){
+            String sql =
+            "INSERT INTO estado_tarea (descripcion) "+
+                "values (:descripcion)";
+            int insertedId = (int) conn.createQuery(sql, true)
+                    .addParameter("descripcion", estado_Tarea.getDescripcion())
+                    .executeUpdate().getKey();
+            estado_Tarea.setId(insertedId);
+            return estado_Tarea;        
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public Estado_Tarea upEstado_Tarea(Estado_Tarea estado_Tarea) {
+        try(Connection conn = sql2o.open()){
+
+            String sql =
+                    "UPDATE estado_Tarea SET descripcion = :descripcion" +
+                            "WHERE id = :id";
+
+            conn.createQuery(sql, true)
+                    .addParameter("descripcion", estado_Tarea.getDescripcion())
+                    .executeUpdate();
+
+            return estado_Tarea;
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public void deleteEstado_Tarea(int id) {
+        try(Connection conn = sql2o.open()){
+
+            String sql = "DELETE FROM estado_Tarea WHERE id = :id";
+            conn.createQuery(sql, true)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
 }

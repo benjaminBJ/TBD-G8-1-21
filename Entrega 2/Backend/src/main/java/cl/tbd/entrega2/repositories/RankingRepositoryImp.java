@@ -15,18 +15,7 @@ public class RankingRepositoryImp implements RankingRepository{
     private Sql2o sql2o;
 
     @Override
-    public int countRankings() {
-        int total = 0;
-        try(Connection conn = sql2o.open()){
-            String sql = "SELECT COUNT(*) " + 
-                         "FROM ranking";            
-            total = conn.createQuery(sql).executeScalar(Integer.class);
-        }
-        return total;
-    }
-
-    @Override
-    public List<Ranking> getAllRanks() {
+    public List<Ranking> getAllRanking() {
         try(Connection conn = sql2o.open()){
             String sql = "SELECT * " + 
                          "FROM ranking";            
@@ -37,15 +26,31 @@ public class RankingRepositoryImp implements RankingRepository{
             return null;
         }
     }
+    
+    @Override
+    public Ranking getRanking(int id) {
+        try(Connection conn = sql2o.open()){
+
+            String sql = "select * from ranking WHERE id = :id";
+
+            Ranking Ranking = conn.createQuery(sql, true)
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Ranking.class);
+            return Ranking;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }    
 
     @Override
     public Ranking createRanking(Ranking rnk) {
         try(Connection conn = sql2o.open()){
             String sql =
-            "INSERT INTO ranking (Puntaje, flg_participa, flg_invitado, id_voluntario, id_tarea)" +
+            "INSERT INTO ranking (puntaje, flg_participa, flg_invitado, id_voluntario, id_tarea)" +
             "values (:Puntaje,:flg_participa,:flg_invitado,:id_voluntario,:id_tarea)";            
             int insertedId = (int) conn.createQuery(sql, true)
-                    .addParameter("Puntaje", rnk.getPuntaje())
+                    .addParameter("puntaje", rnk.getPuntaje())
                     .addParameter("flg_participa", rnk.getFlg_participa())
                     .addParameter("flg_invitado", rnk.getFlg_invitado())
                     .addParameter("id_voluntario", rnk.getId_voluntario())
@@ -58,5 +63,42 @@ public class RankingRepositoryImp implements RankingRepository{
             return null;
         }
     }
+
+    @Override
+    public Ranking upRanking(Ranking Ranking) {
+        try(Connection conn = sql2o.open()){
+
+            String sql =
+                    "UPDATE ranking SET Puntaje = :puntaje, flg_participa = :flg_participa, flg_invitado = :flg_invitado, " +
+                            "id_voluntario = :id_voluntario, id_tarea =: id_tarea WHERE id = :id";
+
+            conn.createQuery(sql, true)
+                    .addParameter("Puntaje", Ranking.getPuntaje())
+                    .addParameter("flg_participa", Ranking.getFlg_participa())
+                    .addParameter("flg_invitado", Ranking.getFlg_invitado())
+                    .addParameter("id_voluntario", Ranking.getId_voluntario())
+                    .addParameter("id_tarea", Ranking.getId_tarea())
+                    .executeUpdate();
+
+            return Ranking;
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public void deleteRanking(int id) {
+        try(Connection conn = sql2o.open()){
+
+            String sql = "DELETE FROM ranking WHERE id = :id";
+            conn.createQuery(sql, true)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }    
     
 }
