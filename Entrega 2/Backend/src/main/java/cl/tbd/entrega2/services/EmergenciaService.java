@@ -2,7 +2,6 @@ package cl.tbd.entrega2.services;
 
 import cl.tbd.entrega2.models.Emergencia;
 import cl.tbd.entrega2.repositories.EmergenciaRepository;
-
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,32 +9,41 @@ import java.util.List;
 @CrossOrigin
 @RestController
 public class EmergenciaService {
-	private final EmergenciaRepository emergenciaRepository;
-	EmergenciaService(EmergenciaRepository emergenciaRepository){
-		this.emergenciaRepository = emergenciaRepository;
-	}
 
-    @GetMapping("/emergencias/count")
-    public int countEmergencias(){
-        return emergenciaRepository.countEmergencias();
+    private final EmergenciaRepository emergenciaRepository;
+    EmergenciaService(EmergenciaRepository emergenciaRepository){
+        this.emergenciaRepository = emergenciaRepository;
     }
 
     @GetMapping("/emergencias")
-    public List<Emergencia> getAllEmrgs() {
-        return emergenciaRepository.getAllEmrgs();
+    public List<Emergencia> getAllEmergencias() {
+        return emergenciaRepository.getAllEmergencias();
     }
 
+
     @GetMapping(value = "/emergencias/{id}")
-    public Emergencia getEmrg(@PathVariable int id){
-        Emergencia result = emergenciaRepository.getEmrg(id);
+    public Emergencia getEmergencia(@PathVariable int id){
+        Emergencia result = emergenciaRepository.getEmergencia(id);
         return result;
     }
 
-    @PostMapping("/emergencias")
+    @PostMapping("/emergencias/create")
     @ResponseBody
-    public Emergencia createEmrgs(@RequestBody Emergencia emrg){
-        Emergencia emergencia = emergenciaRepository.createEmrg(emrg);
-        return emergencia;
+    public Emergencia createEmergencia(@RequestBody Emergencia emergencia){
+        Emergencia result = emergenciaRepository.createEmergencia(emergencia);
+        return result;
     }
-    
+
+    @PutMapping ("/emergencias/up")
+    @ResponseBody
+    public Emergencia upEmergencia(@RequestBody Emergencia emergencia){
+        Emergencia result = emergenciaRepository.upEmergencia(emergencia);
+        return result;
+    }
+
+    @DeleteMapping(value = "/emergencias/delete/{id}")
+    @ResponseBody
+    public void deleteEmergencia(@PathVariable int id){
+        emergenciaRepository.deleteEmergencia(id);
+    }
 }

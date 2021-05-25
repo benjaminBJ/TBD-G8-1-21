@@ -2,20 +2,13 @@ package cl.tbd.entrega2.models;
 
 public class Habilidad {
     private Integer id;
-    private String descripcion;
+    private String descrip;
 
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public Integer getId() { return id; }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-    
+    public void setId(Integer id) { this.id = id; }
+
+    public String getDescrip() { return descrip; }
+
+    public void setDescrip(String descrip) { this.descrip = descrip; }
 }

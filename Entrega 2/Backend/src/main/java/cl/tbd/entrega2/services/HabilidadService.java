@@ -3,37 +3,50 @@ package cl.tbd.entrega2.services;
 import cl.tbd.entrega2.models.Habilidad;
 import cl.tbd.entrega2.repositories.HabilidadRepository;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import cl.tbd.entrega2.repositories.InstitucionRepository;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @CrossOrigin
 @RestController
 public class HabilidadService {
+
 	private final HabilidadRepository habilidadRepository;
 	HabilidadService(HabilidadRepository habilidadRepository){
 		this.habilidadRepository = habilidadRepository;
 	}
 
-	@GetMapping("/Habilidades")
-	public List<Habilidad> getAllHab(){
-		return habilidadRepository.getAllHab();
+
+	@GetMapping("/habilidades")
+	public List<Habilidad> getAllHabilidads() {
+		return habilidadRepository.getAllHabilidads();
 	}
 
-	@GetMapping("/Habilidades/count")
-	public int countHabilidades(){
-		return habilidadRepository.countHabilidades();
+
+	@GetMapping(value = "/habilidades/{id}")
+	public Habilidad getHabilidad(@PathVariable int id){
+		Habilidad result = habilidadRepository.getHabilidad(id);
+		return result;
 	}
 
-	@PostMapping("/Habilidades")
+	@PostMapping("/habilidades/create")
 	@ResponseBody
-	public Habilidad createHab(@RequestBody Habilidad hab){
-		Habilidad habilidad = habilidadRepository.createHab(hab);
-		return habilidad;
+	public Habilidad createHabilidad(@RequestBody Habilidad institucion){
+		Habilidad result = habilidadRepository.createHabilidad(institucion);
+		return result;
+	}
+
+	@PutMapping ("/habilidades/up")
+	@ResponseBody
+	public Habilidad upHabilidad(@RequestBody Habilidad institucion){
+		Habilidad result = habilidadRepository.upHabilidad(institucion);
+		return result;
+	}
+
+	@DeleteMapping(value = "/habilidades/delete/{id}")
+	@ResponseBody
+	public void deleteHabilidad(@PathVariable int id){
+		habilidadRepository.deleteHabilidad(id);
 	}
 }

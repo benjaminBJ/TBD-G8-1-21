@@ -5,50 +5,31 @@ import java.sql.Date;
 public class Emergencia {
     private Integer id;
     private String nombre;
-    private String descripcion;
-    private Date fecha_inicio;
-    private Date fecha_fin;
+    private String decrip;
+    private Date finicio;
+    private Date ffin;
     private Integer id_institucion;
-    
-    public Integer getId() {
-        return id;
-    }
-    public Integer getId_institucion() {
-        return id_institucion;
-    }
-    public void setId_institucion(Integer id_institucion) {
-        this.id_institucion = id_institucion;
-    }
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
-    public Date getFecha_fin() {
-        return fecha_fin;
-    }
-    public void setFecha_fin(Date fecha_fin) {
-        this.fecha_fin = fecha_fin;
-    }
+    public Integer getId() { return id; }
 
-    public Date getFecha_inicio() {
-        return fecha_inicio;
-    }
-    public void setFecha_inicio(Date fecha_inicio) {
-        this.fecha_inicio = fecha_inicio;
-    }
-    
-    public String getDescripcion() {
-        return descripcion;
-    }
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-    
-    public String getNombre() {
-        return nombre;
-    }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    
+    public void setId(Integer id) { this.id = id; }
+    public String getNombre() { return nombre; }
+
+    public void setNombre(String nombre) { this.nombre = nombre; }
+
+    public String getDecrip() { return decrip; }
+
+    public void setDecrip(String decrip) { this.decrip = decrip; }
+
+    public Date getFinicio() { return finicio; }
+
+    public void setFinicio(Date finicio) { this.finicio = finicio; }
+
+    public Date getFfin() { return ffin; }
+
+    public void setFfin(Date ffin) { this.ffin = ffin; }
+
+    public Integer getId_institucion() { return id_institucion; }
+
+    public void setId_institucion(Integer id_institucion) { this.id_institucion = id_institucion; }
 }

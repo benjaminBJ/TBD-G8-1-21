@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -42,7 +40,6 @@ public class DogRepositoryImp implements DogRepository {
             Dog dog = conn.createQuery(sql, true)
                     .addParameter("id", id)
                     .executeAndFetchFirst(Dog.class);
-            System.out.println(dog);
             return dog;
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -54,8 +51,9 @@ public class DogRepositoryImp implements DogRepository {
     @Override
     public Dog createDog(Dog dog) {
         try(Connection conn = sql2o.open()){
-            int insertedId = (int) conn.createQuery("INSERT INTO dog (name) values (:dogName)", true)
+            int insertedId = (int) conn.createQuery("INSERT INTO dog (name,descrip) values (:dogName,:descrip)", true)
                     .addParameter("dogName", dog.getName())
+                    .addParameter("descrip", dog.getDescrip())
                     .executeUpdate().getKey();
             dog.setId(insertedId);
             return dog;        
