@@ -47,7 +47,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
         try(Connection conn = sql2o.open()){
             String sql =
                     "INSERT INTO emergencia (nombre,descrip,finicio,ffin,id_institucion) " +
-                            "values (:nombre,:descrip,:finicio,:ffin,id_institucion)";
+                            "values (:nombre,:descrip,:finicio,:ffin,:id_institucion)";
 
             int insertedId = (int) conn.createQuery(sql, true)
                     .addParameter("nombre", emergencia.getNombre())
