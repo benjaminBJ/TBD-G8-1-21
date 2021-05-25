@@ -73,6 +73,7 @@ public class Emergencia_HabilidadRepositoryImp implements Emergencia_HabilidadRe
             conn.createQuery(sql, true)
                     .addParameter("id_emergencia", emergencia_habilidad.getId_emergencia())
                     .addParameter("id_habilidad", emergencia_habilidad.getId_habilidad())
+                    .addParameter("id", emergencia_habilidad.getId())
                     .executeUpdate();
 
             return emergencia_habilidad;

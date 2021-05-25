@@ -78,6 +78,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
                     .addParameter("rut", voluntario.getRut())
                     .addParameter("email", voluntario.getEmail())
                     .addParameter("telefono", voluntario.getTelefono())
+                    .addParameter("id", voluntario.getId())
                     .executeUpdate();
 
             return voluntario;

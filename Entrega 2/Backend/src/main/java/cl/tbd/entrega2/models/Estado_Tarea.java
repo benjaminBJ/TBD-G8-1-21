@@ -2,7 +2,7 @@ package cl.tbd.entrega2.models;
 
 public class Estado_Tarea {
     private Integer id;
-    private String descripcion;
+    private String descrip;
 
     public Integer getId() {
         return id;
@@ -10,12 +10,8 @@ public class Estado_Tarea {
     public void setId(Integer id) {
         this.id = id;
     }
-    
-    public String getDescripcion() {
-        return descripcion;
-    }
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-    
+
+    public String getDescrip() { return descrip; }
+
+    public void setDescrip(String descrip) { this.descrip = descrip; }
 }

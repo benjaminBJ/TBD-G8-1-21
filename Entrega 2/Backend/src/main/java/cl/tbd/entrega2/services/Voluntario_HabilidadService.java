@@ -40,7 +40,7 @@ public class Voluntario_HabilidadService {
     @PutMapping ("/vol_habilidad/up")
     @ResponseBody
     public Voluntario_Habilidad upVoluntario_Habilidadn(@RequestBody Voluntario_Habilidad voluntario_habilidad){
-        Voluntario_Habilidad result = voluntario_habilidadRepository.upVoluntario_Habilidadn(voluntario_habilidad);
+        Voluntario_Habilidad result = voluntario_habilidadRepository.upVoluntario_Habilidad(voluntario_habilidad);
         return result;
     }
 

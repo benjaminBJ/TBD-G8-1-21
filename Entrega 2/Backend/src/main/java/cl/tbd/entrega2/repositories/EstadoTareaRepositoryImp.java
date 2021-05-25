@@ -45,12 +45,13 @@ public class EstadoTareaRepositoryImp implements EstadoTareaRepository{
     @Override
     public Estado_Tarea createEstado_Tarea(Estado_Tarea estado_Tarea) {
         try(Connection conn = sql2o.open()){
+
             String sql =
-            "INSERT INTO estado_tarea (descripcion) "+
-                "values (:descripcion)";
+                    "INSERT INTO estado_tarea (descrip) values (:descrip)";
             int insertedId = (int) conn.createQuery(sql, true)
-                    .addParameter("descripcion", estado_Tarea.getDescripcion())
+                    .addParameter("descrip", estado_Tarea.getDescrip())
                     .executeUpdate().getKey();
+
             estado_Tarea.setId(insertedId);
             return estado_Tarea;        
         }catch(Exception e){
@@ -64,11 +65,11 @@ public class EstadoTareaRepositoryImp implements EstadoTareaRepository{
         try(Connection conn = sql2o.open()){
 
             String sql =
-                    "UPDATE estado_Tarea SET descripcion = :descripcion" +
-                            "WHERE id = :id";
+                    "UPDATE estado_Tarea SET descrip = :descrip WHERE id = :id";
 
             conn.createQuery(sql, true)
-                    .addParameter("descripcion", estado_Tarea.getDescripcion())
+                    .addParameter("descrip", estado_Tarea.getDescrip())
+                    .addParameter("id", estado_Tarea.getId())
                     .executeUpdate();
 
             return estado_Tarea;

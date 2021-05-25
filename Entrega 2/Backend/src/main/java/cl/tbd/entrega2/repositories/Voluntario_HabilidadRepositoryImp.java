@@ -62,7 +62,7 @@ public class Voluntario_HabilidadRepositoryImp implements Voluntario_HabilidadRe
     }
 
     @Override
-    public Voluntario_Habilidad upVoluntario_Habilidadn(Voluntario_Habilidad voluntario_habilidad) {
+    public Voluntario_Habilidad upVoluntario_Habilidad(Voluntario_Habilidad voluntario_habilidad) {
         try(Connection conn = sql2o.open()){
 
             String sql =
@@ -72,6 +72,7 @@ public class Voluntario_HabilidadRepositoryImp implements Voluntario_HabilidadRe
             conn.createQuery(sql, true)
                     .addParameter("id_voluntario", voluntario_habilidad.getId_voluntario())
                     .addParameter("id_habilidad", voluntario_habilidad.getId_habilidad())
+                    .addParameter("id", voluntario_habilidad.getId())
                     .executeUpdate();
 
             return voluntario_habilidad;

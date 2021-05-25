@@ -51,7 +51,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
 
             int insertedId = (int) conn.createQuery(sql, true)
                     .addParameter("nombre", emergencia.getNombre())
-                    .addParameter("descrip", emergencia.getDecrip())
+                    .addParameter("descrip", emergencia.getDescrip())
                     .addParameter("finicio", emergencia.getFinicio())
                     .addParameter("ffin", emergencia.getFfin())
                     .addParameter("id_institucion", emergencia.getId_institucion())
@@ -70,15 +70,16 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
         try(Connection conn = sql2o.open()){
 
             String sql =
-                    "UPDATE institucion SET nombre = :nombre, descrip = :descrip,finicio = :finicio, " +
+                    "UPDATE emergencia SET nombre = :nombre, descrip = :descrip, finicio = :finicio, " +
                             "ffin =:ffin, id_institucion =:id_institucion WHERE id = :id";
 
             conn.createQuery(sql, true)
                     .addParameter("nombre", emergencia.getNombre())
-                    .addParameter("descrip", emergencia.getDecrip())
+                    .addParameter("descrip", emergencia.getDescrip())
                     .addParameter("finicio", emergencia.getFinicio())
                     .addParameter("ffin", emergencia.getFfin())
                     .addParameter("id_institucion", emergencia.getId_institucion())
+                    .addParameter("id", emergencia.getId())
                     .executeUpdate();
 
             return emergencia;
