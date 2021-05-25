@@ -3,7 +3,7 @@ package cl.tbd.entrega2.models;
 public class Institucion {
 	private Integer id;
 	private String nombre;
-	private String descripcion;
+	private String descrip;
 
 	public Integer getId(){
 		return id;
@@ -22,11 +22,11 @@ public class Institucion {
 	}
 
 	public String getDescripcion(){
-		return descripcion;
+		return descrip;
 	}
 
 	public void setDescripcion(String descripcion){
-		this.descripcion = descripcion;
+		this.descrip = descripcion;
 	}
 
 }

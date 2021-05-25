@@ -6,4 +6,8 @@ public interface DogRepository {
     public int countDogs();
     public List<Dog> getAllDogs();
     public Dog createDog(Dog dog);
+    public void deleteDog(int id);
+    public Dog getDog(int id);
+    public Dog upDog(Dog dog);
+
 }

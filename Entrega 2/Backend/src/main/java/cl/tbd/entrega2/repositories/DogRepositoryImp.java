@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -35,6 +36,22 @@ public class DogRepositoryImp implements DogRepository {
     }
 
     @Override
+    public Dog getDog(int id){
+        try(Connection conn = sql2o.open()){
+            String sql = "select * from dog WHERE id = :id";
+            Dog dog = conn.createQuery(sql, true)
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Dog.class);
+            System.out.println(dog);
+            return dog;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+
+    @Override
     public Dog createDog(Dog dog) {
         try(Connection conn = sql2o.open()){
             int insertedId = (int) conn.createQuery("INSERT INTO dog (name) values (:dogName)", true)
@@ -46,6 +63,39 @@ public class DogRepositoryImp implements DogRepository {
             System.out.println(e.getMessage());
             return null;
         }
-        
     }
+
+    @Override
+    public void deleteDog(int id) {
+        try(Connection conn = sql2o.open()){
+            String sql = "DELETE FROM dog WHERE id = :id";
+            conn.createQuery(sql, true)
+                   .addParameter("id", id)
+                    .executeUpdate();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public Dog upDog(Dog dog){
+        try(Connection conn = sql2o.open()){
+
+            String sql = "UPDATE dog SET name = :nombre " +
+                         "WHERE id = :id";
+
+            conn.createQuery(sql, true)
+                    .addParameter("nombre", dog.getName())
+                    .addParameter("id", dog.getId())
+                    .executeUpdate();
+
+            return dog;
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+
 }
