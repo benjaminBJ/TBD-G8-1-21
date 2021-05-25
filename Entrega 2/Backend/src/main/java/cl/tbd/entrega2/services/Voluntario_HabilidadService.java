@@ -18,33 +18,33 @@ public class Voluntario_HabilidadService {
     }
 
 
-    @GetMapping("/intitucions")
+    @GetMapping("/vol_habilidad")
     public List<Voluntario_Habilidad> getAllVoluntario_Habilidad() {
         return voluntario_habilidadRepository.getAllVoluntario_Habilidad();
     }
 
 
-    @GetMapping(value = "/institucions/{id}")
+    @GetMapping(value = "/vol_habilidad/{id}")
     public Voluntario_Habilidad getVoluntario_Habilidad(@PathVariable int id){
         Voluntario_Habilidad result = voluntario_habilidadRepository.getVoluntario_Habilidad(id);
         return result;
     }
 
-    @PostMapping("/institucions/create")
+    @PostMapping("/vol_habilidad/create")
     @ResponseBody
     public Voluntario_Habilidad createVoluntario_Habilidad(@RequestBody Voluntario_Habilidad voluntario_habilidad){
         Voluntario_Habilidad result = voluntario_habilidadRepository.createVoluntario_Habilidad(voluntario_habilidad);
         return result;
     }
 
-    @PutMapping ("/institucions/up")
+    @PutMapping ("/vol_habilidad/up")
     @ResponseBody
     public Voluntario_Habilidad upVoluntario_Habilidadn(@RequestBody Voluntario_Habilidad voluntario_habilidad){
         Voluntario_Habilidad result = voluntario_habilidadRepository.upVoluntario_Habilidadn(voluntario_habilidad);
         return result;
     }
 
-    @DeleteMapping(value = "/institucions/delete/{id}")
+    @DeleteMapping(value = "/vol_habilidad/delete/{id}")
     @ResponseBody
     public void deleteVoluntario_Habilidad(@PathVariable int id){
         voluntario_habilidadRepository.deleteVoluntario_Habilidad(id);

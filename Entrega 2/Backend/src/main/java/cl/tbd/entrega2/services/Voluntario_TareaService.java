@@ -1,39 +1,53 @@
 package cl.tbd.entrega2.services;
 
+import cl.tbd.entrega2.models.Voluntario_Habilidad;
 import cl.tbd.entrega2.models.Voluntario_Tarea;
 import cl.tbd.entrega2.repositories.Voluntario_TareaRepository;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @CrossOrigin
 @RestController
-public class VoluntarioTareaService {
+public class Voluntario_TareaService {
+
 	private final Voluntario_TareaRepository voluntarioTareaRepository;
-	VoluntarioTareaService(Voluntario_TareaRepository voluntarioTareaRepository){
+	Voluntario_TareaService(Voluntario_TareaRepository voluntarioTareaRepository){
 		this.voluntarioTareaRepository = voluntarioTareaRepository;
 	}
 
 	@GetMapping("/voluntarios_tarea")
-	public List<Voluntario_Tarea> getAllVolTareas(){
-		return voluntarioTareaRepository.getAllVolTareas();
+	public List<Voluntario_Tarea> getAllVoluntario_Tarea(){
+		return voluntarioTareaRepository.getAllVoluntario_Tarea();
 	}
 
-	@GetMapping("/voluntarios_tarea/count")
-	public int countVoluntariosTareas(){
-		return voluntarioTareaRepository.countVoluntariosTareas();
+	@GetMapping(value = "/voluntarios_tarea/{id}")
+	public Voluntario_Tarea getVoluntario_Tarea(@PathVariable int id){
+		Voluntario_Tarea result = voluntarioTareaRepository.getVoluntario_Tarea(id);
+		return result;
 	}
 
 	@PostMapping("/voluntarios_tarea")
 	@ResponseBody
-	public Voluntario_Tarea createVolTarea(@RequestBody Voluntario_Tarea vol_tarea){
-		Voluntario_Tarea voluntario_tarea = voluntarioTareaRepository.createVolTarea(vol_tarea);
+	public Voluntario_Tarea createVoluntario_Tarea(@RequestBody Voluntario_Tarea vol_tarea){
+		Voluntario_Tarea voluntario_tarea = voluntarioTareaRepository.createVoluntario_Tarea(vol_tarea);
 		return voluntario_tarea;
 	}
+
+	@PutMapping("/voluntarios_tarea/up")
+	@ResponseBody
+	public Voluntario_Tarea upVoluntario_Tarea(@RequestBody Voluntario_Tarea vol_tarea){
+		Voluntario_Tarea result = voluntarioTareaRepository.upVoluntario_Tarea(vol_tarea);
+		return result;
+	}
+
+	@DeleteMapping(value = "/voluntarios_tarea/delete/{id}")
+	@ResponseBody
+	public void deleteVoluntario_Tarea(@PathVariable int id){
+		voluntarioTareaRepository.deleteVoluntario_Tarea(id);
+	}
+
+
+
 }

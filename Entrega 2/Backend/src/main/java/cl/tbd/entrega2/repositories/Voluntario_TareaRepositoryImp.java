@@ -1,5 +1,6 @@
 package cl.tbd.entrega2.repositories;
 
+import cl.tbd.entrega2.models.Institucion;
 import cl.tbd.entrega2.models.Voluntario_Tarea;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -9,27 +10,17 @@ import org.sql2o.Sql2o;
 import java.util.List;
 
 @Repository
-public class VoluntarioTareaRepositoryImp implements VoluntarioTareaRepository {
+public class Voluntario_TareaRepositoryImp implements Voluntario_TareaRepository {
 
     @Autowired
     private Sql2o sql2o;
 
-    @Override
-    public int countVoluntariosTareas() {
-        int total = 0;
-        try(Connection conn = sql2o.open()){
-            String sql = "SELECT COUNT(*)" +
-                         "FROM voluntario_tarea";            
-            total = conn.createQuery(sql).executeScalar(Integer.class);
-        }
-        return total;
-    }
 
     @Override
-    public List<Voluntario_Tarea> getAllVolTareas() {
+    public List<Voluntario_Tarea> getAllVoluntario_Tarea() {
         try(Connection conn = sql2o.open()){
-            String sql = "SELECT * " + 
-                         "FROM voluntario_tarea";            
+            String sql = "SELECT * " +
+                    "FROM vol_tarea";
             return conn.createQuery(sql)
                     .executeAndFetch(Voluntario_Tarea.class);
         } catch (Exception e) {
@@ -39,23 +30,77 @@ public class VoluntarioTareaRepositoryImp implements VoluntarioTareaRepository {
     }
 
     @Override
-    public Voluntario_Tarea createVolTarea(Voluntario_Tarea volTarea) {
+    public Voluntario_Tarea getVoluntario_Tarea(int id) {
         try(Connection conn = sql2o.open()){
-            String sql =
-            "INSERT INTO voluntario_tarea (nombre, rut, id_voluntario, id_tarea) " +
-            "values (:nombre, :rut, :id_voluntario, :id_tarea)";             
-            int insertedId = (int) conn.createQuery(sql, true)
-                    .addParameter("nombre", volTarea.getNombre())
-                    .addParameter("rut", volTarea.getRut())
-                    .addParameter("id_voluntario", volTarea.getId_voluntario())
-                    .addParameter("id_tarea", volTarea.getId_tarea())
-                    .executeUpdate().getKey();
-            volTarea.setId(insertedId);
-            return volTarea;        
+
+            String sql = "select * from vol_tarea WHERE id = :id";
+
+            Voluntario_Tarea voluntario_tarea = conn.createQuery(sql, true)
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Voluntario_Tarea.class);
+            return voluntario_tarea;
         }catch(Exception e){
             System.out.println(e.getMessage());
             return null;
         }
     }
-    
+
+    @Override
+    public Voluntario_Tarea createVoluntario_Tarea(Voluntario_Tarea voluntario_tarea) {
+        try(Connection conn = sql2o.open()){
+            String sql =
+                    "INSERT INTO vol_tarea (nombre, rut, id_voluntario, id_tarea) " +
+                            "values (:nombre, :rut, :id_voluntario, :id_tarea)";
+            int insertedId = (int) conn.createQuery(sql, true)
+                    .addParameter("nombre", voluntario_tarea.getNombre())
+                    .addParameter("rut", voluntario_tarea.getRut())
+                    .addParameter("id_voluntario", voluntario_tarea.getId_voluntario())
+                    .addParameter("id_tarea", voluntario_tarea.getId_tarea())
+                    .executeUpdate().getKey();
+
+            voluntario_tarea.setId(insertedId);
+            return voluntario_tarea;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public Voluntario_Tarea upVoluntario_Tarea(Voluntario_Tarea voluntario_tarea) {
+        try(Connection conn = sql2o.open()){
+
+            String sql =
+                    "UPDATE voluntario_tarea SET nombre = :nombre, rut = :rut, id_voluntario = :id_voluntario," +
+                            "id_tarea =:id_tarea  " +
+                            "WHERE id = :id";
+
+            conn.createQuery(sql, true)
+                    .addParameter("nombre", voluntario_tarea.getNombre())
+                    .addParameter("rut", voluntario_tarea.getRut())
+                    .addParameter("id_voluntario", voluntario_tarea.getId_voluntario())
+                    .addParameter("id_tarea", voluntario_tarea.getId_tarea())
+                    .executeUpdate();
+
+            return voluntario_tarea;
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public void deleteVoluntario_Tarea(int id) {
+
+        try(Connection conn = sql2o.open()){
+            String sql = "DELETE FROM voluntario_tarea WHERE id = :id";
+            conn.createQuery(sql, true)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+
+    }
 }
