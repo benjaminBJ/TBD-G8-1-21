@@ -3,7 +3,8 @@ package cl.tbd.entrega2.services;
 import cl.tbd.entrega2.models.Emergencia;
 import cl.tbd.entrega2.repositories.EmergenciaRepository;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @CrossOrigin

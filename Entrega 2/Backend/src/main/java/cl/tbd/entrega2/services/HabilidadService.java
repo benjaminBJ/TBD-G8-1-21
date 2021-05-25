@@ -32,15 +32,15 @@ public class HabilidadService {
 
 	@PostMapping("/habilidades/create")
 	@ResponseBody
-	public Habilidad createHabilidad(@RequestBody Habilidad institucion){
-		Habilidad result = habilidadRepository.createHabilidad(institucion);
+	public Habilidad createHabilidad(@RequestBody Habilidad habilidad){
+		Habilidad result = habilidadRepository.createHabilidad(habilidad);
 		return result;
 	}
 
 	@PutMapping ("/habilidades/up")
 	@ResponseBody
-	public Habilidad upHabilidad(@RequestBody Habilidad institucion){
-		Habilidad result = habilidadRepository.upHabilidad(institucion);
+	public Habilidad upHabilidad(@RequestBody Habilidad habilidad){
+		Habilidad result = habilidadRepository.upHabilidad(habilidad);
 		return result;
 	}
 

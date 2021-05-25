@@ -92,6 +92,7 @@ public class InstitucionRepositoryImp implements InstitucionRepository{
 
     @Override
     public void deleteInstitucion(int id) {
+
         try(Connection conn = sql2o.open()){
             String sql = "DELETE FROM institucion WHERE id = :id";
             conn.createQuery(sql, true)
