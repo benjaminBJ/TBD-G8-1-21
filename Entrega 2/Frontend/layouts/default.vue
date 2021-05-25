@@ -85,9 +85,9 @@ export default {
           to: '/inspire'
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-plus',
           title: 'Mis Tareas',
-          to: '/mis tareas'
+          to: '/mis_tareas'
         }
       ],
       miniVariant: false,
