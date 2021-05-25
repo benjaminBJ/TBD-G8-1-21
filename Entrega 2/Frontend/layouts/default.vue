@@ -88,6 +88,11 @@ export default {
           icon: 'mdi-plus',
           title: 'Mis Tareas',
           to: '/mis_tareas'
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'prueba',
+          to: '/prueba'
         }
       ],
       miniVariant: false,
