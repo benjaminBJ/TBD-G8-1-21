@@ -14,27 +14,11 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     @Autowired
     private Sql2o sql2o;
 
-    @Override
-    public int countEmergencias() {
-        int total = 0;
-        try(Connection conn = sql2o.open()){
-
-            String sql = "SELECT COUNT(*)" +
-                         "FROM emergencia";
-                         
-            total = conn.createQuery(sql).executeScalar(Integer.class);
-        }
-        return total;
-    }
 
     @Override
-    public List<Emergencia> getAllEmrgs() {
+    public List<Emergencia> getAllEmergencias() {
         try(Connection conn = sql2o.open()){
-
-            String sql = "SELECT * " + 
-                         "FROM emergencia";
-
-            return conn.createQuery(sql)
+            return conn.createQuery("select * from emergencia")
                     .executeAndFetch(Emergencia.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -43,16 +27,15 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     }
 
     @Override
-    public Emergencia getEmrg(int id){
+    public Emergencia getEmergencia(int id) {
         try(Connection conn = sql2o.open()){
 
             String sql = "select * from emergencia WHERE id = :id";
 
-            Emergencia emg = conn.createQuery(sql, true)
+            Emergencia emergencia = conn.createQuery(sql, true)
                     .addParameter("id", id)
                     .executeAndFetchFirst(Emergencia.class);
-            System.out.println(emg);
-            return emg;
+            return emergencia;
         }catch(Exception e){
             System.out.println(e.getMessage());
             return null;
@@ -60,22 +43,22 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     }
 
     @Override
-    public Emergencia createEmrg(Emergencia emg) {
+    public Emergencia createEmergencia(Emergencia emergencia) {
         try(Connection conn = sql2o.open()){
-
-            String sql = 
-            "INSERT INTO emergencia (nombre, descripcion, fecha_inicio, fecha_fin, id_institucion) "+
-            "values (:nombre, :descripcion, :fecha_inicio, :fecha_fin, :id_institucion )";
+            String sql =
+                    "INSERT INTO emergencia (nombre,descrip,finicio,ffin,id_institucion) " +
+                            "values (:nombre,:descrip,:finicio,:ffin,id_institucion)";
 
             int insertedId = (int) conn.createQuery(sql, true)
-                    .addParameter("nombre", emg.getNombre())
-                    .addParameter("descripcion", emg.getDescripcion())
-                    .addParameter("fecha_inicio", emg.getFecha_fin())
-                    .addParameter("fecha_fin", emg.getFecha_fin())
-                    .addParameter("id_institucion", emg.getId_institucion())
+                    .addParameter("nombre", emergencia.getNombre())
+                    .addParameter("descrip", emergencia.getDecrip())
+                    .addParameter("finicio", emergencia.getFinicio())
+                    .addParameter("ffin", emergencia.getFfin())
+                    .addParameter("id_institucion", emergencia.getId_institucion())
                     .executeUpdate().getKey();
-            emg.setId(insertedId);
-            return emg;        
+
+            emergencia.setId(insertedId);
+            return emergencia;
         }catch(Exception e){
             System.out.println(e.getMessage());
             return null;
@@ -83,23 +66,22 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     }
 
     @Override
-    public Emergencia upEmrg(Emergencia emg){
+    public Emergencia upEmergencia(Emergencia emergencia) {
         try(Connection conn = sql2o.open()){
 
-            String sql = "UPDATE emergencia SET" + 
-                         "nombre = :nombre " +
-                         "descripcion = :descripcion" +
-                         "fecha_inicio = :fecha_inicio" +
-                         "fecha_fin = :fecha_fin" +
-                         "id_institucion= :id_institucion" +
-                         "WHERE id = :id";
+            String sql =
+                    "UPDATE institucion SET nombre = :nombre, descrip = :descrip,finicio = :finicio, " +
+                            "ffin =:ffin, id_institucion =:id_institucion WHERE id = :id";
 
             conn.createQuery(sql, true)
-                    .addParameter("nombre", emg.getNombre())
-                    .addParameter("id", emg.getId())
+                    .addParameter("nombre", emergencia.getNombre())
+                    .addParameter("descrip", emergencia.getDecrip())
+                    .addParameter("finicio", emergencia.getFinicio())
+                    .addParameter("ffin", emergencia.getFfin())
+                    .addParameter("id_institucion", emergencia.getId_institucion())
                     .executeUpdate();
 
-            return emg;
+            return emergencia;
 
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -108,15 +90,14 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     }
 
     @Override
-    public void deleteEmrg(int id) {
+    public void deleteEmergencia(int id) {
         try(Connection conn = sql2o.open()){
             String sql = "DELETE FROM emergencia WHERE id = :id";
             conn.createQuery(sql, true)
-                   .addParameter("id", id)
+                    .addParameter("id", id)
                     .executeUpdate();
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
     }
-
 }
