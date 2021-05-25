@@ -1,16 +1,21 @@
 <template>
   <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
+    <v-col cols="1" sm="12" md="100">
       <div class="text-center">
-        <logo />
-        <vuetify-logo />
       </div>
-      <v-card>
+      <h1>Bienvenido, Nombre!<img
+        src="/add-person-2646097.png"
+        alt="Luz azul de emergencia"
+        class="ml-5"
+      ></h1>
+      <h2>Emergencias activas:</h2>
+      
+      <v-card class="mb-5">
         <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
+          Incendio
         </v-card-title>
         <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
+          
           <p>
             For more information on Vuetify, check out the <a
               href="https://vuetifyjs.com"
@@ -68,7 +73,7 @@
             nuxt
             to="/inspire"
           >
-            Continue
+            Postular
           </v-btn>
           <v-spacer />
           <v-btn

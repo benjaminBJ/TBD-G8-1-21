@@ -8,10 +8,10 @@
         src="/blue-light-2020909_280.png"
         alt="Luz azul de emergencia"
         class="mb-5"
-      >
-  <v-divider>
-        algo de texto
-      </v-divider>
+  >
+
+  <v-divider> </v-divider>
+  
   <v-card
     class="tarea mx-auto"
     max-width="600"
