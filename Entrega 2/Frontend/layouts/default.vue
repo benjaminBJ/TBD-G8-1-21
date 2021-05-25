@@ -31,7 +31,7 @@
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />    
      
-      <v-toolbar-title v-text="title" />
+      <v-toolbar-title v-text="title" class="font-italic font-weight-medium" />
       <v-spacer />
       <v-btn
         icon
@@ -81,7 +81,7 @@ export default {
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'Inspire',
+          title: 'Info Personal',
           to: '/inspire'
         },
         {
