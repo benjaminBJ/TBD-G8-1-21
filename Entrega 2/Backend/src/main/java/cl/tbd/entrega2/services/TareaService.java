@@ -2,39 +2,47 @@ package cl.tbd.entrega2.services;
 
 import cl.tbd.entrega2.models.Tarea;
 import cl.tbd.entrega2.repositories.TareaRepository;
-
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @CrossOrigin
 @RestController
 public class TareaService {
-	private final TareaRepository tareaRepository;
-	TareaService(TareaRepository tareaRepository){
-		this.tareaRepository = tareaRepository;
-	}
+
+    private final TareaRepository tareaRepository;
+    TareaService(TareaRepository tareaRepository){
+        this.tareaRepository = tareaRepository;
+    }
 
 	@GetMapping("/tareas")
-	public List<Tarea> getAllTareas(){
-		return tareaRepository.getAllTareas();
+	public List<Tarea> getAllTarea(){
+		return tareaRepository.getAllTarea();
 	}
 
-	@GetMapping("/tareas/count")
-	public int countTareas(){
-		return tareaRepository.countTareas();
-	}
+	@GetMapping(value = "/tareas/{id}")
+    public Tarea getTarea(@PathVariable int id){
+        Tarea result = tareaRepository.getTarea(id);
+        return result;
+    }
 
-	@PostMapping("/tareas")
+	@PostMapping("/tareas/create")
 	@ResponseBody
-	public Tarea createTarea(@RequestBody Tarea t){
-		Tarea tarea = tareaRepository.createTarea(t);
-		return tarea;
+	public Tarea createTarea(@RequestBody Tarea Tarea){
+		Tarea result = tareaRepository.createTarea(Tarea);
+		return result;
 	}
 
+	@PutMapping ("/tareas/up")
+    @ResponseBody
+    public Tarea upTarea(@RequestBody Tarea Tarea){
+        Tarea result = tareaRepository.upTarea(Tarea);
+        return result;
+    }
+
+    @DeleteMapping(value = "/tareas/delete/{id}")
+    @ResponseBody
+    public void deleteTarea(@PathVariable int id){
+        tareaRepository.deleteTarea(id);
+    }
 }

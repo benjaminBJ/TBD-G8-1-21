@@ -47,8 +47,8 @@ public class RankingRepositoryImp implements RankingRepository{
     public Ranking createRanking(Ranking rnk) {
         try(Connection conn = sql2o.open()){
             String sql =
-            "INSERT INTO ranking (puntaje, flg_participa, flg_invitado, id_voluntario, id_tarea)" +
-            "values (:Puntaje,:flg_participa,:flg_invitado,:id_voluntario,:id_tarea)";            
+                    "INSERT INTO ranking (puntaje, flg_participa, flg_invitado, id_voluntario, id_tarea)" +
+                        "values (:Puntaje,:flg_participa,:flg_invitado,:id_voluntario,:id_tarea)";            
             int insertedId = (int) conn.createQuery(sql, true)
                     .addParameter("puntaje", rnk.getPuntaje())
                     .addParameter("flg_participa", rnk.getFlg_participa())

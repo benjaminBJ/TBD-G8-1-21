@@ -51,7 +51,4 @@ public class DogService {
         Dog result = dogRepository.upDog(dog);
         return result;
     }
-
-
-
 }

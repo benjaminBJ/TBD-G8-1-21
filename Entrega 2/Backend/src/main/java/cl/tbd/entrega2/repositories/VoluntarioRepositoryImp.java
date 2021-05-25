@@ -69,10 +69,11 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
         try(Connection conn = sql2o.open()){
 
             String sql =
-                    "UPDATE voluntario SET nombre = :nombre, nombre = :nombre , rut = :rut , email = :email , " +
+                    "UPDATE voluntario SET nombre = :nombre, rut = :rut , email = :email , " +
                             "telefono =:telefono WHERE id = :id";
 
             conn.createQuery(sql, true)
+                    .addParameter("id", voluntario.getId())
                     .addParameter("nombre", voluntario.getNombre())
                     .addParameter("rut", voluntario.getRut())
                     .addParameter("email", voluntario.getEmail())
