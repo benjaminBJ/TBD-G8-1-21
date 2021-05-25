@@ -1,16 +1,21 @@
 <template>
   <v-row>
     <v-col class="text-center">
-      <img
-        src="/v.png"
-        alt="Vuetify.js"
-        class="mb-5"
-      >
+     
       <template>
   <!-- Comment --> 
+  <img
+        src="/blue-light-2020909_280.png"
+        alt="Luz azul de emergencia"
+        class="mb-5"
+      >
+  <v-divider>
+        algo de texto
+      </v-divider>
   <v-card
-    class="mx-auto"
-    max-width="450"
+    class="tarea mx-auto"
+    max-width="600"
+    max-height="600"
     outlined
   >
     
