@@ -82,17 +82,12 @@ export default {
         {
           icon: 'mdi-chart-bubble',
           title: 'Info Personal',
-          to: '/inspire'
+          to: '/datos'
         },
         {
           icon: 'mdi-plus',
           title: 'Mis Tareas',
           to: '/mis_tareas'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'prueba',
-          to: '/prueba'
         }
       ],
       miniVariant: false,

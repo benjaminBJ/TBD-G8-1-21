@@ -1,12 +1,12 @@
 <template>
   <v-row justify="center" align="center">
-    <v-col cols="1" sm="12" md="100">
+    <v-col cols="1" sm="10" md="100">
       <div class="text-center">
       </div>
       <h1>Bienvenido, Nombre!<img
         src="/add-person-2646097.png"
         alt="Luz azul de emergencia"
-        class="ml-5"
+        class="ml-5 mt-5"
       ></h1>
       <br>
       <h2>Emergencias activas:</h2>
@@ -32,7 +32,7 @@
           <p>
             Fecha de inicio: {{  item.fecha  }}.
           </p>
-          <p>{{  item.historia  }}</p>
+          <p>Descripción: {{  item.historia  }}</p>
 
           
         </v-card-text>
@@ -41,7 +41,7 @@
           <v-btn
             color="primary"
             nuxt
-            to="/inspire"
+            to="/datos"
           >
             Postular
           </v-btn>
@@ -53,8 +53,6 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
 
 export default {
   data () {
