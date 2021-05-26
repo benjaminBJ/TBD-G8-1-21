@@ -7,13 +7,14 @@
         >
         <br>
         <v-row
-        v-for="j in justify"
-        :key="j"
-        :justify="j"
+        v-for="(item, i) in items"
+              :key="i"
+              :to="item.to"
+              router
+              exact
         >
         <v-col
-            v-for="k in 2"
-            :key="k"
+            
             md=""
         >
             <v-card
@@ -32,13 +33,13 @@
             <v-list-item three-line>
             <v-list-item-content>
                 <div class="overline mb-3">
-                UBICACION
+                UBICACION: {{ item.localizacion }}
                 </div>
                 <v-list-item-title class="headline mb-1">
-                NOMBRE 
+                NOMBRE: {{ item.nombre }}
                 </v-list-item-title>
                 
-                <v-list-item-subtitle>Fecha inicio: FECHA </v-list-item-subtitle>
+                <v-list-item-subtitle>Fecha inicio: {{ item.fecha }} </v-list-item-subtitle>
                 <v-list-item-subtitle>Fecha fin: FECHA</v-list-item-subtitle>
             </v-list-item-content>
             
@@ -78,7 +79,7 @@
                 <v-divider></v-divider>
 
                 <v-card-text>
-                  DESCRIPCION
+                  DESCRIPCION: {{ item.historia }}
                 </v-card-text>
               </div>
             </v-expand-transition>
@@ -93,11 +94,43 @@
   export default {
     data: () => ({
       show: false,
-      justify: [
-        'end',
-        'end',
-        'end'
-
+      items: [
+        {
+          show: false,
+          justify: 'end',
+          nombre: 'Incendio',
+          localizacion: 'Rancagua',
+          voluntarios: '10',
+          fecha: 'mañana',
+          historia: 'si'
+        },
+        {
+          show: false,
+          justify: 'end',
+          nombre: 'derrumbe',
+          localizacion: 'A',
+          voluntarios: '5',
+          fecha: 'hoy',
+          historia: 'no'
+        },
+        {
+          show: false,
+          justify: 'end',
+          nombre: 'Incendio',
+          localizacion: 'Stgo',
+          voluntarios: '9',
+          fecha: 'ayer',
+          historia: 'avece'
+        },
+        {
+          show: false,
+          justify: 'end',
+          nombre: 'Incendio',
+          localizacion: 'viña',
+          voluntarios: '13',
+          fecha: 'nose',
+          historia: 'jaj'
+        }
       ],
     }),
   }

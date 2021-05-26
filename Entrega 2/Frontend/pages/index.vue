@@ -8,63 +8,33 @@
         alt="Luz azul de emergencia"
         class="ml-5"
       ></h1>
+      <br>
       <h2>Emergencias activas:</h2>
+      <br>
       
-      <v-card class="mb-5">
+      <v-card class="mb-5"
+              v-for="(item, i) in items"
+              :key="i"
+              :to="item.to"
+              router
+              exact>
         <v-card-title class="headline">
-          Incendio
+          {{  item.nombre  }}
         </v-card-title>
         <v-card-text>
           
           <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation
-            </a>.
+            Localización: {{  item.localizacion  }}. 
           </p>
           <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord
-            </a>.
+            Cantidad de voluntarios necesarios: {{  item.voluntarios  }}.
           </p>
           <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board
-            </a>.
+            Fecha de inicio: {{  item.fecha  }}.
           </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
+          <p>{{  item.historia  }}</p>
+
+          
         </v-card-text>
         <v-card-actions>
           <v-spacer />
@@ -75,14 +45,7 @@
           >
             Postular
           </v-btn>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire copy"
-          >
-            Continue
-          </v-btn>
+         
         </v-card-actions>
       </v-card>
     </v-col>
@@ -94,9 +57,40 @@ import Logo from '~/components/Logo.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
 
 export default {
-  components: {
-    Logo,
-    VuetifyLogo
+  data () {
+    return {
+      items: [
+        {
+          nombre: 'Incendio',
+          localizacion: 'Rancagua',
+          voluntarios: '10',
+          fecha: 'mañana',
+          historia: 'si'
+        },
+        {
+          nombre: 'derrumbe',
+          localizacion: 'A',
+          voluntarios: '5',
+          fecha: 'hoy',
+          historia: 'no'
+        },
+        {
+          nombre: 'Incendio',
+          localizacion: 'Stgo',
+          voluntarios: '9',
+          fecha: 'ayer',
+          historia: 'avece'
+        },
+        {
+          nombre: 'Incendio',
+          localizacion: 'viña',
+          voluntarios: '13',
+          fecha: 'nose',
+          historia: 'jaj'
+        }
+      ],
+    }
   }
+  
 }
 </script>

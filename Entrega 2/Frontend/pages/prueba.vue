@@ -11,9 +11,8 @@
         :justify="j"
         >
         <v-col
-            v-for="k in 2"
-            :key="k"
-            md="6"
+
+            md="8"
         >
             <v-card
             class="pa-2"
@@ -74,9 +73,9 @@
   export default {
     data: () => ({
       justify: [
-        'end',
-        'end',
-        'end'
+        'center',
+        'center',
+        'center'
 
       ],
     }),
