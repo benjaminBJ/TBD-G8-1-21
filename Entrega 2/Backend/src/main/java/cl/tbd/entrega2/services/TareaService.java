@@ -45,4 +45,11 @@ public class TareaService {
     public void deleteTarea(@PathVariable int id){
         tareaRepository.deleteTarea(id);
     }
+
+    @PutMapping("/tareas/cerrar_tareas")
+    @ResponseBody
+    public void procedure1(){
+        tareaRepository.procedure1();
+    }
+
 }

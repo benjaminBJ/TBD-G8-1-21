@@ -8,4 +8,5 @@ public interface EstadoTareaRepository {
     public Estado_Tarea getEstado_Tarea(int id);
     public Estado_Tarea upEstado_Tarea(Estado_Tarea estado_Tarea);
     public void deleteEstado_Tarea(int id);
+
 }

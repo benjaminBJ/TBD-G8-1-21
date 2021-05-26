@@ -115,5 +115,23 @@ public class TareaRepositoryImp implements TareaRepository{
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
-    }    
+    }
+
+    @Override
+    public void procedure1() {
+
+        try(Connection conn = sql2o.open()){
+
+            String sql2 = "CALL public.cerrar_tareas_terminadas()";
+            conn.createQuery(sql2, true)
+                    .executeUpdate();
+            
+            //System.out.println("Ejecuta procedimiento");
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+
 }

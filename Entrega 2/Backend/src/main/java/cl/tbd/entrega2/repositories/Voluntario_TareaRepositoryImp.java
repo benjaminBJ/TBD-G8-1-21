@@ -48,11 +48,10 @@ public class Voluntario_TareaRepositoryImp implements Voluntario_TareaRepository
     public Voluntario_Tarea createVoluntario_Tarea(Voluntario_Tarea voluntario_tarea) {
         try(Connection conn = sql2o.open()){
             String sql =
-                    "INSERT INTO vol_tarea (nombre, rut, id_voluntario, id_tarea) " +
-                            "values (:nombre, :rut, :id_voluntario, :id_tarea)";
+                    "INSERT INTO vol_tarea (id_voluntario, id_tarea) " +
+                            "values (:id_voluntario, :id_tarea)";
             int insertedId = (int) conn.createQuery(sql, true)
-                    .addParameter("nombre", voluntario_tarea.getNombre())
-                    .addParameter("rut", voluntario_tarea.getRut())
+
                     .addParameter("id_voluntario", voluntario_tarea.getId_voluntario())
                     .addParameter("id_tarea", voluntario_tarea.getId_tarea())
                     .executeUpdate().getKey();
@@ -80,6 +79,7 @@ public class Voluntario_TareaRepositoryImp implements Voluntario_TareaRepository
                     .addParameter("rut", voluntario_tarea.getRut())
                     .addParameter("id_voluntario", voluntario_tarea.getId_voluntario())
                     .addParameter("id_tarea", voluntario_tarea.getId_tarea())
+                    .addParameter("id", voluntario_tarea.getId())
                     .executeUpdate();
 
             return voluntario_tarea;

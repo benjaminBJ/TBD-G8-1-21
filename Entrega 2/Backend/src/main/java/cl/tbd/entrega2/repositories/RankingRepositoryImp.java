@@ -79,6 +79,7 @@ public class RankingRepositoryImp implements RankingRepository{
                     .addParameter("flg_invitado", Ranking.getFlg_invitado())
                     .addParameter("id_voluntario", Ranking.getId_voluntario())
                     .addParameter("id_tarea", Ranking.getId_tarea())
+                    .addParameter("id", Ranking.getId())
                     .executeUpdate();
 
             return Ranking;
