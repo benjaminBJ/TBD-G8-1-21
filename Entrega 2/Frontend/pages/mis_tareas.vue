@@ -1,98 +1,103 @@
 <template>
-  <v-container class="grey lighten-5">
+  <v-container class="grey lighten-5" max-width >
         <img
             src="/blue-light-2020909_280.png"
             alt="Luz azul de emergencia"
             class="d-flex justify-space-around mb-5"
         >
         <br>
-        <v-row
-        v-for="(item, i) in items"
-              :key="i"
-              :to="item.to"
-              router
-              exact
-        >
-        <v-col
-            
-            md=""
-        >
-            <v-card
-            class="pa-2"
-            outlined
-            tile
+        <v-layout row wrap>
+          <v-flex  
+            v-for="(item, i) in items"
+                  :key="i"
+                  :to="item.to"
+                  
+                  
             >
-            <v-card
-            color="blue lighten-5" 
-            class="tarea mx-auto" 
-            max-width="600"
-            max-height="600"
-            outlined 
-        >
-            
-            <v-list-item three-line>
-            <v-list-item-content>
-                <div class="overline mb-3">
-                UBICACION: {{ item.localizacion }}
-                </div>
-                <v-list-item-title class="headline mb-1">
-                NOMBRE: {{ item.nombre }}
-                </v-list-item-title>
-                
-                <v-list-item-subtitle>Fecha inicio: {{ item.fecha }} </v-list-item-subtitle>
-                <v-list-item-subtitle>Fecha fin: FECHA</v-list-item-subtitle>
-            </v-list-item-content>
-            
-            <v-list-item-avatar
-                tile
-                size="80"
-                color="grey"
-            ></v-list-item-avatar>
-            </v-list-item>
-
-            <v-card-actions class="justify-center">
-            <v-btn class="red lighten-2"
-                outlined
-                rounded
-                text
-                color="black"
-            >
-                Cancelar
-            </v-btn>
-            <v-btn class="green lighten-2"
-                outlined
-                rounded
-                text
-            >
-                Terminar
-            </v-btn>
-            <v-btn class="blue lighten-1"
-              outlined
+              <br>
+              <v-card
+              flat
+              class="pa-2"
               rounded
-              @click="show = !show"
-            >
-            Detalles
-            </v-btn>
-            </v-card-actions>
-            <v-expand-transition>
-              <div v-show="show">
-                <v-divider></v-divider>
+              color="blue lighten-3" 
+              max-width="600"
+              max-height="600"
 
-                <v-card-text>
-                  DESCRIPCION: {{ item.historia }}
-                </v-card-text>
-              </div>
-            </v-expand-transition>
-        </v-card>
-            </v-card>
+              >
+              <v-card
+              color="blue lighten-5" 
+              class="tarea mx-auto" 
+              max-width="600"
+              max-height="600"
+              outlined
+              rounded 
+          >
+              
+              <v-list-item three-line>
+              <v-list-item-content>
+                  <div class="overline mb-3">
+                  UBICACION: {{ item.localizacion }}
+                  </div>
+                  <v-list-item-title class="headline mb-1">
+                  NOMBRE: {{ item.nombre }}
+                  </v-list-item-title>
+                  
+                  <v-list-item-subtitle>Fecha inicio: {{ item.fecha }} </v-list-item-subtitle>
+                  <v-list-item-subtitle>Fecha fin: FECHA</v-list-item-subtitle>
+              </v-list-item-content>
+              
+              <v-list-item-avatar
+                  tile
+                  size="80"
+                  color="grey"
+              ></v-list-item-avatar>
+              </v-list-item>
 
-        </v-col>
-    </v-row>
+              <v-card-actions class="justify-center">
+              <v-btn class="red lighten-2"
+                  outlined
+                  rounded
+                  text
+                  color="black"
+              >
+                  Cancelar
+              </v-btn>
+              <v-btn class="green lighten-2"
+                  outlined
+                  rounded
+                  text
+              >
+                  Terminar
+              </v-btn>
+              <v-btn class="blue lighten-1"
+                outlined
+                rounded
+                @click="show = !show"
+                
+              >
+              Detalles
+              </v-btn>
+              </v-card-actions>
+              <v-expand-transition>
+                <div v-show="show">
+                  <v-divider></v-divider>
+
+                  <v-card-text>
+                    DESCRIPCION: {{ item.historia }}
+                  </v-card-text>
+                </div>
+              </v-expand-transition>
+          </v-card>
+              </v-card>
+
+      </v-flex>
+    </v-layout>
   </v-container>
 </template>
 <script>
   export default {
     data: () => ({
+
       show: false,
       items: [
         {
@@ -132,6 +137,7 @@
           historia: 'jaj'
         }
       ],
+      
     }),
   }
 </script>
