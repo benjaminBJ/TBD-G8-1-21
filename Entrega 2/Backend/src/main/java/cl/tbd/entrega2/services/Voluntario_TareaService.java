@@ -1,6 +1,5 @@
 package cl.tbd.entrega2.services;
 
-import cl.tbd.entrega2.models.Voluntario_Habilidad;
 import cl.tbd.entrega2.models.Voluntario_Tarea;
 import cl.tbd.entrega2.repositories.Voluntario_TareaRepository;
 

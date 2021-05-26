@@ -1,6 +1,5 @@
 package cl.tbd.entrega2.repositories;
 
-import cl.tbd.entrega2.models.Institucion;
 import cl.tbd.entrega2.models.Tarea_Habilidad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -44,6 +43,7 @@ public class Tarea_HabilidadRepositoryImp implements Tarea_HabilidadRepository{
     @Override
     public Tarea_Habilidad createTarea_Habilidad(Tarea_Habilidad tarea_habilidad) {
         try(Connection conn = sql2o.open()){
+            
             String sql =
                     "INSERT INTO tarea_habilidad (id_tarea,id_habilidad) values (:id_tarea,:id_habilidad)";
 
@@ -69,6 +69,7 @@ public class Tarea_HabilidadRepositoryImp implements Tarea_HabilidadRepository{
                             "WHERE id = :id";
 
             conn.createQuery(sql, true)
+                    .addParameter("id", tarea_habilidad.getId())
                     .addParameter("id_tarea", tarea_habilidad.getId_tarea())
                     .addParameter("id_habilidad", tarea_habilidad.getId_habilidad())
                     .executeUpdate();

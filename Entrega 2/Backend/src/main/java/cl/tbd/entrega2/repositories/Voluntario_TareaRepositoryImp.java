@@ -1,6 +1,5 @@
 package cl.tbd.entrega2.repositories;
 
-import cl.tbd.entrega2.models.Institucion;
 import cl.tbd.entrega2.models.Voluntario_Tarea;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -71,11 +70,12 @@ public class Voluntario_TareaRepositoryImp implements Voluntario_TareaRepository
         try(Connection conn = sql2o.open()){
 
             String sql =
-                    "UPDATE voluntario_tarea SET nombre = :nombre, rut = :rut, id_voluntario = :id_voluntario," +
-                            "id_tarea =:id_tarea  " +
+                    "UPDATE vol_tarea SET nombre = :nombre, rut = :rut, id_voluntario = :id_voluntario, " +
+                            "id_tarea = :id_tarea  " +
                             "WHERE id = :id";
 
             conn.createQuery(sql, true)
+                    .addParameter("id", voluntario_tarea.getId())
                     .addParameter("nombre", voluntario_tarea.getNombre())
                     .addParameter("rut", voluntario_tarea.getRut())
                     .addParameter("id_voluntario", voluntario_tarea.getId_voluntario())

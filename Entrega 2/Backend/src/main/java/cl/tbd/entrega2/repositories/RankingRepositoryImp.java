@@ -48,7 +48,7 @@ public class RankingRepositoryImp implements RankingRepository{
         try(Connection conn = sql2o.open()){
             String sql =
                     "INSERT INTO ranking (puntaje, flg_participa, flg_invitado, id_voluntario, id_tarea)" +
-                        "values (:Puntaje,:flg_participa,:flg_invitado,:id_voluntario,:id_tarea)";            
+                        "values (:puntaje,:flg_participa,:flg_invitado,:id_voluntario,:id_tarea)";            
             int insertedId = (int) conn.createQuery(sql, true)
                     .addParameter("puntaje", rnk.getPuntaje())
                     .addParameter("flg_participa", rnk.getFlg_participa())
@@ -69,11 +69,12 @@ public class RankingRepositoryImp implements RankingRepository{
         try(Connection conn = sql2o.open()){
 
             String sql =
-                    "UPDATE ranking SET Puntaje = :puntaje, flg_participa = :flg_participa, flg_invitado = :flg_invitado, " +
-                            "id_voluntario = :id_voluntario, id_tarea =: id_tarea WHERE id = :id";
+                    "UPDATE ranking SET puntaje = :puntaje, flg_participa = :flg_participa, flg_invitado = :flg_invitado, " +
+                            "id_voluntario = :id_voluntario, id_tarea = :id_tarea WHERE id = :id";
 
             conn.createQuery(sql, true)
-                    .addParameter("Puntaje", Ranking.getPuntaje())
+                    .addParameter("id", Ranking.getId())
+                    .addParameter("puntaje", Ranking.getPuntaje())
                     .addParameter("flg_participa", Ranking.getFlg_participa())
                     .addParameter("flg_invitado", Ranking.getFlg_invitado())
                     .addParameter("id_voluntario", Ranking.getId_voluntario())

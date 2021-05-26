@@ -3,7 +3,6 @@ package cl.tbd.entrega2.repositories;
 import java.util.List;
 
 import cl.tbd.entrega2.models.Habilidad;
-import cl.tbd.entrega2.models.Institucion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;

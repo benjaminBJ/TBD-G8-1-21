@@ -1,6 +1,5 @@
 package cl.tbd.entrega2.repositories;
 
-import cl.tbd.entrega2.models.Institucion;
 import cl.tbd.entrega2.models.Voluntario_Habilidad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
