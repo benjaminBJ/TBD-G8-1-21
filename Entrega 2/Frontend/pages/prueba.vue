@@ -33,9 +33,11 @@
                 Estacion Central
                 </div>
                 <v-list-item-title class="headline mb-1">
-                Recoleccion de mercaderia
+                NOMBRE 
                 </v-list-item-title>
-                <v-list-item-subtitle>Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
+                <v-list-item-subtitle color="black">Descripcion</v-list-item-subtitle>
+                <v-list-item-subtitle>Fecha inicio</v-list-item-subtitle>
+                <v-list-item-subtitle>Fecha fin</v-list-item-subtitle>
             </v-list-item-content>
             
             <v-list-item-avatar
@@ -45,7 +47,7 @@
             ></v-list-item-avatar>
             </v-list-item>
 
-            <v-card-actions>
+            <v-card-actions class="justify-center">
             <v-btn
                 outlined
                 rounded
