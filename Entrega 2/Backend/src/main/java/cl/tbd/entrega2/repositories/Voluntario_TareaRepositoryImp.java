@@ -75,8 +75,6 @@ public class Voluntario_TareaRepositoryImp implements Voluntario_TareaRepository
 
             conn.createQuery(sql, true)
                     .addParameter("id", voluntario_tarea.getId())
-                    .addParameter("nombre", voluntario_tarea.getNombre())
-                    .addParameter("rut", voluntario_tarea.getRut())
                     .addParameter("id_voluntario", voluntario_tarea.getId_voluntario())
                     .addParameter("id_tarea", voluntario_tarea.getId_tarea())
                     .addParameter("id", voluntario_tarea.getId())
