@@ -1,5 +1,14 @@
 # TBD-G8-1-21
 
+Entrega 2 :
+
+Instrucciónes para poder ejecutar el proyecto
+
+1° Tener instalado la base de datos PostgreSQL ( Se ha ocupado la version 13.x)
+
+2° Cargar los scripts de dbCreate.sql y loadData.sql
+
+
 Entrega 1:
 
 Ingresar a postgres
