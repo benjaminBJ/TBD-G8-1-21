@@ -55,7 +55,8 @@ INSERT INTO public.institucion (nombre, descrip)
 /* estado_tarea (3)*/
 INSERT INTO public.estado_tarea (descrip)
 	VALUES
-	('Iniciado'),
+	('Aceptada'),
+	('Rechadazada'),
 	('Pendiente'),
 	('Finalizado');
 	
@@ -63,7 +64,7 @@ INSERT INTO public.estado_tarea (descrip)
 /* tarea (17)*/
 INSERT INTO public.tarea(nombre, descrip, vol_requeridos, finicio, ffin, id_emergencia, id_estado)
 	VALUES
-	('Tarea 1' ,'desc 1' ,3,'2021-05-23',NULL,1,1),
+	('Tarea 1' ,'desc 1' ,2,'2021-05-23',NULL,1,3),
 	('Tarea 2' ,'desc 2' ,4,'2021-05-23',NULL,1,1),
 	('Tarea 3' ,'desc 3' ,1,'2021-05-23',NULL,1,1),
 	('Tarea 4' ,'desc 4' ,3,'2021-05-23',NULL,1,1),
@@ -82,63 +83,63 @@ INSERT INTO public.tarea(nombre, descrip, vol_requeridos, finicio, ffin, id_emer
 	('Tarea 17','desc 17',1,'2021-04-10','2016-04-12',5,3);
 
 /* ranking (30)*/
-INSERT INTO public.ranking (puntaje, flg_participa, id_voluntario, id_tarea)
+INSERT INTO public.ranking (puntaje, id_voluntario, id_tarea)
 	VALUES
-	(3,'true',1,9),
-	(2,'true',2,10),
-	(1,'false',3,11),
-	(0,'false',4,12),
-	(2,'true',5,16),
-	(2,'true',6,17),
-	(3,'true',7,12),
-	(1,'false',8,1),
-	(0,'false',9,2),
-	(3,'true',10,11),
-	(1,'false',11,3),
-	(2,'true',12,4),
-	(3,'true',13,5),
-	(2,'true',14,6),
-	(1,'false',15,7),
-	(1,'false',16,8),
-	(2,'true',17,13),
-	(3,'true',18,14),
-	(2,'true',19,15),
-	(3,'true',20,3),
-	(1,'false',21,15),
-	(3,'true',22,1),
-	(3,'true',23,2),
-	(1,'false',24,13),
-	(3,'true',25,4),
-	(3,'true',26,5),
-	(3,'true',27,6),
-	(2,'true',28,7),
-	(3,'true',29,8),
-	(2,'true',30,15);
+	(3,1,9),
+	(2,2,10),
+	(1,3,11),
+	(0,4,12),
+	(2,5,16),
+	(2,6,17),
+	(3,7,12),
+	(1,8,1),
+	(0,9,2),
+	(3,10,11),
+	(1,11,3),
+	(2,12,4),
+	(3,13,5),
+	(2,14,6),
+	(1,15,7),
+	(1,16,8),
+	(2,17,13),
+	(3,18,14),
+	(2,19,15),
+	(3,20,3),
+	(1,21,15),
+	(3,22,1),
+	(3,23,2),
+	(1,24,13),
+	(3,25,4),
+	(3,26,5),
+	(3,27,6),
+	(2,28,7),
+	(3,29,8),
+	(2,30,15);
 
 /* vol_tarea (21)*/
-INSERT INTO public.vol_tarea (id_voluntario, id_tarea)
+INSERT INTO public.vol_tarea (id_voluntario, flg_participa, id_estado, id_tarea)
 	VALUES
-	(1,9),
-	(2,10),
-	(5,16),
-	(6,17),
-	(7,12),
-	(10,11),
-	(12,4),
-	(13,5),
-	(14,6),
-	(17,13),
-	(18,14),
-	(19,15),
-	(20,3),
-	(22,1),
-	(23,2),
-	(25,4),
-	(26,5),
-	(27,6),
-	(28,7),
-	(29,8),
-	(30,15);
+	(1,'true',3,1),
+	(2,'true',4,1),
+	(5,'true',4,16),
+	(6,'true',4,17),
+	(7,'true',4,12),
+	(10,'true',4,11),
+	(12,'true',4,4),
+	(13,'true',1,5),
+	(14,'true',3,6),
+	(17,'true',3,13),
+	(18,'true',3,14),
+	(19,'true',3,15),
+	(20,'true',3,3),
+	(22,'true',3,2),
+	(23,'true',3,2),
+	(25,'true',3,4),
+	(26,'true',3,5),
+	(27,'true',3,6),
+	(28,'true',3,7),
+	(29,'true',3,8),
+	(30,'true',4,15);
 /* vol_habilidad (30)*/
 INSERT INTO public.vol_habilidad (id_voluntario, id_habilidad)
 	VALUES

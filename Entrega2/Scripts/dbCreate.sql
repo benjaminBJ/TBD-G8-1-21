@@ -102,6 +102,8 @@ ALTER TABLE public.vol_habilidad OWNER TO postgres;
 
 CREATE TABLE public.vol_tarea (
     id SERIAL PRIMARY KEY,
+    flg_participa boolean NOT NULL,
+    id_estado numeric(2,0) ,
     id_voluntario SERIAl references voluntario(id),
     id_tarea SERIAl references tarea(id)
 );
@@ -112,7 +114,6 @@ ALTER TABLE public.vol_tarea OWNER TO postgres;
 CREATE TABLE public.ranking (
     id SERIAL PRIMARY KEY,
     puntaje numeric(3,0) NOT NULL,
-    flg_participa boolean NOT NULL,
     id_voluntario SERIAl references voluntario(id),
     id_tarea SERIAl references tarea(id)
 );
@@ -121,18 +122,3 @@ CREATE TABLE public.ranking (
 ALTER TABLE public.ranking OWNER TO postgres;
 
 
--- procedimiento almacenado
-
--- PROCEDURE: public.cerrar_tareas_terminadas()
-
--- DROP PROCEDURE public.cerrar_tareas_terminadas();
-
-CREATE OR REPLACE PROCEDURE public.cerrar_tareas_terminadas(
-	)
-LANGUAGE 'sql'
-AS $BODY$
-UPDATE tarea SET id_estado = 3 WHERE id_estado = 1;
-$BODY$;
-
-COMMENT ON PROCEDURE public.cerrar_tareas_terminadas()
-    IS 'Procedimiento almacenado para cerrar tareas terminadas ';
