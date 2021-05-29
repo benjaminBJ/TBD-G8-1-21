@@ -8,6 +8,10 @@ export default {
     port: 8081 // default: 3000
   },
 
+  axios: {
+    baseURL: 'http://localhost:8080/',
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - Frontend',
@@ -44,6 +48,8 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    // https://go.nuxtjs.dev/axios
+    '@nuxtjs/axios',
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify

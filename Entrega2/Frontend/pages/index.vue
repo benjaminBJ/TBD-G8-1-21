@@ -24,15 +24,15 @@
         <v-card-text>
           
           <p>
-            Localización: {{  item.localizacion  }}. 
+            Localización: . 
           </p>
           <p>
-            Cantidad de voluntarios necesarios: {{  item.voluntarios  }}.
+            Cantidad de voluntarios necesarios: {{  item.vol_requeridos  }}.
           </p>
           <p>
-            Fecha de inicio: {{  item.fecha  }}.
+            Fecha de inicio: {{  item.finicio  }}.
           </p>
-          <p>Descripción: {{  item.historia  }}</p>
+          <p>Descripción: {{  item.descrip  }}</p>
 
           
         </v-card-text>
@@ -54,41 +54,29 @@
 
 <script>
 
+
 export default {
   data () {
     return {
-      items: [
-        {
-          nombre: 'Incendio',
-          localizacion: 'Rancagua',
-          voluntarios: '10',
-          fecha: 'mañana',
-          historia: 'si'
-        },
-        {
-          nombre: 'derrumbe',
-          localizacion: 'A',
-          voluntarios: '5',
-          fecha: 'hoy',
-          historia: 'no'
-        },
-        {
-          nombre: 'Incendio',
-          localizacion: 'Stgo',
-          voluntarios: '9',
-          fecha: 'ayer',
-          historia: 'avece'
-        },
-        {
-          nombre: 'Incendio',
-          localizacion: 'viña',
-          voluntarios: '13',
-          fecha: 'nose',
-          historia: 'jaj'
-        }
-      ],
+      items: [],
     }
-  }
-  
+  },
+  methods:{
+       //Función asíncrona para consultar los datos
+       getData: async function(){
+           try {
+               let response = await this.$axios.get('/tareas');
+               this.items  = response.data;
+               console.log(response)
+           } catch (error) {
+               console.log('error', error);
+           }
+       }
+   },
+   //Función que se ejecuta al cargar el componente
+   created:function(){
+       this.getData();
+    }
 }
+
 </script>
