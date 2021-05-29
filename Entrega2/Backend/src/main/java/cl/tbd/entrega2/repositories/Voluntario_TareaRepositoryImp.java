@@ -48,10 +48,11 @@ public class Voluntario_TareaRepositoryImp implements Voluntario_TareaRepository
     public Voluntario_Tarea createVoluntario_Tarea(Voluntario_Tarea voluntario_tarea) {
         try(Connection conn = sql2o.open()){
             String sql =
-                    "INSERT INTO vol_tarea (id_voluntario, id_tarea) " +
-                            "values (:id_voluntario, :id_tarea)";
+                    "INSERT INTO vol_tarea (flg_participa, id_estado, id_voluntario, id_tarea) " +
+                            "values (:flg_participa, :id_estado, :id_voluntario, :id_tarea)";
             int insertedId = (int) conn.createQuery(sql, true)
-
+                    .addParameter("flg_participa", voluntario_tarea.isFlg_participa())
+                    .addParameter("id_estado", voluntario_tarea.getId_estado())
                     .addParameter("id_voluntario", voluntario_tarea.getId_voluntario())
                     .addParameter("id_tarea", voluntario_tarea.getId_tarea())
                     .executeUpdate().getKey();
@@ -70,11 +71,13 @@ public class Voluntario_TareaRepositoryImp implements Voluntario_TareaRepository
 
             String sql =
                     "UPDATE vol_tarea SET nombre = :nombre, rut = :rut, id_voluntario = :id_voluntario, " +
-                            "id_tarea = :id_tarea  " +
+                            "id_tarea = :id_tarea, id_estado = :id_estado, flg_participa =: flg_participa " +
                             "WHERE id = :id";
 
             conn.createQuery(sql, true)
                     .addParameter("id", voluntario_tarea.getId())
+                    .addParameter("flg_participa", voluntario_tarea.isFlg_participa())
+                    .addParameter("id_estado", voluntario_tarea.getId_estado())
                     .addParameter("id_voluntario", voluntario_tarea.getId_voluntario())
                     .addParameter("id_tarea", voluntario_tarea.getId_tarea())
                     .addParameter("id", voluntario_tarea.getId())
