@@ -67,7 +67,7 @@ public class RankingRepositoryImp implements RankingRepository{
         try(Connection conn = sql2o.open()){
 
             String sql =
-                    "UPDATE ranking SET puntaje = :puntaje " +
+                    "UPDATE ranking SET puntaje = :puntaje, " +
                             "id_voluntario = :id_voluntario, id_tarea = :id_tarea WHERE id = :id";
 
             conn.createQuery(sql, true)
