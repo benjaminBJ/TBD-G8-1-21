@@ -118,15 +118,18 @@ public class TareaRepositoryImp implements TareaRepository{
     }
 
     @Override
-    public void procedure1() {
+    public void procedure1(int idt, int idv) {
 
         try(Connection conn = sql2o.open()){
 
-            String sql2 = "CALL public.cerrar_tareas_terminadas()";
+            System.out.println(idt);
+
+
+            String sql2 = "CALL public.cerrar_tarea("+idt+","+idv+" )";
             conn.createQuery(sql2, true)
                     .executeUpdate();
-            
-            //System.out.println("Ejecuta procedimiento");
+
+            System.out.println("Ejecuta procedimiento");
 
         }catch(Exception e){
             System.out.println(e.getMessage());

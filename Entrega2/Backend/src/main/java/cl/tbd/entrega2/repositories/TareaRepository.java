@@ -9,5 +9,5 @@ public interface TareaRepository {
     public Tarea createTarea(Tarea tarea);
     public Tarea upTarea(Tarea tarea);
     public void deleteTarea(int id);
-    public void procedure1();
+    public void procedure1(int idt,int idv);
 }

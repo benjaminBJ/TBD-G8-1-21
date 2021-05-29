@@ -46,10 +46,10 @@ public class TareaService {
         tareaRepository.deleteTarea(id);
     }
 
-    @PutMapping("/tareas/cerrar_tareas")
+    @PutMapping("/tareas/cerrar_tarea/{idt}/{idv}")
     @ResponseBody
-    public void procedure1(){
-        tareaRepository.procedure1();
+    public void procedure1(@PathVariable int idt,@PathVariable int idv){
+        tareaRepository.procedure1(idt,idv);
     }
 
 }

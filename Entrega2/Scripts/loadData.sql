@@ -226,3 +226,66 @@ INSERT INTO public.eme_habilidad (id_emergencia, id_habilidad)
 	(5,8);
 
 
+--- procedimiento
+
+CREATE OR REPLACE PROCEDURE public.cerrar_tarea(
+	idt integer,
+	idv integer)
+AS $$
+DECLARE
+		IDT  ALIAS FOR $1 ;
+		IDV  ALIAS FOR $2;
+        V_COUNT_TAREA INTEGER;
+        V_COUNT_VOL INTEGER;
+        V_COUNT_VOL_FINALIZA INTEGER;
+
+BEGIN
+
+-- lo primeo a realizar es actualizar la tabla de vol_tarea 
+UPDATE vol_tarea
+    SET id_estado = 4
+    WHERE id = IDT
+    AND id_voluntario = IDV;
+
+-- Con esto vemos si la tarea se encuentre o no en proceso --
+SELECT COUNT(*) INTO V_COUNT_TAREA
+FROM tarea as t
+WHERE t.id = IDT AND id_estado = 3;
+
+Raise Notice 'V_COUNT_TAREA es: %',V_COUNT_TAREA;
+
+IF V_COUNT_TAREA !=1 then
+    raise notice 'La tarea no se encuentra en proceso';
+ELSE
+    raise notice 'a';
+
+-- participantes totales en la tarea entregada
+
+SELECT COUNT(*) INTO V_COUNT_VOL
+FROM vol_tarea as vt
+WHERE vt.id_tarea = IDT AND flg_participa = true;
+
+Raise Notice 'V_COUNT_VOL es: %',V_COUNT_VOL;
+
+--Numero de participantes que cerraron la tarea 
+SELECT COUNT(*) INTO V_COUNT_VOL_FINALIZA
+FROM vol_tarea as vt
+WHERE vt.id_tarea = IDT AND flg_participa = true AND id_estado = 4;
+
+Raise Notice 'V_COUNT_VOL_FINALIZA es: %',V_COUNT_VOL_FINALIZA;
+
+IF V_COUNT_VOL = V_COUNT_VOL_FINALIZA then
+    -- Si coinciden cerramos
+    raise notice 'Tarea con id: % cerrada ',IDT;
+    UPDATE tarea 
+        SET 
+        id_estado = 4,
+        ffin = NOW()::timestamp
+        WHERE id = IDT;
+ELSE
+    -- Sino no, no cerramos
+    raise notice 'Tarea aún no cerrada por todos, aun no se puede cerrar';
+END IF;
+END IF;
+END;
+$$ LANGUAGE 'plpgsql';
