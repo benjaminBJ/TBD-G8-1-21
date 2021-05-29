@@ -61,85 +61,79 @@ INSERT INTO public.estado_tarea (descrip)
 	('Finalizado');
 	
 
-/* tarea (17)*/
+/* tarea (10)*/
 INSERT INTO public.tarea(nombre, descrip, vol_requeridos, finicio, ffin, id_emergencia, id_estado)
 	VALUES
-	('Tarea 1' ,'desc 1' ,2,'2021-05-23',NULL,1,3),
-	('Tarea 2' ,'desc 2' ,4,'2021-05-23',NULL,1,1),
-	('Tarea 3' ,'desc 3' ,1,'2021-05-23',NULL,1,1),
-	('Tarea 4' ,'desc 4' ,3,'2021-05-23',NULL,1,1),
-	('Tarea 5' ,'desc 5' ,2,'2021-05-23',NULL,1,2),
-	('Tarea 6' ,'desc 6' ,2,'2021-05-20',NULL,2,2),
-	('Tarea 7' ,'desc 7' ,3,'2021-05-20',NULL,2,2),
-	('Tarea 8' ,'desc 8' ,4,'2021-05-20',NULL,2,2),
-	('Tarea 9' ,'desc 9' ,1,'2021-03-14','2016-03-15',3,2),
-	('Tarea 10','desc 10',3,'2021-03-14','2016-03-16',3,2),
-	('Tarea 11','desc 11',2,'2021-03-15','2016-03-16',3,2),
-	('Tarea 12','desc 12',2,'2021-03-15','2016-03-16',3,3),
-	('Tarea 13','desc 13',3,'2021-05-21',NULL,4,3),
-	('Tarea 14','desc 14',3,'2021-05-21',NULL,4,3),
-	('Tarea 15','desc 15',3,'2021-05-21',NULL,4,1),
-	('Tarea 16','desc 16',4,'2021-04-10','2016-04-11',5,3),
-	('Tarea 17','desc 17',1,'2021-04-10','2016-04-12',5,3);
+	('Tarea 1' ,'Limpieza de escombros' ,2,'2021-05-23',NULL,1,3),
+	('Tarea 2' ,'Manejo de maquinaria' ,4,'2021-05-23',NULL,1,3),
+	('Tarea 3' ,'Coordinaar auxiliares' ,1,'2021-05-23',NULL,2,3),
+	('Tarea 4' ,'Preparacion de perros' ,3,'2021-05-23',NULL,5,3),
+	('Tarea 5' ,'Preparacion de insumos' ,2,'2021-05-23',NULL,5,3),
+	('Tarea 6' ,'Busqueda de supervivientes' ,2,'2021-05-20',NULL,5,3),
+	('Tarea 7' ,'Controlar incendios' ,3,'2021-05-20',NULL,4,3),
+	('Tarea 8' ,'Apagar amago de incendio' ,4,'2021-05-20',NULL,4,3),
+	('Tarea 9' ,'Suturacion de heridas' ,1,'2021-03-14',NULL,4,3),
+	('Tarea 10','Dar RCP',3,'2021-03-14',NULL,5,3);
+	
 
 /* ranking (30)*/
 INSERT INTO public.ranking (puntaje, id_voluntario, id_tarea)
 	VALUES
 	(3,1,9),
 	(2,2,10),
-	(1,3,11),
-	(0,4,12),
-	(2,5,16),
-	(2,6,17),
-	(3,7,12),
+	(1,3,1),
+	(0,4,2),
+	(2,5,3),
+	(2,6,4),
+	(3,7,5),
 	(1,8,1),
 	(0,9,2),
-	(3,10,11),
+	(3,10,6),
 	(1,11,3),
 	(2,12,4),
 	(3,13,5),
 	(2,14,6),
 	(1,15,7),
 	(1,16,8),
-	(2,17,13),
-	(3,18,14),
-	(2,19,15),
+	(2,17,7),
+	(3,18,8),
+	(2,19,9),
 	(3,20,3),
-	(1,21,15),
+	(1,21,10),
 	(3,22,1),
 	(3,23,2),
-	(1,24,13),
+	(1,24,1),
 	(3,25,4),
 	(3,26,5),
 	(3,27,6),
 	(2,28,7),
 	(3,29,8),
-	(2,30,15);
+	(2,30,2);
 
 /* vol_tarea (21)*/
 INSERT INTO public.vol_tarea (id_voluntario, flg_participa, id_estado, id_tarea)
 	VALUES
 	(1,'true',3,1),
-	(2,'true',4,1),
-	(5,'true',4,16),
-	(6,'true',4,17),
-	(7,'true',4,12),
-	(10,'true',4,11),
-	(12,'true',4,4),
-	(13,'true',1,5),
-	(14,'true',3,6),
-	(17,'true',3,13),
-	(18,'true',3,14),
-	(19,'true',3,15),
-	(20,'true',3,3),
-	(22,'true',3,2),
-	(23,'true',3,2),
-	(25,'true',3,4),
-	(26,'true',3,5),
-	(27,'true',3,6),
-	(28,'true',3,7),
-	(29,'true',3,8),
-	(30,'true',4,15);
+	(2,'true',3,1),
+	(3,'true',3,1),
+	(4,'true',3,2),
+	(5,'true',3,2),
+	(6,'true',3,3),
+	(7,'true',3,4),
+	(8,'true',1,5),
+	(9,'true',3,6),
+	(10,'true',3,7),
+	(11,'true',3,7),
+	(12,'true',3,8),
+	(13,'true',3,3),
+	(14,'true',3,2),
+	(15,'true',3,2),
+	(16,'true',3,4),
+	(17,'true',3,5),
+	(18,'true',3,6),
+	(19,'true',3,7),
+	(20,'true',3,8),
+	(21,'true',3,9);
 /* vol_habilidad (30)*/
 INSERT INTO public.vol_habilidad (id_voluntario, id_habilidad)
 	VALUES
@@ -172,37 +166,37 @@ INSERT INTO public.vol_habilidad (id_voluntario, id_habilidad)
 	(27,3),
 	(28,4),
 	(29,5),
-	(30,7);
+	(30,6);
 
 /* tarea_habilidad (17)*/
 INSERT INTO public.tarea_habilidad (id_tarea, id_habilidad)
 	VALUES
 	(1,1),
-	(2,2),
-	(3,3),
-	(4,4),
-	(5,5),
-	(6,6),
-	(7,7),
-	(8,8),
-	(9,1),
-	(10,2),
-	(11,3),
-	(12,4),
-	(13,5),
-	(14,6),
-	(15,7),
-	(16,8),
-	(17,1);
+	(1,2),
+	(2,3),
+	(2,4),
+	(3,5),
+	(3,6),
+	(4,7),
+	(4,8),
+	(5,1),
+	(5,2),
+	(6,3),
+	(6,4),
+	(7,5),
+	(7,6),
+	(8,7),
+	(9,8),
+	(10,1);
 
 /* emergencia (5)*/
 INSERT INTO public.emergencia (nombre, descrip, finicio, ffin, id_institucion)
 	VALUES
-	('Terremoto','desc_eme 1','2021-05-23','2020-05-28',1),
-	('Incendio','desc_eme 2','2021-05-20','2020-05-24',2),
-	('Tsunami','desc_eme 3','2021-03-14','2020-03-16',3),
-	('Incendio','desc_eme 4','2021-05-21','2020-05-26',1),
-	('Inundación','desc_eme 5','2021-04-10','2020-04-16',2);
+	('Terremoto','Sismo de mediana a alta magnitud en las cercanias','2021-05-23','2020-05-28',1),
+	('Incendio','Incendio que cubre varias manzanas a la redonda','2021-05-20','2020-05-24',2),
+	('Tsunami','Alerta Tsunami decretada por la onemi','2021-03-14','2020-03-16',3),
+	('Incendio','Incendio de alta magnitud en un bosque cercano','2021-05-21','2020-05-26',1),
+	('Inundación','Comunidad devastada por una inundacion','2021-04-10','2020-04-16',2);
 
 /* eme_habilidad (17)*/
 INSERT INTO public.eme_habilidad (id_emergencia, id_habilidad)
@@ -244,7 +238,7 @@ BEGIN
 -- lo primeo a realizar es actualizar la tabla de vol_tarea 
 UPDATE vol_tarea
     SET id_estado = 4
-    WHERE id = IDT
+    WHERE id_tarea = IDT
     AND id_voluntario = IDV;
 
 -- Con esto vemos si la tarea se encuentre o no en proceso --
