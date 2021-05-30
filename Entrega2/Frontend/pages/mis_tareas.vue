@@ -79,7 +79,7 @@
                     <v-list-item three-line>
                     <v-list-item-content>
                         <div class="overline mb-3">
-                        UBICACION: .
+                        UBICACION: {{ item.ubicacion }}.
                         </div>
                         <v-list-item-title class="headline">
                         NOMBRE: {{ item.nombre }}

@@ -62,6 +62,7 @@ CREATE TABLE public.tarea (
     id SERIAL PRIMARY KEY,
     nombre character varying(60) NOT NULL,
     descrip character varying(300) NOT NULL,
+    ubicacion character varying(60) NOT NULL,
     vol_requeridos numeric(4,0) NOT NULL,
     id_emergencia numeric(6,0) NOT NULL,
     finicio date NOT NULL,

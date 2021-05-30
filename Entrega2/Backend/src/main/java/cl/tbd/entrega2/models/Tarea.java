@@ -6,6 +6,7 @@ public class Tarea {
     private Integer id;
     private String nombre;
     private String descrip;
+    private String ubicacion;
     private Integer vol_requeridos;
     private Date finicio;
     private Date ffin;
@@ -29,6 +30,12 @@ public class Tarea {
     }
     public void setDescrip(String descrip) {
         this.descrip = descrip;
+    }
+    public String getUbicacion() {
+        return ubicacion;
+    }
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
     }
     public Integer getVol_requeridos() {
         return vol_requeridos;

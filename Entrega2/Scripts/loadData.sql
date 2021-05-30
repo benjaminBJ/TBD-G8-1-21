@@ -62,18 +62,18 @@ INSERT INTO public.estado_tarea (descrip)
 	
 
 /* tarea (10)*/
-INSERT INTO public.tarea(nombre, descrip, vol_requeridos, finicio, ffin, id_emergencia, id_estado)
+INSERT INTO public.tarea(nombre, descrip, ubicacion, vol_requeridos, finicio, ffin, id_emergencia, id_estado)
 	VALUES
-	('Tarea 1' ,'Limpieza de escombros' ,2,'2021-05-23',NULL,1,3),
-	('Tarea 2' ,'Manejo de maquinaria' ,4,'2021-05-23',NULL,1,3),
-	('Tarea 3' ,'Coordinaar auxiliares' ,1,'2021-05-23',NULL,2,3),
-	('Tarea 4' ,'Preparacion de perros' ,3,'2021-05-23',NULL,5,3),
-	('Tarea 5' ,'Preparacion de insumos' ,2,'2021-05-23',NULL,5,3),
-	('Tarea 6' ,'Busqueda de supervivientes' ,2,'2021-05-20',NULL,5,3),
-	('Tarea 7' ,'Controlar incendios' ,3,'2021-05-20',NULL,4,3),
-	('Tarea 8' ,'Apagar amago de incendio' ,4,'2021-05-20',NULL,4,3),
-	('Tarea 9' ,'Suturacion de heridas' ,1,'2021-03-14',NULL,4,3),
-	('Tarea 10','Dar RCP',3,'2021-03-14',NULL,5,3);
+	('Tarea 1' ,'Limpieza de escombros','Rancagua' ,2,'2021-05-23',NULL,1,3),
+	('Tarea 2' ,'Manejo de maquinaria','Santiago' ,4,'2021-05-23',NULL,1,3),
+	('Tarea 3' ,'Coordinaar auxiliares','Valparaiso' ,1,'2021-05-23',NULL,2,3),
+	('Tarea 4' ,'Preparacion de perros','Antofagasta' ,3,'2021-05-23',NULL,5,3),
+	('Tarea 5' ,'Preparacion de insumos','Temuco' ,2,'2021-05-23',NULL,5,3),
+	('Tarea 6' ,'Busqueda de supervivientes','Chiloe' ,2,'2021-05-20',NULL,5,3),
+	('Tarea 7' ,'Controlar incendios','Calama' ,3,'2021-05-20',NULL,4,3),
+	('Tarea 8' ,'Apagar amago de incendio','Talca' ,4,'2021-05-20',NULL,4,3),
+	('Tarea 9' ,'Suturacion de heridas','Iquique' ,1,'2021-03-14',NULL,4,3),
+	('Tarea 10','Dar RCP','Estacion Central',3,'2021-03-14',NULL,5,3);
 	
 
 /* ranking (30)*/

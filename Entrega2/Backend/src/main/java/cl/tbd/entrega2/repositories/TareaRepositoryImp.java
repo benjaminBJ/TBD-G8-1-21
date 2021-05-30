@@ -58,11 +58,12 @@ public class TareaRepositoryImp implements TareaRepository{
     public Tarea createTarea(Tarea tarea) {
         try(Connection conn = sql2o.open()){
             String sql = 
-                    "INSERT INTO tarea (nombre, descrip, vol_requeridos, finicio, ffin, id_emergencia, id_estado)" + 
-                        "values (:nombre, :descrip, :vol_requeridos, :finicio, :ffin, :id_emergencia, :id_estado)";           
+                    "INSERT INTO tarea (nombre, descrip, ubicacion, vol_requeridos, finicio, ffin, id_emergencia, id_estado)" + 
+                        "values (:nombre, :descrip, :ubicacion, :vol_requeridos, :finicio, :ffin, :id_emergencia, :id_estado)";           
             int insertedId = (int) conn.createQuery(sql, true)
                     .addParameter("nombre", tarea.getNombre())
                     .addParameter("descrip", tarea.getDescrip())
+                    .addParameter("ubicacion", tarea.getUbicacion())
                     .addParameter("vol_requeridos", tarea.getVol_requeridos())
                     .addParameter("finicio", tarea.getFinicio())
                     .addParameter("ffin", tarea.getFfin())
@@ -82,13 +83,14 @@ public class TareaRepositoryImp implements TareaRepository{
         try(Connection conn = sql2o.open()){
 
             String sql =
-                    "UPDATE tarea SET nombre = :nombre, descrip = :descrip, vol_requeridos = :vol_requeridos, " +
+                    "UPDATE tarea SET nombre = :nombre, descrip = :descrip, ubicacion = :ubicacion, vol_requeridos = :vol_requeridos, " +
                         "finicio = :finicio, ffin = :ffin, id_emergencia = :id_emergencia, id_estado = :id_estado WHERE id = :id";
 
             conn.createQuery(sql, true)
                     .addParameter("id", Tarea.getId())
                     .addParameter("nombre", Tarea.getNombre())
                     .addParameter("descrip", Tarea.getDescrip())
+                    .addParameter("ubicacion", Tarea.getUbicacion())
                     .addParameter("vol_requeridos", Tarea.getVol_requeridos())
                     .addParameter("finicio", Tarea.getFinicio())
                     .addParameter("ffin", Tarea.getFfin())
