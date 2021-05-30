@@ -118,7 +118,7 @@ INSERT INTO public.vol_tarea (id_voluntario, flg_participa, id_estado, id_tarea)
 	(3,'true',3,1),
 	(4,'true',3,2),
 	(5,'true',3,2),
-	(6,'true',3,3),
+	(5,'true',3,3),
 	(7,'true',3,4),
 	(8,'true',1,5),
 	(9,'true',3,6),

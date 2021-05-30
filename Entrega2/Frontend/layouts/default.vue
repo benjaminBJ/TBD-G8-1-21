@@ -12,6 +12,7 @@
           v-for="(item, i) in items"
           :key="i"
           :to="item.to"
+          
           router
           exact
         >
@@ -42,20 +43,20 @@
     </v-app-bar>
     <v-main>
       <v-container>
-        <nuxt />
+        <div>
+          <nuxt />
+        </div>
       </v-container>
     </v-main>
+
+
     <v-navigation-drawer
       v-model="rightDrawer"
       :right="right"
       temporary
       fixed
     >
-      <v-col class="text-center">
-        <v-list>
-            <v-list-item-title>Perfil</v-list-item-title>
-        </v-list>
-      </v-col>
+     
     </v-navigation-drawer>
     <v-footer
       :absolute="!fixed"
@@ -68,11 +69,19 @@
 
 <script>
 export default {
+  watch: {
+    selected_json(newValue) {
+      this.$store.commit("setSelectedJson", newValue)
+    }
+  },
   data () {
     return {
       clipped: true,
       drawer: false,
       fixed: false,
+      select: { state: 'Florida', abbr: 'FL' },
+      voluntario: [],
+      reclutas:[],  
       items: [
         {
           icon: 'mdi-apps',
@@ -88,11 +97,6 @@ export default {
           icon: 'mdi-plus',
           title: 'Mis Tareas',
           to: '/mis_tareas'
-        },
-        {
-          icon: 'mdi-plus',
-          title: 'prueba',
-          to: '/lista'
         }
       ],
       miniVariant: false,
@@ -100,6 +104,26 @@ export default {
       rightDrawer: false,
       title: 'Sistema de Reclutas para Emergencias (SRE)'
     }
-  }
+  },
+  methods:{
+       //Función asíncrona para consultar los datos
+       getData: async function(){
+           try {
+               let response = await this.$axios.get('/voluntario');
+               this.reclutas  = response.data;
+               console.log(response)
+           } catch (error) {
+               console.log('error', error);
+           }
+       },
+       //funcion asincrona para cambiar al usuario
+       async cambiar () {
+        
+      }
+   },
+   //Función que se ejecuta al cargar el componente
+   created:function(){
+       this.getData();
+    }
 }
 </script>

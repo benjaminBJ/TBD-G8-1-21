@@ -14,8 +14,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - Frontend',
-    title: 'Frontend',
+    titleTemplate: '%s - Sistema de Reclutas para Emergencias',
+    title: 'SRE',
     htmlAttrs: {
       lang: 'en'
     },

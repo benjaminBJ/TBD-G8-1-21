@@ -4,6 +4,12 @@ import cl.tbd.entrega2.models.Voluntario_Tarea;
 import cl.tbd.entrega2.repositories.Voluntario_TareaRepository;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -25,6 +31,10 @@ public class Voluntario_TareaService {
 	public Voluntario_Tarea getVoluntario_Tarea(@PathVariable int id){
 		Voluntario_Tarea result = voluntarioTareaRepository.getVoluntario_Tarea(id);
 		return result;
+	}
+	@GetMapping(value = "/voluntarios_tarea2/{id_voluntario}")
+	public List<Voluntario_Tarea> getIdVoluntario_Tarea(@PathVariable int id_voluntario){
+		return voluntarioTareaRepository.getIdVoluntario_Tarea(id_voluntario);
 	}
 
 	@PostMapping("/voluntarios_tarea")

@@ -3,6 +3,12 @@ package cl.tbd.entrega2.services;
 import cl.tbd.entrega2.models.Tarea_Habilidad;
 import cl.tbd.entrega2.repositories.Tarea_HabilidadRepository;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 

@@ -44,6 +44,24 @@ public class Voluntario_TareaRepositoryImp implements Voluntario_TareaRepository
         }
     }
 
+    // Prueba 
+    @Override
+    public List<Voluntario_Tarea> getIdVoluntario_Tarea(int id_voluntario) {
+        try(Connection conn = sql2o.open()){
+
+            String sql = "select * from vol_tarea WHERE id_voluntario = :id_voluntario";
+
+             return conn.createQuery(sql, true)
+                    .addParameter("id_voluntario", id_voluntario)
+                    .executeAndFetch(Voluntario_Tarea.class);
+
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
     @Override
     public Voluntario_Tarea createVoluntario_Tarea(Voluntario_Tarea voluntario_tarea) {
         try(Connection conn = sql2o.open()){
