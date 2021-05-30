@@ -121,7 +121,7 @@ public class TareaRepositoryImp implements TareaRepository{
     public void procedure1(int idt, int idv) {
 
         try(Connection conn = sql2o.open()){
-            
+
             String sql2 = "CALL public.cerrar_tarea("+idt+","+idv+" )";
             conn.createQuery(sql2, true)
                     .executeUpdate();

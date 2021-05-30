@@ -70,12 +70,11 @@ public class Voluntario_TareaRepositoryImp implements Voluntario_TareaRepository
         try(Connection conn = sql2o.open()){
 
             String sql =
-                    "UPDATE vol_tarea SET nombre = :nombre, rut = :rut, id_voluntario = :id_voluntario, " +
-                            "id_tarea = :id_tarea, id_estado = :id_estado, flg_participa =: flg_participa " +
+                    "UPDATE vol_tarea SET id_voluntario = :id_voluntario, " +
+                            "id_tarea = :id_tarea, id_estado = :id_estado, flg_participa =:flg_participa " +
                             "WHERE id = :id";
 
             conn.createQuery(sql, true)
-                    .addParameter("id", voluntario_tarea.getId())
                     .addParameter("flg_participa", voluntario_tarea.isFlg_participa())
                     .addParameter("id_estado", voluntario_tarea.getId_estado())
                     .addParameter("id_voluntario", voluntario_tarea.getId_voluntario())
