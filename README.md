@@ -42,6 +42,7 @@ Enlace de video:
 
 - https://youtu.be/Ff_4DyVlbp4
 
+
 ## Pre entrega 1:
 
 Ingresar a postgres
