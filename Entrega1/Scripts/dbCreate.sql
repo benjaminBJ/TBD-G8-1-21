@@ -1,81 +1,125 @@
-DROP DATABASE dp_deptos;
 
-CREATE DATABASE db_deptos;
+DROP DATABASE voluntariado;
 
-\c db_deptos;
+CREATE DATABASE voluntariado;
 
-CREATE TABLE comuna(
+\c voluntariado;
+
+
+-- prueba
+CREATE TABLE public.dog(
 	id SERIAL PRIMARY KEY,
-	nombre character varying(100) NOT NULL,
-	provincia character varying(100) Not NULL
+	name character varying(100) NOT NULL,
+    descrip character varying(400) NOT NULL
+);
+ALTER TABLE public.dog OWNER TO postgres;
+
+CREATE TABLE public.institucion (
+    id SERIAL PRIMARY KEY,
+    nombre character varying(100) NOT NULL,
+    descrip character varying(400) NOT NULL
 );
 
-CREATE TABLE administrador(
-	id SERIAL PRIMARY KEY,
-	nombre character varying(100) NOT NULL,
-	rut character varying(100) NOT NULL,
-	email character varying(100) NOT NULL,
-	telefono character varying(100) NOT NULL
+ALTER TABLE public.institucion OWNER TO postgres;
+
+
+CREATE TABLE public.emergencia (
+    id SERIAL PRIMARY KEY,
+    nombre character varying(100) NOT NULL,
+    descrip character varying(400) NOT NULL,
+    finicio date NOT NULL,
+    ffin date,
+    id_institucion SERIAl references institucion(id)
 );
 
-CREATE TABLE gasto_edificio(
-	id SERIAL PRIMARY KEY,
-	tipo character varying(100) NOT NULL,
-	monto INT NOT NULL
+ALTER TABLE public.emergencia OWNER TO postgres;
+
+
+CREATE TABLE public.habilidad (
+    id SERIAL PRIMARY KEY,
+    descrip character varying(100) NOT NULL
 );
 
-CREATE TABLE edificio(
-	id SERIAL PRIMARY KEY,
-	nombre_edificio character varying(100) NOT NULL,
-	numeracion INT NOT NULL,
-	direccion character varying(100) NOT NULL,
-	comuna_id SERIAl references comuna(id),
-	administrador_id SERIAL references administrador(id)
+ALTER TABLE public.habilidad OWNER TO postgres;
+
+CREATE TABLE public.eme_habilidad (
+    id SERIAL PRIMARY KEY,
+    id_emergencia SERIAl references emergencia(id),
+    id_habilidad SERIAl references habilidad(id)
 );
 
-CREATE TABLE pago_gasto_edificio(
-	id SERIAL PRIMARY KEY,
-	fecha_inicio TIMESTAMP NOT NULL,
-	fecha_termino TIMESTAMP NOT NULL,
-	edificio_id SERIAL references edificio(id),
-	gasto_edificio_id SERIAL references gasto_edificio(id)
+ALTER TABLE public.eme_habilidad OWNER TO postgres;
+
+CREATE TABLE public.estado_tarea (
+    id SERIAL PRIMARY KEY,
+    descrip character varying(20) NOT NULL
 );
 
-CREATE TABLE tipo_gc(
-	id SERIAL PRIMARY KEY,
-	tipo character varying(100) NOT NULL,
-	monto_asociado INT NOT NULL
+ALTER TABLE public.estado_tarea OWNER TO postgres;
+
+
+CREATE TABLE public.tarea (
+    id SERIAL PRIMARY KEY,
+    nombre character varying(60) NOT NULL,
+    descrip character varying(300) NOT NULL,
+    ubicacion character varying(60) NOT NULL,
+    vol_requeridos numeric(4,0) NOT NULL,
+    id_emergencia numeric(6,0) NOT NULL,
+    finicio date NOT NULL,
+    ffin date,
+    id_estado SERIAl references estado_tarea(id)
 );
 
-CREATE TABLE gasto_comun(
-	id SERIAL PRIMARY KEY,
-	edificio_id SERIAL references edificio(id),
-	tipo_gc_id SERIAL references edificio(id)
+ALTER TABLE public.tarea OWNER TO postgres;
 
+
+CREATE TABLE public.tarea_habilidad (
+    id SERIAL PRIMARY KEY,
+    id_tarea SERIAl references tarea(id),
+    id_habilidad SERIAl references habilidad(id)
 );
 
-CREATE TABLE tipo_depto(
-	id SERIAL PRIMARY KEY,
-	modelo character varying(100) NOT NULL,
-	tamano REAL NOT NULL,
-	tipo_gc_id SERIAL references tipo_gc(id)
+
+ALTER TABLE public.tarea_habilidad OWNER TO postgres;
+
+CREATE TABLE public.voluntario (
+    id SERIAL PRIMARY KEY,
+    nombre character varying(100) NOT NULL,
+    rut character varying(12) NOT NULL,
+    email character varying(100) NOT NULL,
+    telefono character varying(100) NOT NULL
 );
 
-CREATE TABLE departamento(
-	id SERIAL PRIMARY KEY,
-	numero INT NOT NULL,
-	piso INT NOT NULL,
-	dueno character varying(100) NOT NULL,
-	habitantes INT NOT NULL,
-	edificio_id SERIAL references edificio(id),
-	tipo_depto_id SERIAL references tipo_depto(id)
+
+ALTER TABLE public.voluntario OWNER TO postgres;
+
+CREATE TABLE public.vol_habilidad (
+    id SERIAL PRIMARY KEY,
+    id_voluntario SERIAl references voluntario(id),
+    id_habilidad SERIAl references habilidad(id)
 );
 
-CREATE TABLE pago_gc_depto(
-	id SERIAL PRIMARY KEY,
-	fecha_inicio TIMESTAMP NOT NULL,
-	fecha_termino TIMESTAMP NOT NULL,
-	pagado BOOLEAN NOT NULL,
-	departamento_id SERIAL references departamento(id),
-	gasto_comun_id SERIAL references gasto_comun(id)
+ALTER TABLE public.vol_habilidad OWNER TO postgres;
+
+CREATE TABLE public.vol_tarea (
+    id SERIAL PRIMARY KEY,
+    flg_participa boolean NOT NULL,
+    id_estado numeric(2,0) ,
+    id_voluntario SERIAl references voluntario(id),
+    id_tarea SERIAl references tarea(id)
 );
+
+ALTER TABLE public.vol_tarea OWNER TO postgres;
+
+
+CREATE TABLE public.ranking (
+    id SERIAL PRIMARY KEY,
+    puntaje numeric(3,0) NOT NULL,
+    id_voluntario SERIAl references voluntario(id),
+    id_tarea SERIAl references tarea(id)
+);
+
+
+ALTER TABLE public.ranking OWNER TO postgres;
+
+

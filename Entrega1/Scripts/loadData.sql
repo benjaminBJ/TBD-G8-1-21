@@ -1,376 +1,285 @@
-\c db_deptos;
+\c voluntariado;
 
-/*Comuna (35)*/
-INSERT INTO public.comuna (nombre, provincia)
-    VALUES
-    ('Cerrillos','Santiago'),
-    ('Cerro Navia','Santiago'),
-    ('El Bosque','Santiago'),
-    ('Estacion Central','Santiago'),
-    ('Independencia','Santiago'),
-    ('La Florida','Santiago'),
-    ('La Granja','Santiago'),
-    ('La Pintana','Santiago'),
-    ('La Reina','Santiago'),
-    ('Las Condes','Santiago'),
-    ('Lo Barnechea','Santiago'),
-    ('Lo Espejo','Santiago'),
-    ('Lo Prado','Santiago'),
-    ('Macul','Santiago'),
-    ('Maipu','Santiago'),
-    ('Nunoa','Santiago'),
-    ('Pedro Aguirre Cerda','Santiago'),
-    ('Penalolen','Santiago'),
-    ('Providencia','Santiago'),
-    ('Pudahuel','Santiago'),
-    ('Quilicura','Santiago'),
-    ('Quinta Normal','Santiago'),
-    ('Recoleta','Santiago'),
-    ('Renca','Santiago'),
-    ('San Joaquin','Santiago'),
-    ('San Miguel','Santiago'),
-    ('San Ramon','Santiago'),
-    ('Santiago','Santiago'),
-    ('Vitacura','Santiago'), 
-    ('Puente alto','Cordillera'),
-    ('San Jose de Maipo','Cordillera'),
-    ('Pirque','Cordillera');
+/* voluntario (30)*/
+INSERT INTO public.voluntario (nombre, rut, email, telefono)
+	VALUES
+	('Hector Campos','20467238-5','tbrahim.amin.9630@gmail.com','25252655'),
+	('Edgar Ruiz','10134071-6','jmalik1127c@live.cl','11225443'),
+	('Arturo Garrido','22420886-3','cfilipe@googleappsmail.com','88451111'),
+	('Dorotea Morales','8190374-3','4roka@hotmail.cl','25202222'),
+	('Asunción Moreno','20595637-9','npetq@gmail.com','65565221'),
+	('Reinaldo Mendez','9822228-6','pmeera.meen@hotmail.cl','85545451'),
+	('Raul Suarez','16267818-3','zasdl593@dtecet.com','12125414'),
+	('Juan Ferrer','12339396-1','4achraf_2000@dunsoi.com','14526385'),
+	('Fermin Pascual','12659418-6','jhamalogo@webmhouse.com','25112441'),
+	('Alberto Esteban','18864964-5','zalooshalsmawi9@rackabzar.com','55212332'),
+	('Simón Perez','24936172-0','rbruno.b@poki.us','85554411'),
+	('Marina Mora','6826443-k','isubin@audiophileusa.net','66332214'),
+	('Almudena Hidalgo','15652736-k','0moham@rifo.ru','65252515'),
+	('Manuela Ruiz','17053702-5','9rbnm@horizen.cf','78452102'),
+	('Cirino Gutierrez','18186122-3','urehammansourrh@tubidu.com','56322412'),
+	('Rufo Jiménez','14885956-6','wzaidjnpn@greendike.com','25143214'),
+	('Ricardo Saez','15989338-3','2bihnam.attallahr@litrt.site','85454512'),
+	('Ramiro Méndez','18569098-9','jerdenechuluun_eu@klttec.com','62625145'),
+	('Efren Gomez','19132415-3','pjoce_fs22w@freeallapp.com','25145555'),
+	('Eulalia Saez','13340059-1','anaka@cuenmex.com','20332000'),
+	('Roque Santana','12119008-7','khaled.e@truelocksecurity.com','20252021'),
+	('Rosario Díaz','9292755-5','1adm-1995t@kintil.buzz','53122033'),
+	('Arnaldo Medina','6939362-4','6saak88z@mracc.it','15662005'),
+	('Gustavo Arias','24612634-8','vsubhangahappy7p@gmailni.com','79155201'),
+	('Esiquio Mora','15643796-4','5tofail.ahmed.98o@jantrawat.site','62521563'),
+	('Ernesto Guerrero','23827802-3','abashar.yaser.71b@loviel.com','78521232'),
+	('Reinaldo Medina','21589805-9','njokerbilel@rackabzar.com','52626255'),
+	('Valentín Gutiérrez','8215459-0','mcha@luddo.me','55112211'),
+	('Nicomedes Rubio','20433672-5','oimad.fagdu@system32.me','36652211'),
+	('Camilo Muñoz','24977534-7','zmonsif_za@system32.me','78541201');
 
-/*administrador (8)*/
-INSERT INTO public.administrador(nombre, rut, email, telefono)
-    VALUES
-    ('Oliva Vergara','21540887-6','silyas_milano3@jimong.com','48251685'),
-    ('Pepe Morilla','13554694-1','5ayman.ayman.19v@billseo.com','25614822'),
-    ('Angustias Salinas','17706247-2','bthul@miekering.buzz','55224153'),
-    ('Fatima Ribes','22842203-7','geleanorr@filel.site','89215423'),
-    ('Berta Cardenas','21126639-2','flashandrah@googl.win','20032101'),
-    ('Tatiana Llanos','14691511-6','4bassamziad1993f@cakk.us','78412211'),
-    ('Adolfo Mata','23565443-1','hamza-r@convitco.com','66524113'),
-    ('Cipriano Valdes','15375724-0','uanass@humsito.com','58552112');
+/* habilidad (8)*/
+INSERT INTO public.habilidad(descrip)
+	VALUES
+	('Primeros auxilios'),
+	('Rescate acuático'),
+	('Manejo de incendios'),
+	('Excavación'),
+	('Busqueda con perros'),
+	('Uso de maquinaria'),
+	('Rescate en altura'),
+	('No específica');
+/* institucion (3)*/
+INSERT INTO public.institucion (nombre, descrip)
+	VALUES
+	('Bomberos de Chile','Emergencia y rescates...'),
+	('Instituto de Emergencia y Rescate','Emergencia y rescates...'),
+	('K-SAR Chile','Busqueda y rescate con perros...');
 
-/*edificio (16)*/
-INSERT INTO public.edificio(nombre_edificio, numeracion, direccion, comuna_id, administrador_id)
-    VALUES
-    ('Torre A1',23,'Avenida Pedro De Valdivia',1,5),
-    ('Torre B1',504,'Calle Villaseca',1,8),
-    ('Torre C1',778,'Calle Larrain',13,7),
-    ('Torre D1',3222,'Calle Castellón',2,6),
-    ('Torre A2',211,'Avenida Gran Av.josé M.carrera',4,5),
-    ('Torre B2',20,'Pasaje Aurora De Chile',6,4),
-    ('Torre C2',5432,'Calle Padre Tadeo',4,3),
-    ('Torre D2',433,'Avenida Vitacura',3,2),
-    ('Torre A3',2001,'Calle Laguna San Rafael',11,1),
-    ('Torre B3',4345,'Avenida Presidente Kennedy',12,6),
-    ('Torre C3',34,'Avenida Francisco Bilbao',10,6),
-    ('Torre D3',875,'Calle San Diego',9,8),
-    ('Torre A4',565,'Avenida Tomás Moro',4,4),
-    ('Torre B4',653,'Pasaje 48',5,6),
-    ('Torre C4',8987,'Avenida Apoquindo',4,2),
-    ('Torre D4',123,'Calle Martín De Poveda',3,1);
+/* estado_tarea (3)*/
+INSERT INTO public.estado_tarea (descrip)
+	VALUES
+	('Aceptada'),
+	('Rechadazada'),
+	('Pendiente'),
+	('Finalizado');
+	
 
-/*gasto_edificio (64)*/
-INSERT INTO public.gasto_edificio(tipo, monto)
-    VALUES
-    ('Mantención',100000),
-    ('Limpieza',400000),
-    ('Seguridad',500000),
-    ('Reparaciones',300000),
-    ('Mantención',130000),
-    ('Limpieza',400000),
-    ('Seguridad',500000),
-    ('Mantención',410000),
-    ('Limpieza',400000),
-    ('Seguridad',500000),
-    ('Mantención',420000),
-    ('Limpieza',500000),
-    ('Seguridad',600000),
-    ('Reparaciones',800000),
-    ('Mantención',400000),
-    ('Limpieza',500000),
-    ('Seguridad',600000),
-    ('Mantención',420000),
-    ('Limpieza',600000),
-    ('Seguridad',700000),
-    ('Reparaciones',500000),
-    ('Mantención',390000),
-    ('Limpieza',500000),
-    ('Seguridad',700000),
-    ('Mantención',100000),
-    ('Limpieza',400000),
-    ('Seguridad',500000),
-    ('Reparaciones',300000),
-    ('Mantención',130000),
-    ('Limpieza',400000),
-    ('Seguridad',500000),
-    ('Mantención',410000),
-    ('Limpieza',400000),
-    ('Seguridad',500000),
-    ('Mantención',420000),
-    ('Limpieza',500000),
-    ('Seguridad',600000),
-    ('Reparaciones',800000),
-    ('Mantención',400000),
-    ('Limpieza',500000),
-    ('Seguridad',600000),
-    ('Mantención',420000),
-    ('Limpieza',600000),
-    ('Seguridad',700000),
-    ('Reparaciones',500000),
-    ('Mantención',390000),
-    ('Limpieza',500000),
-    ('Seguridad',700000),
-    ('Mantención',100000),
-    ('Limpieza',400000),
-    ('Seguridad',500000),
-    ('Reparaciones',300000),
-    ('Mantención',130000),
-    ('Limpieza',400000),
-    ('Seguridad',500000),
-    ('Mantención',410000),
-    ('Limpieza',400000),
-    ('Seguridad',500000),
-    ('Mantención',420000),
-    ('Limpieza',500000),
-    ('Seguridad',600000),
-    ('Reparaciones',800000),
-    ('Mantención',400000),
-    ('Limpieza',500000);
+/* tarea (10)*/
+INSERT INTO public.tarea(nombre, descrip, ubicacion, vol_requeridos, finicio, ffin, id_emergencia, id_estado)
+	VALUES
+	('Tarea 1' ,'Limpieza de escombros','Rancagua' ,2,'2021-05-23',NULL,1,3),
+	('Tarea 2' ,'Manejo de maquinaria','Santiago' ,4,'2021-05-23',NULL,1,3),
+	('Tarea 3' ,'Coordinaar auxiliares','Valparaiso' ,1,'2021-05-23',NULL,2,3),
+	('Tarea 4' ,'Preparacion de perros','Antofagasta' ,3,'2021-05-23',NULL,5,3),
+	('Tarea 5' ,'Preparacion de insumos','Temuco' ,2,'2021-05-23',NULL,5,3),
+	('Tarea 6' ,'Busqueda de supervivientes','Chiloe' ,2,'2021-05-20',NULL,5,3),
+	('Tarea 7' ,'Controlar incendios','Calama' ,3,'2021-05-20',NULL,4,3),
+	('Tarea 8' ,'Apagar amago de incendio','Talca' ,4,'2021-05-20',NULL,4,3),
+	('Tarea 9' ,'Suturacion de heridas','Iquique' ,1,'2021-03-14',NULL,4,3),
+	('Tarea 10','Dar RCP','Estacion Central',3,'2021-03-14',NULL,5,3);
+	
 
-/*pago_gasto_edificio (64)*/
-INSERT INTO public.pago_gasto_edificio(fecha_inicio, fecha_termino, edificio_id, gasto_edificio_id)
-    VALUES
-    ('2020-08-01 12:00:00','2020-08-30 12:00:00',1,1),
-    ('2020-09-01 12:00:00','2020-09-30 12:00:00',1,2),
-    ('2020-10-01 12:00:00','2020-10-30 12:00:00',1,3),
-    ('2020-11-01 12:00:00','2020-11-30 12:00:00',1,4),
-    ('2020-08-01 12:00:00','2020-08-30 12:00:00',2,5),
-    ('2020-09-01 12:00:00','2020-09-30 12:00:00',2,6),
-    ('2020-10-01 12:00:00','2020-10-30 12:00:00',2,7),
-    ('2020-11-01 12:00:00','2020-11-30 12:00:00',2,8),
-    ('2020-08-01 12:00:00','2020-08-30 12:00:00',3,9),
-    ('2020-09-01 12:00:00','2020-09-30 12:00:00',3,10),
-    ('2020-10-01 12:00:00','2020-10-30 12:00:00',3,11),
-    ('2020-11-01 12:00:00','2020-11-30 12:00:00',3,12),
-    ('2020-08-01 12:00:00','2020-08-30 12:00:00',4,13),
-    ('2020-09-01 12:00:00','2020-09-30 12:00:00',4,14),
-    ('2020-10-01 12:00:00','2020-10-30 12:00:00',4,15),
-    ('2020-11-01 12:00:00','2020-11-30 12:00:00',4,16),
-    ('2020-08-01 12:00:00','2020-08-30 12:00:00',5,17),
-    ('2020-09-01 12:00:00','2020-09-30 12:00:00',5,18),
-    ('2020-10-01 12:00:00','2020-10-30 12:00:00',5,19),
-    ('2020-11-01 12:00:00','2020-11-30 12:00:00',5,20),
-    ('2020-08-01 12:00:00','2020-08-30 12:00:00',6,21),
-    ('2020-09-01 12:00:00','2020-09-30 12:00:00',6,22),
-    ('2020-10-01 12:00:00','2020-10-30 12:00:00',6,23),
-    ('2020-11-01 12:00:00','2020-11-30 12:00:00',6,24),
-    ('2020-08-01 12:00:00','2020-08-30 12:00:00',7,25),
-    ('2020-09-01 12:00:00','2020-09-30 12:00:00',7,26),
-    ('2020-10-01 12:00:00','2020-10-30 12:00:00',7,27),
-    ('2020-11-01 12:00:00','2020-11-30 12:00:00',7,28),
-    ('2020-08-01 12:00:00','2020-08-30 12:00:00',8,29),
-    ('2020-09-01 12:00:00','2020-09-30 12:00:00',8,30),
-    ('2020-10-01 12:00:00','2020-10-30 12:00:00',8,31),
-    ('2020-11-01 12:00:00','2020-11-30 12:00:00',8,32),
-    ('2020-08-01 12:00:00','2020-08-30 12:00:00',9,33),
-    ('2020-09-01 12:00:00','2020-09-30 12:00:00',9,34),
-    ('2020-10-01 12:00:00','2020-10-30 12:00:00',9,35),
-    ('2020-11-01 12:00:00','2020-11-30 12:00:00',9,36),
-    ('2020-08-01 12:00:00','2020-08-30 12:00:00',10,37),
-    ('2020-09-01 12:00:00','2020-09-30 12:00:00',10,38),
-    ('2020-10-01 12:00:00','2020-10-30 12:00:00',10,39),
-    ('2020-11-01 12:00:00','2020-11-30 12:00:00',10,40),
-    ('2020-08-01 12:00:00','2020-08-30 12:00:00',11,41),
-    ('2020-09-01 12:00:00','2020-09-30 12:00:00',11,42),
-    ('2020-10-01 12:00:00','2020-10-30 12:00:00',11,43),
-    ('2020-11-01 12:00:00','2020-11-30 12:00:00',11,44),
-    ('2020-08-01 12:00:00','2020-08-30 12:00:00',12,45),
-    ('2020-09-01 12:00:00','2020-09-30 12:00:00',12,46),
-    ('2020-10-01 12:00:00','2020-10-30 12:00:00',12,47),
-    ('2020-11-01 12:00:00','2020-11-30 12:00:00',12,48),
-    ('2020-08-01 12:00:00','2020-08-30 12:00:00',13,49),
-    ('2020-09-01 12:00:00','2020-09-30 12:00:00',13,50),
-    ('2020-10-01 12:00:00','2020-10-30 12:00:00',13,51),
-    ('2020-11-01 12:00:00','2020-11-30 12:00:00',13,52),
-    ('2020-08-01 12:00:00','2020-08-30 12:00:00',14,53),
-    ('2020-09-01 12:00:00','2020-09-30 12:00:00',14,54),
-    ('2020-10-01 12:00:00','2020-10-30 12:00:00',14,55),
-    ('2020-11-01 12:00:00','2020-11-30 12:00:00',14,56),
-    ('2020-08-01 12:00:00','2020-08-30 12:00:00',15,57),
-    ('2020-09-01 12:00:00','2020-09-30 12:00:00',15,58),
-    ('2020-10-01 12:00:00','2020-10-30 12:00:00',15,59),
-    ('2020-11-01 12:00:00','2020-11-30 12:00:00',15,60),
-    ('2020-08-01 12:00:00','2020-08-30 12:00:00',16,62),
-    ('2020-09-01 12:00:00','2020-09-30 12:00:00',16,62),
-    ('2020-10-01 12:00:00','2020-10-30 12:00:00',16,63),
-    ('2020-11-01 12:00:00','2020-11-30 12:00:00',16,64);
+/* ranking (30)*/
+INSERT INTO public.ranking (puntaje, id_voluntario, id_tarea)
+	VALUES
+	(3,1,9),
+	(2,2,10),
+	(1,3,1),
+	(0,4,2),
+	(2,5,3),
+	(2,6,4),
+	(3,7,5),
+	(1,8,1),
+	(0,9,2),
+	(3,10,6),
+	(1,11,3),
+	(2,12,4),
+	(3,13,5),
+	(2,14,6),
+	(1,15,7),
+	(1,16,8),
+	(2,17,7),
+	(3,18,8),
+	(2,19,9),
+	(3,20,3),
+	(1,21,10),
+	(3,22,1),
+	(3,23,2),
+	(1,24,1),
+	(3,25,4),
+	(3,26,5),
+	(3,27,6),
+	(2,28,7),
+	(3,29,8),
+	(2,30,2);
 
-/*tipo_gc (6)*/
-INSERT INTO public.tipo_gc(tipo,monto_asociado)
-    VALUES
-    ('Butalbital, Acetaminophen and Caffeine', 54180),
-    ('SEROQUEL', 46359),
-    ('Cefazolin', 113667),
-    ('Body Blends Citrus Awakening Anti-bacterial Hand Sanitizer', 73840),
-    ('Sodium Bicarbonate', 86916),
-    ('Lisinopril and Hydrochlorthiazide', 105905);
-    
-/*gasto_comun (64)*/
-INSERT INTO public.gasto_comun(edificio_id,tipo_gc_id)
-    VALUES
-    (10, 2),
-    (6, 1),
-    (16, 2),
-    (11, 3),
-    (1, 3),
-    (12, 1),
-    (8, 3),
-    (10, 6),
-    (13, 2),
-    (2, 5),
-    (16, 5),
-    (7, 1),
-    (7, 2),
-    (10, 5),
-    (13, 5),
-    (12, 3),
-    (14, 6),
-    (3, 4),
-    (5, 1),
-    (2, 5),
-    (16, 3),
-    (4, 2),
-    (14, 6),
-    (9, 5),
-    (4, 3),
-    (11, 4),
-    (9, 6),
-    (8, 1),
-    (16, 6),
-    (3, 5),
-    (1, 3),
-    (9, 6),
-    (9, 1),
-    (9, 1),
-    (4, 4),
-    (5, 4),
-    (10, 2),
-    (2, 6),
-    (2, 4),
-    (13, 6),
-    (13, 1),
-    (5, 4),
-    (4, 2),
-    (7, 5),
-    (7, 1),
-    (9, 2),
-    (5, 2),
-    (6, 3),
-    (7, 3),
-    (5, 1),
-    (1, 4),
-    (2, 1),
-    (13, 6),
-    (15, 4),
-    (2, 5),
-    (15, 4),
-    (8, 2),
-    (14, 6),
-    (3, 5),
-    (16, 3),
-    (5, 2),
-    (9, 4),
-    (7, 6),
-    (3, 4);
+/* vol_tarea (21)*/
+INSERT INTO public.vol_tarea (id_voluntario, flg_participa, id_estado, id_tarea)
+	VALUES
+	(1,'true',3,1),
+	(2,'true',3,1),
+	(3,'true',3,1),
+	(4,'true',3,2),
+	(5,'true',3,2),
+	(5,'true',3,3),
+	(7,'true',3,4),
+	(8,'true',1,5),
+	(9,'true',3,6),
+	(10,'true',3,7),
+	(11,'true',3,7),
+	(12,'true',3,8),
+	(13,'true',3,3),
+	(14,'true',3,2),
+	(15,'true',3,2),
+	(16,'true',3,4),
+	(17,'true',3,5),
+	(18,'true',3,6),
+	(19,'true',3,7),
+	(20,'true',3,8),
+	(21,'true',3,9);
+/* vol_habilidad (30)*/
+INSERT INTO public.vol_habilidad (id_voluntario, id_habilidad)
+	VALUES
+	(1,1),
+	(2,2),
+	(3,3),
+	(4,4),
+	(5,5),
+	(6,6),
+	(7,7),
+	(8,8),
+	(9,1),
+	(10,2),
+	(11,3),
+	(12,4),
+	(13,5),
+	(14,6),
+	(15,7),
+	(16,8),
+	(17,1),
+	(18,2),
+	(19,3),
+	(20,4),
+	(21,5),
+	(22,6),
+	(23,7),
+	(24,8),
+	(25,1),
+	(26,2),
+	(27,3),
+	(28,4),
+	(29,5),
+	(30,6);
 
-/*tipo_depto (10)*/
-INSERT INTO public.tipo_depto(modelo,tamano,tipo_gc_id)
-    VALUES 
-    ('Khaki', 141, 6),
-    ('Crimson', 31, 3),
-    ('Turquoise', 45, 1),
-    ('Teal', 37, 5),
-    ('Maroon', 112, 6),
-    ('Aquamarine', 76, 1),
-    ('Pink', 122, 1),
-    ('Goldenrod', 55, 2),
-    ('Crimson', 97, 3),
-    ('Turquoise', 105, 6);
+/* tarea_habilidad (17)*/
+INSERT INTO public.tarea_habilidad (id_tarea, id_habilidad)
+	VALUES
+	(1,1),
+	(1,2),
+	(2,3),
+	(2,4),
+	(3,5),
+	(3,6),
+	(4,7),
+	(4,8),
+	(5,1),
+	(5,2),
+	(6,3),
+	(6,4),
+	(7,5),
+	(7,6),
+	(8,7),
+	(9,8),
+	(10,1);
 
-/*departamento (32)*/
-INSERT INTO public.departamento(numero, piso, dueno, habitantes, edificio_id, tipo_depto_id)
-    VALUES
-    (512, 23, 'Bruis', 7, 9, 10),
-    (411, 10, 'Goober', 5, 2, 3),
-    (588, 22, 'Homerus', 6, 15, 6),
-    (482, 20, 'Teodoro', 4, 15, 6),
-    (520, 18, 'Ralf', 2, 11, 4),
-    (129, 18, 'Ethelyn', 8, 7, 3),
-    (367, 14, 'Padraig', 5, 9, 2),
-    (513, 21, 'Darryl', 5, 2, 4),
-    (501, 14, 'Katine', 4, 5, 9),
-    (229, 5, 'Cleveland', 5, 7, 6),
-    (131, 8, 'Hester', 6, 2, 8),
-    (266, 20, 'Dallis', 8, 3, 9),
-    (130, 20, 'Giffard', 4, 15, 1),
-    (339, 10, 'Serena', 5, 13, 4),
-    (310, 19, 'Lita', 1, 13, 9),
-    (291, 21, 'Yard', 2, 14, 5),
-    (205, 20, 'Jarid', 4, 2, 8),
-    (438, 24, 'Marcille', 4, 3, 8),
-    (390, 16, 'Ave', 2, 3, 9),
-    (598, 5, 'Gabriellia', 6, 11, 5),
-    (596, 10, 'Cissiee', 2, 13, 4),
-    (366, 14, 'Neile', 2, 7, 2),
-    (573, 16, 'Nata', 4, 7, 5),
-    (518, 10, 'Conrado', 5, 15, 10),
-    (425, 3, 'Xymenes', 8, 7, 8),
-    (508, 6, 'Selina', 3, 11, 1),
-    (248, 21, 'Sebastien', 2, 15, 10),
-    (565, 6, 'Lennie', 7, 12, 4),
-    (596, 10, 'Stanislas', 8, 16, 6),
-    (547, 12, 'Tori', 4, 12, 3),
-    (194, 23, 'Alair', 2, 3, 1),
-    (194, 5, 'Kimble', 4, 11, 4);
+/* emergencia (5)*/
+INSERT INTO public.emergencia (nombre, descrip, finicio, ffin, id_institucion)
+	VALUES
+	('Terremoto','Sismo de mediana a alta magnitud en las cercanias','2021-05-23','2020-05-28',1),
+	('Incendio','Incendio que cubre varias manzanas a la redonda','2021-05-20','2020-05-24',2),
+	('Tsunami','Alerta Tsunami decretada por la onemi','2021-03-14','2020-03-16',3),
+	('Incendio','Incendio de alta magnitud en un bosque cercano','2021-05-21','2020-05-26',1),
+	('Inundación','Comunidad devastada por una inundacion','2021-04-10','2020-04-16',2);
 
-    
-/*pago_cg_edificio (32)*/
-INSERT INTO public.pago_gc_depto(fecha_inicio, fecha_termino, pagado, departamento_id,gasto_comun_id)
-    VALUES
-    ('2021-03-01 12:00:00', '2021-03-30 12:00:00', false, 20, 43),
-    ('2021-04-01 12:00:00', '2021-04-30 12:00:00', true, 18, 40),
-    ('2021-03-01 12:00:00', '2021-03-30 12:00:00', true, 21, 61),
-    ('2021-01-01 12:00:00', '2021-02-28 12:00:00', true, 30, 56),
-    ('2021-02-01 12:00:00', '2021-02-28 12:00:00', false, 7, 18),
-    ('2021-02-01 12:00:00', '2021-02-28 12:00:00', true, 27, 37),
-    ('2021-01-01 12:00:00', '2021-01-30 12:00:00', true, 1, 36),
-    ('2021-03-01 12:00:00', '2021-03-30 12:00:00', false, 11, 3),
-    ('2021-03-01 12:00:00', '2021-03-30 12:00:00', true, 6, 15),
-    ('2021-03-01 12:00:00', '2021-03-30 12:00:00', false, 15, 21),
-    ('2021-03-01 12:00:00', '2021-03-30 12:00:00', false, 18, 40),
-    ('2021-02-01 12:00:00', '2021-02-28 12:00:00', false, 32, 53),
-    ('2021-01-01 12:00:00', '2021-01-30 12:00:00', false, 7, 11),
-    ('2021-01-01 12:00:00', '2021-01-30 12:00:00', false, 28, 5),
-    ('2021-02-01 12:00:00', '2021-02-28 12:00:00', false, 31, 39),
-    ('2021-01-01 12:00:00', '2021-01-30 12:00:00', false, 9, 49),
-    ('2021-01-01 12:00:00', '2021-01-30 12:00:00', false, 12, 46),
-    ('2021-01-01 12:00:00', '2021-01-30 12:00:00', true, 6, 3),
-    ('2021-01-01 12:00:00', '2021-01-30 12:00:00', false, 7, 38),
-    ('2021-01-01 12:00:00', '2021-01-30 12:00:00', false, 26, 47),
-    ('2021-01-01 12:00:00', '2021-01-30 12:00:00', false, 14, 63),
-    ('2021-03-01 12:00:00', '2021-03-30 12:00:00', true, 26, 30),
-    ('2021-02-01 12:00:00', '2021-02-28 12:00:00', false, 18, 20),
-    ('2021-01-01 12:00:00', '2021-01-30 12:00:00', true, 23, 53),
-    ('2021-01-01 12:00:00', '2021-01-30 12:00:00', true, 1, 39),
-    ('2021-01-01 12:00:00', '2021-01-30 12:00:00', false, 15, 38),
-    ('2021-03-01 12:00:00', '2021-03-30 12:00:00', false, 4, 17),
-    ('2021-01-01 12:00:00', '2021-01-30 12:00:00', false, 25, 63),
-    ('2021-04-01 12:00:00', '2021-01-30 12:00:00', false, 18, 63),
-    ('2021-01-01 12:00:00', '2021-01-30 12:00:00', false, 17, 5),
-    ('2021-02-01 12:00:00', '2021-02-28 12:00:00', false, 12, 23),
-    ('2021-02-01 12:00:00', '2021-02-28 12:00:00', true, 6, 18);
-
-    
+/* eme_habilidad (17)*/
+INSERT INTO public.eme_habilidad (id_emergencia, id_habilidad)
+	VALUES
+	(1,1),
+	(1,4),
+	(1,6),
+	(1,5),
+	(1,8),
+	(2,3),
+	(2,6),
+	(2,1),
+	(3,1),
+	(3,2),
+	(3,6),
+	(3,8),
+	(4,1),
+	(4,3),
+	(4,7),
+	(5,6),
+	(5,8);
 
 
-    
+--- procedimiento
 
+CREATE OR REPLACE PROCEDURE public.cerrar_tarea(
+	idt integer,
+	idv integer)
+AS $$
+DECLARE
+		IDT  ALIAS FOR $1 ;
+		IDV  ALIAS FOR $2;
+        V_COUNT_TAREA INTEGER;
+        V_COUNT_VOL INTEGER;
+        V_COUNT_VOL_FINALIZA INTEGER;
+
+BEGIN
+
+-- lo primeo a realizar es actualizar la tabla de vol_tarea 
+UPDATE vol_tarea
+    SET id_estado = 4
+    WHERE id_tarea = IDT
+    AND id_voluntario = IDV;
+
+-- Con esto vemos si la tarea se encuentre o no en proceso --
+SELECT COUNT(*) INTO V_COUNT_TAREA
+FROM tarea as t
+WHERE t.id = IDT AND id_estado = 3;
+
+Raise Notice 'V_COUNT_TAREA es: %',V_COUNT_TAREA;
+
+IF V_COUNT_TAREA !=1 then
+    raise notice 'La tarea no se encuentra en proceso';
+ELSE
+    raise notice 'a';
+
+-- participantes totales en la tarea entregada
+
+SELECT COUNT(*) INTO V_COUNT_VOL
+FROM vol_tarea as vt
+WHERE vt.id_tarea = IDT AND flg_participa = true;
+
+Raise Notice 'V_COUNT_VOL es: %',V_COUNT_VOL;
+
+--Numero de participantes que cerraron la tarea 
+SELECT COUNT(*) INTO V_COUNT_VOL_FINALIZA
+FROM vol_tarea as vt
+WHERE vt.id_tarea = IDT AND flg_participa = true AND id_estado = 4;
+
+Raise Notice 'V_COUNT_VOL_FINALIZA es: %',V_COUNT_VOL_FINALIZA;
+
+IF V_COUNT_VOL = V_COUNT_VOL_FINALIZA then
+    -- Si coinciden cerramos
+    raise notice 'Tarea con id: % cerrada ',IDT;
+    UPDATE tarea 
+        SET 
+        id_estado = 4,
+        ffin = NOW()::timestamp
+        WHERE id = IDT;
+ELSE
+    -- Sino no, no cerramos
+    raise notice 'Tarea aún no cerrada por todos, aun no se puede cerrar';
+END IF;
+END IF;
+END;
+$$ LANGUAGE 'plpgsql';
