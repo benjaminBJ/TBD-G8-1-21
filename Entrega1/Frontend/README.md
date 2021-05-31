@@ -1,5 +1,7 @@
 # Frontend
 
+# Requisitos previos: Tener instalado node.js.
+
 # Para poder correr el Frontend de nuestro aplicativo web, lo primero es asegurar de que en esta misma carpeta se hayan corrido los comandos
 # "npm install"
 # "npm i -g @vue/cli"
