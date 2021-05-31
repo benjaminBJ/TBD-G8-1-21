@@ -1,10 +1,10 @@
 # TBD-G8-1-21
 
-# Entrega 1 :
+## Entrega 1:
 
 Instrucciónes para poder ejecutar el proyecto
 
-## Para correr el Frontend:
+### Para correr el Frontend:
 
 Requisitos previos: Tener instalado node.js
 
@@ -21,7 +21,7 @@ luego para poder visualizar el aplicativo web, se debe correr los comandos.
 
 Con este último, en localhost:8081 se puede visualizar el Frontend. (Tener en cuenta que para que las funcionalidades corran, el Backend del proyecto debe estar corriendo).
 
-## Para correr el Backend:
+### Para correr el Backend:
 
 Abrir una consola dentro del directorio de la carpeta Backend, Entrega1\Backend, seguido de eso ejecutar :
 
@@ -35,15 +35,14 @@ Requisitos previos: Tener instalado la base de datos PostgreSQL
 - Ingresar a postgreSQL
     - Cargar los scripts de dbCreate.sql y loadData.sql
     - Similar a la entrega anterior lo mas rapido es abrir una consola en el mismo directorio y ejecutar los comandos
-
-- Cargar DB y tablas: \i dbCreate.sql
-- Poblar tablas: \i loadData.sql
+        - Cargar DB y tablas: \i dbCreate.sql
+        - Poblar tablas: \i loadData.sql
 
 Enlace de video:
 
 - https://youtu.be/Ff_4DyVlbp4
 
-## Pre entrega 1
+## Pre entrega 1:
 
 Ingresar a postgres
 
