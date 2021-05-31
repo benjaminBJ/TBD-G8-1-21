@@ -23,9 +23,10 @@ Con este último, en localhost:8081 se puede visualizar el Frontend. (Tener en c
 
 ## Para correr el Backend:
 
-Abrir una consola dentro del directorio de la carpeta Backend, Entrega1\Backend. Seguido de eso ejecutar :
-    - gradlew build
-    - gradlew bootRun
+Abrir una consola dentro del directorio de la carpeta Backend, Entrega1\Backend, seguido de eso ejecutar :
+
+- gradlew build
+- gradlew bootRun
 
 Para Ejecutar los scripts , construir las Tablas y poblarlas:
 
