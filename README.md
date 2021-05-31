@@ -1,6 +1,6 @@
 # TBD-G8-1-21
 
-Entrega 1 :
+//// Entrega 1 :
 
 Instrucciónes para poder ejecutar el proyecto
 
@@ -24,12 +24,12 @@ Ingresar a postgreSQL
 Similar a la entrega anterior lo mas rapido es abrir una consola en el mismo directorio y ejecutar los comandos
 
 Cargar DB y tablas
-\i 'ruta_archivo/dbCreate.sql'
+\i dbCreate.sql
 Poblar tablas
-\i 'ruta_archivo/loadData.sql'
+\i loadData.sql
 
 
-Pre Entrega 1:
+//// Pre Entrega 1:
 
 Ingresar a postgres
 
