@@ -1,5 +1,13 @@
 \c voluntariado;
 
+
+/* Dogs Prueba (5)*/
+INSERT INTO public.dog (name, descrip,location)
+	VALUES
+	('Chamullo','Manso',ST_GeomFromText('POINT(-72.928177 -41.474096)',4326)),
+	('Pedro','jugueton',ST_GeomFromText('POINT(-71.080 -33.941)',4326)),
+	('Pascal',NULL,ST_GeomFromText('POINT( -72.413 -35.347)',4326));
+
 /* voluntario (30)*/
 INSERT INTO public.voluntario (nombre, rut, email, telefono)
 	VALUES
@@ -190,13 +198,13 @@ INSERT INTO public.tarea_habilidad (id_tarea, id_habilidad)
 	(10,1);
 
 /* emergencia (5)*/
-INSERT INTO public.emergencia (nombre, descrip, finicio, ffin, id_institucion)
+INSERT INTO public.emergencia (nombre, descrip, finicio, ffin, id_institucion,location)
 	VALUES
-	('Terremoto','Sismo de mediana a alta magnitud en las cercanias','2021-05-23','2020-05-28',1),
-	('Incendio','Incendio que cubre varias manzanas a la redonda','2021-05-20','2020-05-24',2),
-	('Tsunami','Alerta Tsunami decretada por la onemi','2021-03-14','2020-03-16',3),
-	('Incendio','Incendio de alta magnitud en un bosque cercano','2021-05-21','2020-05-26',1),
-	('Inundación','Comunidad devastada por una inundacion','2021-04-10','2020-04-16',2);
+	('Terremoto','Sismo de mediana a alta magnitud en las cercanias','2021-05-23','2020-05-28',1,ST_GeomFromText('POINT(-72.928177 -41.474096)',4326)),
+	('Incendio','Incendio que cubre varias manzanas a la redonda','2021-05-20','2020-05-24',2,ST_GeomFromText('POINT(-71.080 -33.941)',4326)),
+	('Tsunami','Alerta Tsunami decretada por la onemi','2021-03-14','2020-03-16',3,ST_GeomFromText('POINT( -72.413 -35.347)',4326)),
+	('Incendio','Incendio de alta magnitud en un bosque cercano','2021-05-21','2020-05-26',1,NULL),
+	('Inundación','Comunidad devastada por una inundacion','2021-04-10','2020-04-16',2,NULL);
 
 /* eme_habilidad (17)*/
 INSERT INTO public.eme_habilidad (id_emergencia, id_habilidad)

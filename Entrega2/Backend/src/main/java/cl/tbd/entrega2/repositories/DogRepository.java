@@ -9,5 +9,7 @@ public interface DogRepository {
     public void deleteDog(int id);
     public Dog getDog(int id);
     public Dog upDog(Dog dog);
+    //nueva
+    public String getJson();
 
 }

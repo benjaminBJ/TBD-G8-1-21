@@ -25,7 +25,9 @@ public class DogRepositoryImp implements DogRepository {
     @Override
     public List<Dog> getAllDogs() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from dog")
+            final String query = "SELECT id, name, st_x(st_astext( location)) AS longitude, st_y(st_astext(location)) AS latitude" +
+                    " FROM dog;";
+            return conn.createQuery(query)
                     .executeAndFetch(Dog.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -51,9 +53,19 @@ public class DogRepositoryImp implements DogRepository {
     @Override
     public Dog createDog(Dog dog) {
         try(Connection conn = sql2o.open()){
-            int insertedId = (int) conn.createQuery("INSERT INTO dog (name,descrip) values (:dogName,:descrip)", true)
+
+            String query = "INSERT INTO DOG (name, location) " +
+                    "VALUES (:dogName, ST_GeomFromText(:point, 4326))";
+
+            String point = "POINT("+dog.getLongitude()+" "+dog.getLatitude()+")";
+            System.out.println("point: "+point);
+
+            //Se mantiene esto
+            int insertedId = (int) conn.createQuery(query, true)
                     .addParameter("dogName", dog.getName())
-                    .addParameter("descrip", dog.getDescrip())
+                    .addParameter("point", point)
+                    //Ocultar mientras los otros parametros
+                    //.addParameter("descrip", dog.getDescrip())
                     .executeUpdate().getKey();
             dog.setId(insertedId);
             return dog;        
@@ -93,6 +105,17 @@ public class DogRepositoryImp implements DogRepository {
             System.out.println(e.getMessage());
             return null;
         }
+    }
+
+    @Override
+    public String getJson() {
+        // TODO Auto-generated method stub
+        final String query = "SELECT json_build_object("+
+                "'type', 'FeatureCollection',"+
+                "'features', json_agg(ST_AsGeoJSON(t.geom)::json)"+
+                ")"+
+                "FROM division_regional_4326 AS t WHERE t.gid = 5;";
+        return null;
     }
 
 

@@ -24,7 +24,15 @@ public class DogService {
 
     @GetMapping("/dogs")
     public List<Dog> getAllDogs() {
-        return dogRepository.getAllDogs();
+        //System.out.println("getAllDogs()");
+        try {
+            List<Dog> dogs = dogRepository.getAllDogs();
+            return dogs;
+        } catch (Exception e) {
+            System.out.println("Error :" + e.getMessage());
+            return null;
+        }
+
     }
 
     @GetMapping("/dogs/count")

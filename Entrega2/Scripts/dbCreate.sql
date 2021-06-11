@@ -1,17 +1,25 @@
 
+-- Drop si ya existia
 DROP DATABASE voluntariado;
 
+-- Crear Base de datos
 CREATE DATABASE voluntariado;
 
 \c voluntariado;
 
+--Crear extension postgis
+CREATE EXTENSION postgis;
 
 -- prueba
 CREATE TABLE public.dog(
 	id SERIAL PRIMARY KEY,
 	name character varying(100) NOT NULL,
-    descrip character varying(400) NOT NULL
+    descrip character varying(400) 
 );
+-- Agregar geometria
+SELECT
+AddGeometryColumn('dog','location','4326','point',2);
+
 ALTER TABLE public.dog OWNER TO postgres;
 
 CREATE TABLE public.institucion (
@@ -26,11 +34,14 @@ ALTER TABLE public.institucion OWNER TO postgres;
 CREATE TABLE public.emergencia (
     id SERIAL PRIMARY KEY,
     nombre character varying(100) NOT NULL,
-    descrip character varying(400) NOT NULL,
-    finicio date NOT NULL,
+    descrip character varying(400) ,
+    finicio date ,
     ffin date,
     id_institucion SERIAl references institucion(id)
 );
+
+SELECT
+AddGeometryColumn('emergencia','location','4326','point',2);
 
 ALTER TABLE public.emergencia OWNER TO postgres;
 

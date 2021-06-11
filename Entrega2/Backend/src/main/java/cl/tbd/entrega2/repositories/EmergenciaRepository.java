@@ -9,4 +9,5 @@ public interface EmergenciaRepository {
     public Emergencia createEmergencia(Emergencia emergencia);
     public Emergencia upEmergencia(Emergencia emergencia);
     public void deleteEmergencia(int id);
+    public String getJson();
 }

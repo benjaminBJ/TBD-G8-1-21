@@ -18,7 +18,10 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     @Override
     public List<Emergencia> getAllEmergencias() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from emergencia")
+
+            final String query = "SELECT id, nombre, st_x(st_astext( location)) AS longitude, st_y(st_astext(location)) AS latitude" +
+                    " FROM emergencia;";
+            return conn.createQuery(query)
                     .executeAndFetch(Emergencia.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -45,16 +48,27 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     @Override
     public Emergencia createEmergencia(Emergencia emergencia) {
         try(Connection conn = sql2o.open()){
+
             String sql =
-                    "INSERT INTO emergencia (nombre,descrip,finicio,ffin,id_institucion) " +
-                            "values (:nombre,:descrip,:finicio,:ffin,:id_institucion)";
+                    "INSERT INTO emergencia (nombre,location) " +
+                            "values (:nombre, ST_GeomFromText(:point, 4326))";
+            /*Bien
+            String sql =
+                    "INSERT INTO emergencia (nombre,descrip,finicio,ffin,id_institucion,location) " +
+                            "values (:nombre,:descrip,:finicio,:ffin,:id_institucion, ST_GeomFromText(:point, 4326)))";
+            */
+
+            String point = "POINT("+emergencia.getLongitude()+" "+emergencia.getLatitude()+")";
+            System.out.println("point: "+point);
 
             int insertedId = (int) conn.createQuery(sql, true)
                     .addParameter("nombre", emergencia.getNombre())
-                    .addParameter("descrip", emergencia.getDescrip())
-                    .addParameter("finicio", emergencia.getFinicio())
-                    .addParameter("ffin", emergencia.getFfin())
-                    .addParameter("id_institucion", emergencia.getId_institucion())
+                    .addParameter("point", point)
+                    //Ocultar mientras se arregla los otros parametros
+                    //.addParameter("descrip", emergencia.getDescrip())
+                    //.addParameter("finicio", emergencia.getFinicio())
+                    //.addParameter("ffin", emergencia.getFfin())
+                    //.addParameter("id_institucion", emergencia.getId_institucion())
                     .executeUpdate().getKey();
 
             emergencia.setId(insertedId);
@@ -100,5 +114,16 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
+    }
+
+    @Override
+    public String getJson() {
+        // TODO Auto-generated method stub
+        final String query = "SELECT json_build_object("+
+                "'type', 'FeatureCollection',"+
+                "'features', json_agg(ST_AsGeoJSON(t.geom)::json)"+
+                ")"+
+                "FROM division_regional_4326 AS t WHERE t.gid = 5;";
+        return null;
     }
 }
