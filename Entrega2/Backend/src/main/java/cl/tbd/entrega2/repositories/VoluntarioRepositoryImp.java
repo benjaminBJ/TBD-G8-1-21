@@ -17,8 +17,9 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
     @Override
     public List<Voluntario> getAllVoluntarios() {
         try(Connection conn = sql2o.open()){
-            String sql = "SELECT * " +
-                    "FROM voluntario";
+            String sql = "SELECT id, nombre, rut, email, telefono" +
+                    ", st_x(st_astext( location)) AS longitude, st_y(st_astext(location)) AS latitude" +
+                    " FROM voluntario";
             return conn.createQuery(sql)
                     .executeAndFetch(Voluntario.class);
         } catch (Exception e) {
@@ -31,7 +32,9 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
     public Voluntario getVoluntario(int id) {
         try(Connection conn = sql2o.open()){
 
-            String sql = "select * from voluntario WHERE id = :id";
+            String sql = "SELECT id, nombre, rut, email, telefono" +
+                    ", st_x(st_astext( location)) AS longitude, st_y(st_astext(location)) AS latitude" +
+                    " FROM voluntario WHERE id = :id";
 
             Voluntario voluntario = conn.createQuery(sql, true)
                     .addParameter("id", id)
@@ -47,10 +50,15 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
     public Voluntario createVoluntario(Voluntario voluntario) {
         try(Connection conn = sql2o.open()){
             String sql =
-                    "INSERT INTO voluntario (nombre, rut, email, telefono)" +
-                            "values (:nombre, :rut, :email, :telefono)";
+                    "INSERT INTO voluntario (nombre, rut, email, telefono,location)" +
+                            "values (:nombre, :rut, :email, :telefono, ST_GeomFromText(:point, 4326))";
+
+            String point = "POINT("+voluntario.getLongitude()+" "+voluntario.getLatitude()+")";
+            System.out.println("point: "+point);
+
             int insertedId = (int) conn.createQuery(sql, true)
                     .addParameter("nombre", voluntario.getNombre())
+                    .addParameter("point", point)
                     .addParameter("rut", voluntario.getRut())
                     .addParameter("email", voluntario.getEmail())
                     .addParameter("telefono", voluntario.getTelefono())
@@ -70,10 +78,14 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
 
             String sql =
                     "UPDATE voluntario SET nombre = :nombre, rut = :rut , email = :email , " +
-                            "telefono =:telefono WHERE id = :id";
+                            "telefono =:telefono, location = ST_GeomFromText(:point, 4326) WHERE id = :id";
+
+            String point = "POINT("+voluntario.getLongitude()+" "+voluntario.getLatitude()+")";
+            System.out.println("point: "+point);
 
             conn.createQuery(sql, true)
                     .addParameter("id", voluntario.getId())
+                    .addParameter("point", point)
                     .addParameter("nombre", voluntario.getNombre())
                     .addParameter("rut", voluntario.getRut())
                     .addParameter("email", voluntario.getEmail())
@@ -101,5 +113,16 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
         }
 
 
+    }
+
+    @Override
+    public String getJson() {
+        // TODO Auto-generated method stub
+        final String query = "SELECT json_build_object("+
+                "'type', 'FeatureCollection',"+
+                "'features', json_agg(ST_AsGeoJSON(t.geom)::json)"+
+                ")"+
+                "FROM division_regional_4326 AS t WHERE t.gid = 5;";
+        return null;
     }
 }

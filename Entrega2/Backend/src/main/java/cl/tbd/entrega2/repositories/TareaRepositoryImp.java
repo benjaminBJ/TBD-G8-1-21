@@ -28,9 +28,12 @@ public class TareaRepositoryImp implements TareaRepository{
     @Override
     public List<Tarea> getAllTarea() {
         try(Connection conn = sql2o.open()){
-            String sql = "SELECT * " + 
-                         "FROM tarea";             
-            return conn.createQuery(sql)
+
+            final String query = "SELECT id, nombre,descrip,vol_requeridos,finicio,ffin,id_emergencia,id_estado" +
+                    ", st_x(st_astext( location)) AS longitude, st_y(st_astext(location)) AS latitude" +
+                    " FROM tarea;";
+
+            return conn.createQuery(query)
                     .executeAndFetch(Tarea.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -42,7 +45,9 @@ public class TareaRepositoryImp implements TareaRepository{
     public Tarea getTarea(int id) {
         try(Connection conn = sql2o.open()){
 
-            String sql = "select * from tarea WHERE id = :id";
+            String sql = "SELECT id, nombre,descrip,vol_requeridos,finicio,ffin,id_emergencia,id_estado" +
+                    ", st_x(st_astext( location)) AS longitude, st_y(st_astext(location)) AS latitude" +
+                    " FROM tarea WHERE id=:id";
 
             Tarea tarea = conn.createQuery(sql, true)
                     .addParameter("id", id)
@@ -58,12 +63,16 @@ public class TareaRepositoryImp implements TareaRepository{
     public Tarea createTarea(Tarea tarea) {
         try(Connection conn = sql2o.open()){
             String sql = 
-                    "INSERT INTO tarea (nombre, descrip, ubicacion, vol_requeridos, finicio, ffin, id_emergencia, id_estado)" + 
-                        "values (:nombre, :descrip, :ubicacion, :vol_requeridos, :finicio, :ffin, :id_emergencia, :id_estado)";           
+                    "INSERT INTO tarea (nombre, descrip, vol_requeridos, finicio, ffin, id_emergencia, id_estado,location)" +
+                        "values (:nombre, :descrip, :vol_requeridos, :finicio, :ffin, :id_emergencia, :id_estado, ST_GeomFromText(:point, 4326))";
+
+            String point = "POINT("+tarea.getLongitude()+" "+tarea.getLatitude()+")";
+            System.out.println("point: "+point);
+
             int insertedId = (int) conn.createQuery(sql, true)
                     .addParameter("nombre", tarea.getNombre())
+                    .addParameter("point", point)
                     .addParameter("descrip", tarea.getDescrip())
-                    .addParameter("ubicacion", tarea.getUbicacion())
                     .addParameter("vol_requeridos", tarea.getVol_requeridos())
                     .addParameter("finicio", tarea.getFinicio())
                     .addParameter("ffin", tarea.getFfin())
@@ -79,26 +88,30 @@ public class TareaRepositoryImp implements TareaRepository{
     }
 
     @Override
-    public Tarea upTarea(Tarea Tarea) {
+    public Tarea upTarea(Tarea tarea) {
         try(Connection conn = sql2o.open()){
 
             String sql =
-                    "UPDATE tarea SET nombre = :nombre, descrip = :descrip, ubicacion = :ubicacion, vol_requeridos = :vol_requeridos, " +
-                        "finicio = :finicio, ffin = :ffin, id_emergencia = :id_emergencia, id_estado = :id_estado WHERE id = :id";
+                    "UPDATE tarea SET nombre = :nombre, descrip = :descrip, vol_requeridos = :vol_requeridos, " +
+                        "finicio = :finicio, ffin = :ffin, id_emergencia = :id_emergencia, id_estado = :id_estado" +
+                            ", location = ST_GeomFromText(:point, 4326) WHERE id = :id";
+
+            String point = "POINT("+tarea.getLongitude()+" "+tarea.getLatitude()+")";
+            System.out.println("point: "+point);
 
             conn.createQuery(sql, true)
-                    .addParameter("id", Tarea.getId())
-                    .addParameter("nombre", Tarea.getNombre())
-                    .addParameter("descrip", Tarea.getDescrip())
-                    .addParameter("ubicacion", Tarea.getUbicacion())
-                    .addParameter("vol_requeridos", Tarea.getVol_requeridos())
-                    .addParameter("finicio", Tarea.getFinicio())
-                    .addParameter("ffin", Tarea.getFfin())
-                    .addParameter("id_emergencia", Tarea.getId_emergencia())
-                    .addParameter("id_estado", Tarea.getId_estado())                   
+                    .addParameter("id", tarea.getId())
+                    .addParameter("point", point)
+                    .addParameter("nombre", tarea.getNombre())
+                    .addParameter("descrip", tarea.getDescrip())
+                    .addParameter("vol_requeridos", tarea.getVol_requeridos())
+                    .addParameter("finicio", tarea.getFinicio())
+                    .addParameter("ffin", tarea.getFfin())
+                    .addParameter("id_emergencia", tarea.getId_emergencia())
+                    .addParameter("id_estado", tarea.getId_estado())
                     .executeUpdate();
 
-            return Tarea;
+            return tarea;
 
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -133,6 +146,17 @@ public class TareaRepositoryImp implements TareaRepository{
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
+    }
+
+    @Override
+    public String getJson() {
+        // TODO Auto-generated method stub
+        final String query = "SELECT json_build_object("+
+                "'type', 'FeatureCollection',"+
+                "'features', json_agg(ST_AsGeoJSON(t.geom)::json)"+
+                ")"+
+                "FROM division_regional_4326 AS t WHERE t.gid = 5;";
+        return null;
     }
 
 

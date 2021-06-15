@@ -10,4 +10,5 @@ public interface TareaRepository {
     public Tarea upTarea(Tarea tarea);
     public void deleteTarea(int id);
     public void procedure1(int idt,int idv);
+    public String getJson();
 }

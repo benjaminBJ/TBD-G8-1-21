@@ -6,12 +6,29 @@ public class Tarea {
     private Integer id;
     private String nombre;
     private String descrip;
-    private String ubicacion;
     private Integer vol_requeridos;
     private Date finicio;
     private Date ffin;
     private Integer id_emergencia;
     private Integer id_estado;
+    private double longitude;
+    private double latitude;
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
 
     public Integer getId() {
         return id;
@@ -30,12 +47,6 @@ public class Tarea {
     }
     public void setDescrip(String descrip) {
         this.descrip = descrip;
-    }
-    public String getUbicacion() {
-        return ubicacion;
-    }
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
     }
     public Integer getVol_requeridos() {
         return vol_requeridos;

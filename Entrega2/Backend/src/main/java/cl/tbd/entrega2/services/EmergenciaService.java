@@ -1,6 +1,5 @@
 package cl.tbd.entrega2.services;
 
-import cl.tbd.entrega2.models.Dog;
 import cl.tbd.entrega2.models.Emergencia;
 import cl.tbd.entrega2.repositories.EmergenciaRepository;
 import org.springframework.web.bind.annotation.*;
@@ -23,13 +22,15 @@ public class EmergenciaService {
 
     @GetMapping("/emergencias")
     public List<Emergencia> getAllEmergencias() {
+        /*
         try {
             List<Emergencia> emergencias = emergenciaRepository.getAllEmergencias();
             return emergencias;
         } catch (Exception e) {
             System.out.println("Error :" + e.getMessage());
             return null;
-        }
+        }*/
+        return emergenciaRepository.getAllEmergencias();
     }
 
 

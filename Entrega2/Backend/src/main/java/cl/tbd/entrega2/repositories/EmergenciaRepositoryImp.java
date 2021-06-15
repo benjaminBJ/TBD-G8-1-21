@@ -19,7 +19,8 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     public List<Emergencia> getAllEmergencias() {
         try(Connection conn = sql2o.open()){
 
-            final String query = "SELECT id, nombre, st_x(st_astext( location)) AS longitude, st_y(st_astext(location)) AS latitude" +
+            final String query = "SELECT id, nombre,descrip,finicio,ffin,id_institucion" +
+                    ", st_x(st_astext( location)) AS longitude, st_y(st_astext(location)) AS latitude" +
                     " FROM emergencia;";
             return conn.createQuery(query)
                     .executeAndFetch(Emergencia.class);
@@ -33,7 +34,9 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     public Emergencia getEmergencia(int id) {
         try(Connection conn = sql2o.open()){
 
-            String sql = "select * from emergencia WHERE id = :id";
+            String sql = "select id, nombre,descrip,finicio,ffin,id_institucion" +
+                    ", st_x(st_astext( location)) AS longitude, st_y(st_astext(location)) AS latitude" +
+                    " FROM emergencia WHERE id = :id";
 
             Emergencia emergencia = conn.createQuery(sql, true)
                     .addParameter("id", id)
@@ -41,6 +44,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
             return emergencia;
         }catch(Exception e){
             System.out.println(e.getMessage());
+            System.out.println("No existe emergencia con id : "+id);
             return null;
         }
     }
@@ -50,13 +54,8 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
         try(Connection conn = sql2o.open()){
 
             String sql =
-                    "INSERT INTO emergencia (nombre,location) " +
-                            "values (:nombre, ST_GeomFromText(:point, 4326))";
-            /*Bien
-            String sql =
                     "INSERT INTO emergencia (nombre,descrip,finicio,ffin,id_institucion,location) " +
-                            "values (:nombre,:descrip,:finicio,:ffin,:id_institucion, ST_GeomFromText(:point, 4326)))";
-            */
+                            "values (:nombre,:descrip,:finicio,:ffin,:id_institucion, ST_GeomFromText(:point, 4326))";
 
             String point = "POINT("+emergencia.getLongitude()+" "+emergencia.getLatitude()+")";
             System.out.println("point: "+point);
@@ -65,10 +64,10 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
                     .addParameter("nombre", emergencia.getNombre())
                     .addParameter("point", point)
                     //Ocultar mientras se arregla los otros parametros
-                    //.addParameter("descrip", emergencia.getDescrip())
-                    //.addParameter("finicio", emergencia.getFinicio())
-                    //.addParameter("ffin", emergencia.getFfin())
-                    //.addParameter("id_institucion", emergencia.getId_institucion())
+                    .addParameter("descrip", emergencia.getDescrip())
+                    .addParameter("finicio", emergencia.getFinicio())
+                    .addParameter("ffin", emergencia.getFfin())
+                    .addParameter("id_institucion", emergencia.getId_institucion())
                     .executeUpdate().getKey();
 
             emergencia.setId(insertedId);
@@ -85,10 +84,16 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
 
             String sql =
                     "UPDATE emergencia SET nombre = :nombre, descrip = :descrip, finicio = :finicio, " +
-                            "ffin =:ffin, id_institucion =:id_institucion WHERE id = :id";
+                            "ffin =:ffin, id_institucion =:id_institucion, location = ST_GeomFromText(:point, 4326)" +
+                            " WHERE id = :id";
+
+            String point = "POINT("+emergencia.getLongitude()+" "+emergencia.getLatitude()+")";
+            System.out.println("point: "+point);
 
             conn.createQuery(sql, true)
                     .addParameter("nombre", emergencia.getNombre())
+                    .addParameter("point", point)
+                    //Ocultar mientras se arregla los otros parametros
                     .addParameter("descrip", emergencia.getDescrip())
                     .addParameter("finicio", emergencia.getFinicio())
                     .addParameter("ffin", emergencia.getFfin())
@@ -111,6 +116,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
             conn.createQuery(sql, true)
                     .addParameter("id", id)
                     .executeUpdate();
+            System.out.println("Eliminado emergencia con id : "+id);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
