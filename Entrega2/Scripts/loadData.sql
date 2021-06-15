@@ -9,50 +9,50 @@ INSERT INTO public.dog (name, descrip,location)
 	('Pascal',NULL,ST_GeomFromText('POINT( -72.413 -35.347)',4326));
 
 /* voluntario (30)*/
-INSERT INTO public.voluntario (nombre, rut, email, telefono)
+INSERT INTO public.voluntario (nombre, rut, email, telefono,location)
 	VALUES
-	('Hector Campos','20467238-5','tbrahim.amin.9630@gmail.com','25252655'),
-	('Edgar Ruiz','10134071-6','jmalik1127c@live.cl','11225443'),
-	('Arturo Garrido','22420886-3','cfilipe@googleappsmail.com','88451111'),
-	('Dorotea Morales','8190374-3','4roka@hotmail.cl','25202222'),
-	('Asunción Moreno','20595637-9','npetq@gmail.com','65565221'),
-	('Reinaldo Mendez','9822228-6','pmeera.meen@hotmail.cl','85545451'),
-	('Raul Suarez','16267818-3','zasdl593@dtecet.com','12125414'),
-	('Juan Ferrer','12339396-1','4achraf_2000@dunsoi.com','14526385'),
-	('Fermin Pascual','12659418-6','jhamalogo@webmhouse.com','25112441'),
-	('Alberto Esteban','18864964-5','zalooshalsmawi9@rackabzar.com','55212332'),
-	('Simón Perez','24936172-0','rbruno.b@poki.us','85554411'),
-	('Marina Mora','6826443-k','isubin@audiophileusa.net','66332214'),
-	('Almudena Hidalgo','15652736-k','0moham@rifo.ru','65252515'),
-	('Manuela Ruiz','17053702-5','9rbnm@horizen.cf','78452102'),
-	('Cirino Gutierrez','18186122-3','urehammansourrh@tubidu.com','56322412'),
-	('Rufo Jiménez','14885956-6','wzaidjnpn@greendike.com','25143214'),
-	('Ricardo Saez','15989338-3','2bihnam.attallahr@litrt.site','85454512'),
-	('Ramiro Méndez','18569098-9','jerdenechuluun_eu@klttec.com','62625145'),
-	('Efren Gomez','19132415-3','pjoce_fs22w@freeallapp.com','25145555'),
-	('Eulalia Saez','13340059-1','anaka@cuenmex.com','20332000'),
-	('Roque Santana','12119008-7','khaled.e@truelocksecurity.com','20252021'),
-	('Rosario Díaz','9292755-5','1adm-1995t@kintil.buzz','53122033'),
-	('Arnaldo Medina','6939362-4','6saak88z@mracc.it','15662005'),
-	('Gustavo Arias','24612634-8','vsubhangahappy7p@gmailni.com','79155201'),
-	('Esiquio Mora','15643796-4','5tofail.ahmed.98o@jantrawat.site','62521563'),
-	('Ernesto Guerrero','23827802-3','abashar.yaser.71b@loviel.com','78521232'),
-	('Reinaldo Medina','21589805-9','njokerbilel@rackabzar.com','52626255'),
-	('Valentín Gutiérrez','8215459-0','mcha@luddo.me','55112211'),
-	('Nicomedes Rubio','20433672-5','oimad.fagdu@system32.me','36652211'),
-	('Camilo Muñoz','24977534-7','zmonsif_za@system32.me','78541201');
+	('Hector Campos','20467238-5','tbrahim.amin.9630@gmail.com','25252655',ST_GeomFromText('POINT(-72.928177 -41.474096)',4326)),
+	('Edgar Ruiz','10134071-6','jmalik1127c@live.cl','11225443',ST_GeomFromText('POINT(-71.080 -33.941)',4326)),
+	('Arturo Garrido','22420886-3','cfilipe@googleappsmail.com','88451111',ST_GeomFromText('POINT( -72.413 -35.347)',4326)),
+	('Dorotea Morales','8190374-3','4roka@hotmail.cl','25202222',NULL),
+	('Asunción Moreno','20595637-9','npetq@gmail.com','65565221',NULL),
+	('Reinaldo Mendez','9822228-6','pmeera.meen@hotmail.cl','85545451',NULL),
+	('Raul Suarez','16267818-3','zasdl593@dtecet.com','12125414',NULL),
+	('Juan Ferrer','12339396-1','4achraf_2000@dunsoi.com','14526385',NULL),
+	('Fermin Pascual','12659418-6','jhamalogo@webmhouse.com','25112441',NULL),
+	('Alberto Esteban','18864964-5','zalooshalsmawi9@rackabzar.com','55212332',NULL),
+	('Simón Perez','24936172-0','rbruno.b@poki.us','85554411',NULL),
+	('Marina Mora','6826443-k','isubin@audiophileusa.net','66332214',NULL),
+	('Almudena Hidalgo','15652736-k','0moham@rifo.ru','65252515',NULL),
+	('Manuela Ruiz','17053702-5','9rbnm@horizen.cf','78452102',NULL),
+	('Cirino Gutierrez','18186122-3','urehammansourrh@tubidu.com','56322412',NULL),
+	('Rufo Jiménez','14885956-6','wzaidjnpn@greendike.com','25143214',NULL),
+	('Ricardo Saez','15989338-3','2bihnam.attallahr@litrt.site','85454512',NULL),
+	('Ramiro Méndez','18569098-9','jerdenechuluun_eu@klttec.com','62625145',NULL),
+	('Efren Gomez','19132415-3','pjoce_fs22w@freeallapp.com','25145555',NULL),
+	('Eulalia Saez','13340059-1','anaka@cuenmex.com','20332000',NULL),
+	('Roque Santana','12119008-7','khaled.e@truelocksecurity.com','20252021',NULL),
+	('Rosario Díaz','9292755-5','1adm-1995t@kintil.buzz','53122033',NULL),
+	('Arnaldo Medina','6939362-4','6saak88z@mracc.it','15662005',NULL),
+	('Gustavo Arias','24612634-8','vsubhangahappy7p@gmailni.com','79155201',NULL),
+	('Esiquio Mora','15643796-4','5tofail.ahmed.98o@jantrawat.site','62521563',NULL),
+	('Ernesto Guerrero','23827802-3','abashar.yaser.71b@loviel.com','78521232',NULL),
+	('Reinaldo Medina','21589805-9','njokerbilel@rackabzar.com','52626255',NULL),
+	('Valentín Gutiérrez','8215459-0','mcha@luddo.me','55112211',NULL),
+	('Nicomedes Rubio','20433672-5','oimad.fagdu@system32.me','36652211',NULL),
+	('Camilo Muñoz','24977534-7','zmonsif_za@system32.me','78541201',NULL);
 
 /* habilidad (8)*/
 INSERT INTO public.habilidad(descrip)
 	VALUES
 	('Primeros auxilios'),
-	('Rescate acuático'),
+	('Rescate acuatico'),
 	('Manejo de incendios'),
-	('Excavación'),
+	('Excavacion'),
 	('Busqueda con perros'),
 	('Uso de maquinaria'),
 	('Rescate en altura'),
-	('No específica');
+	('No especifica');
 /* institucion (3)*/
 INSERT INTO public.institucion (nombre, descrip)
 	VALUES
@@ -70,18 +70,18 @@ INSERT INTO public.estado_tarea (descrip)
 	
 
 /* tarea (10)*/
-INSERT INTO public.tarea(nombre, descrip, ubicacion, vol_requeridos, finicio, ffin, id_emergencia, id_estado)
+INSERT INTO public.tarea(nombre, descrip, vol_requeridos, finicio, ffin, id_emergencia, id_estado,location)
 	VALUES
-	('Tarea 1' ,'Limpieza de escombros','Rancagua' ,2,'2021-05-23',NULL,1,3),
-	('Tarea 2' ,'Manejo de maquinaria','Santiago' ,4,'2021-05-23',NULL,1,3),
-	('Tarea 3' ,'Coordinaar auxiliares','Valparaiso' ,1,'2021-05-23',NULL,2,3),
-	('Tarea 4' ,'Preparacion de perros','Antofagasta' ,3,'2021-05-23',NULL,5,3),
-	('Tarea 5' ,'Preparacion de insumos','Temuco' ,2,'2021-05-23',NULL,5,3),
-	('Tarea 6' ,'Busqueda de supervivientes','Chiloe' ,2,'2021-05-20',NULL,5,3),
-	('Tarea 7' ,'Controlar incendios','Calama' ,3,'2021-05-20',NULL,4,3),
-	('Tarea 8' ,'Apagar amago de incendio','Talca' ,4,'2021-05-20',NULL,4,3),
-	('Tarea 9' ,'Suturacion de heridas','Iquique' ,1,'2021-03-14',NULL,4,3),
-	('Tarea 10','Dar RCP','Estacion Central',3,'2021-03-14',NULL,5,3);
+	('Tarea 1' ,'Limpieza de escombros' ,3,'2021-05-23',NULL,1,3,ST_GeomFromText('POINT(-72.928177 -41.474096)',4326)),
+	('Tarea 2' ,'Manejo de maquinaria' ,4,'2021-05-23',NULL,1,3,ST_GeomFromText('POINT(-71.080 -33.941)',4326)),
+	('Tarea 3' ,'Coordinaar auxiliares' ,1,'2021-05-23',NULL,2,3,ST_GeomFromText('POINT( -72.413 -35.347)',4326)),
+	('Tarea 4' ,'Preparacion de perros',3,'2021-05-23',NULL,5,3,NULL),
+	('Tarea 5' ,'Preparacion de insumos',2,'2021-05-23',NULL,5,3,NULL),
+	('Tarea 6' ,'Busqueda de supervivientes' ,2,'2021-05-20',NULL,5,3,NULL),
+	('Tarea 7' ,'Controlar incendios' ,3,'2021-05-20',NULL,4,3,NULL),
+	('Tarea 8' ,'Apagar amago de incendio' ,4,'2021-05-20',NULL,4,3,NULL),
+	('Tarea 9' ,'Suturacion de heridas' ,1,'2021-03-14',NULL,4,3,NULL),
+	('Tarea 10','Dar RCP',3,'2021-03-14',NULL,5,3,NULL);
 	
 
 /* ranking (30)*/
@@ -204,7 +204,7 @@ INSERT INTO public.emergencia (nombre, descrip, finicio, ffin, id_institucion,lo
 	('Incendio','Incendio que cubre varias manzanas a la redonda','2021-05-20','2020-05-24',2,ST_GeomFromText('POINT(-71.080 -33.941)',4326)),
 	('Tsunami','Alerta Tsunami decretada por la onemi','2021-03-14','2020-03-16',3,ST_GeomFromText('POINT( -72.413 -35.347)',4326)),
 	('Incendio','Incendio de alta magnitud en un bosque cercano','2021-05-21','2020-05-26',1,NULL),
-	('Inundación','Comunidad devastada por una inundacion','2021-04-10','2020-04-16',2,NULL);
+	('Inundacion','Comunidad devastada por una inundacion','2021-04-10','2020-04-16',2,NULL);
 
 /* eme_habilidad (17)*/
 INSERT INTO public.eme_habilidad (id_emergencia, id_habilidad)

@@ -34,9 +34,9 @@ ALTER TABLE public.institucion OWNER TO postgres;
 CREATE TABLE public.emergencia (
     id SERIAL PRIMARY KEY,
     nombre character varying(100) NOT NULL,
-    descrip character varying(400) ,
-    finicio date ,
-    ffin date,
+    descrip character varying(400) NOT NULL,
+    finicio date NOT NULL,
+    ffin date ,
     id_institucion SERIAl references institucion(id)
 );
 
@@ -73,13 +73,15 @@ CREATE TABLE public.tarea (
     id SERIAL PRIMARY KEY,
     nombre character varying(60) NOT NULL,
     descrip character varying(300) NOT NULL,
-    ubicacion character varying(60) NOT NULL,
     vol_requeridos numeric(4,0) NOT NULL,
     id_emergencia numeric(6,0) NOT NULL,
     finicio date NOT NULL,
-    ffin date,
+    ffin date ,
     id_estado SERIAl references estado_tarea(id)
 );
+
+SELECT
+AddGeometryColumn('tarea','location','4326','point',2);
 
 ALTER TABLE public.tarea OWNER TO postgres;
 
@@ -101,6 +103,8 @@ CREATE TABLE public.voluntario (
     telefono character varying(100) NOT NULL
 );
 
+SELECT
+AddGeometryColumn('voluntario','location','4326','point',2);
 
 ALTER TABLE public.voluntario OWNER TO postgres;
 
