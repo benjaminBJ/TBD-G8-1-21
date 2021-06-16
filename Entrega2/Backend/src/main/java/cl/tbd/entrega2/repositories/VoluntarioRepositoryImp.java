@@ -127,25 +127,27 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
         return null;
     }
 
-    /* EN CONSTRUCCION 
+    
     @Override
     public List<Voluntario_Distancia_Tarea> getTareasCercanas(int id,int n) {
         try(Connection conn = sql2o.open()){
             
             String sql = "SELECT v.nombre AS voluntario, t.descrip AS tarea" + 
-                    ", st_distance(v.location::geography, t.location::geography) AS :distancia" +
-                    "FROM voluntario AS v, tarea AS t" +
-                    "WHERE v.id = :id" +
-                    "ORDER BY distancia ASC" +
-                    "LIMIT :n";
-            List<Voluntario_Distancia_Tarea> resultado = conn.createQuery(sql)
-                    .executeAndFetch(Voluntario_Distancia_Tarea.class);
+                    ", st_distance(v.location::geography, t.location::geography) AS distancia" +
+                    " FROM voluntario AS v, tarea AS t" +
+                    " WHERE v.id = :id" +
+                    " ORDER BY distancia ASC" +
+                    " LIMIT :n";
 
-            return resultado;
+            List<Voluntario_Distancia_Tarea> result= conn.createQuery(sql,false)
+                    .addParameter("id", id)
+                    .addParameter("n", n)
+                    .executeAndFetch(Voluntario_Distancia_Tarea.class);                    
+            return result;
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
         }
-    }*/
+    }
 }

@@ -1,6 +1,7 @@
 package cl.tbd.entrega2.services;
 
 import cl.tbd.entrega2.models.Voluntario;
+import cl.tbd.entrega2.models.Voluntario_Distancia_Tarea;
 import cl.tbd.entrega2.repositories.VoluntarioRepository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -53,11 +54,9 @@ public class VoluntarioService {
 		voluntarioRepository.deleteVoluntario(id);
 	}
 
-	/* EN CONSTRUCCION
+	
 	@GetMapping(value = "/voluntario/{id}/{n}")
-	public Voluntario getTareasCercanas(@PathVariable int id, @PathVariable int n){
-		Voluntario_Distancia_Tarea result = voluntarioRepository.getTareasCercanas(id,n);
-		return result;
-	}
-	*/
+	public List<Voluntario_Distancia_Tarea> getTareasCercanas(@PathVariable int id, @PathVariable int n){
+		return voluntarioRepository.getTareasCercanas(id,n);
+	}	
 }
