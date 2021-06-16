@@ -1,6 +1,7 @@
 package cl.tbd.entrega2.repositories;
 
 import cl.tbd.entrega2.models.Voluntario;
+import cl.tbd.entrega2.models.Voluntario_Distancia_Tarea;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
@@ -125,4 +126,26 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
                 "FROM division_regional_4326 AS t WHERE t.gid = 5;";
         return null;
     }
+
+    /* EN CONSTRUCCION 
+    @Override
+    public List<Voluntario_Distancia_Tarea> getTareasCercanas(int id,int n) {
+        try(Connection conn = sql2o.open()){
+            
+            String sql = "SELECT v.nombre AS voluntario, t.descrip AS tarea" + 
+                    ", st_distance(v.location::geography, t.location::geography) AS :distancia" +
+                    "FROM voluntario AS v, tarea AS t" +
+                    "WHERE v.id = :id" +
+                    "ORDER BY distancia ASC" +
+                    "LIMIT :n";
+            List<Voluntario_Distancia_Tarea> resultado = conn.createQuery(sql)
+                    .executeAndFetch(Voluntario_Distancia_Tarea.class);
+
+            return resultado;
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }*/
 }

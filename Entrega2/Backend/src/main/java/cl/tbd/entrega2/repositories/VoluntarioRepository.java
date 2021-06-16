@@ -9,4 +9,5 @@ public interface VoluntarioRepository {
     public Voluntario upVoluntario(Voluntario voluntario);
     public void deleteVoluntario(int id);
     public String getJson();
+    //public List<Voluntario_Distancia_Tarea> getTareasCercanas(int id,int n);
 }
