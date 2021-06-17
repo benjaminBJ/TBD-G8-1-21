@@ -1,7 +1,7 @@
 package cl.tbd.entrega2.repositories;
 import java.util.List;
 import cl.tbd.entrega2.models.Voluntario;
-import cl.tbd.entrega2.models.Voluntario_Distancia_Tarea;
+import cl.tbd.entrega2.models.TareaDTO;
 
 public interface VoluntarioRepository {
     public List<Voluntario> getAllVoluntarios();
@@ -10,5 +10,5 @@ public interface VoluntarioRepository {
     public Voluntario upVoluntario(Voluntario voluntario);
     public void deleteVoluntario(int id);
     public String getJson();
-    public List<Voluntario_Distancia_Tarea> getTareasCercanas(int id,int n);
+    public List<TareaDTO> getTareasCercanas(int id,int n);
 }

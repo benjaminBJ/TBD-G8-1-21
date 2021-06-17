@@ -1,7 +1,7 @@
 package cl.tbd.entrega2.repositories;
 
 import cl.tbd.entrega2.models.Voluntario;
-import cl.tbd.entrega2.models.Voluntario_Distancia_Tarea;
+import cl.tbd.entrega2.models.TareaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
@@ -129,20 +129,22 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
 
     
     @Override
-    public List<Voluntario_Distancia_Tarea> getTareasCercanas(int id,int n) {
+    public List<TareaDTO> getTareasCercanas(int id,int n) {
         try(Connection conn = sql2o.open()){
             
-            String sql = "SELECT v.nombre AS voluntario, t.descrip AS tarea" + 
-                    ", st_distance(v.location::geography, t.location::geography) AS distancia" +
+            String sql = "SELECT t.id, t.nombre, t.descrip, t.vol_requeridos" +  
+                    ", t.id_emergencia, t.finicio, t.ffin, t.id_estado" +
+                    ", st_x(st_astext( t.location)) AS longitude, st_y(st_astext(t.location)) AS latitude" + 
+                    ", st_distance(v.location::geography, t.location::geography)/1000 AS distancia_km" +
                     " FROM voluntario AS v, tarea AS t" +
                     " WHERE v.id = :id" +
-                    " ORDER BY distancia ASC" +
+                    " ORDER BY distancia_km ASC" +
                     " LIMIT :n";
 
-            List<Voluntario_Distancia_Tarea> result= conn.createQuery(sql,false)
+            List<TareaDTO> result= conn.createQuery(sql,false)
                     .addParameter("id", id)
                     .addParameter("n", n)
-                    .executeAndFetch(Voluntario_Distancia_Tarea.class);                    
+                    .executeAndFetch(TareaDTO.class);                    
             return result;
 
         } catch (Exception e) {
