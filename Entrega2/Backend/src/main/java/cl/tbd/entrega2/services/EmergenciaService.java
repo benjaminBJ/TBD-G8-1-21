@@ -34,6 +34,14 @@ public class EmergenciaService {
     }
 
 
+    @GetMapping("/emergencias/count")
+    public int countDogs(){
+        int total = emergenciaRepository.countEmergencia();
+        //return String.format("Tienes %d perros!!", total);
+        return total;
+    }
+
+
     @GetMapping(value = "/emergencias/{id}")
     public Emergencia getEmergencia(@PathVariable int id){
         Emergencia result = emergenciaRepository.getEmergencia(id);

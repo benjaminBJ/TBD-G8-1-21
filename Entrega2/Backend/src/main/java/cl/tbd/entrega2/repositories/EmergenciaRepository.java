@@ -4,6 +4,7 @@ import cl.tbd.entrega2.models.Emergencia;
 
 
 public interface EmergenciaRepository {
+    public int countEmergencia();
     public List<Emergencia> getAllEmergencias();
     public Emergencia getEmergencia(int id);
     public Emergencia createEmergencia(Emergencia emergencia);

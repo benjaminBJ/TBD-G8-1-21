@@ -16,6 +16,15 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
 
 
     @Override
+    public int countEmergencia() {
+        int total = 0;
+        try(Connection conn = sql2o.open()){
+            total = conn.createQuery("SELECT COUNT(*) FROM emergencia").executeScalar(Integer.class);
+        }
+        return total;
+    }
+
+    @Override
     public List<Emergencia> getAllEmergencias() {
         try(Connection conn = sql2o.open()){
 

@@ -74,7 +74,7 @@ INSERT INTO public.tarea(nombre, descrip, vol_requeridos, finicio, ffin, id_emer
 	VALUES
 	('Tarea 1' ,'Limpieza de escombros' ,3,'2021-05-23',NULL,1,3,ST_GeomFromText('POINT(-72.928177 -41.474096)',4326)),
 	('Tarea 2' ,'Manejo de maquinaria' ,4,'2021-05-23',NULL,1,3,ST_GeomFromText('POINT(-71.080 -33.941)',4326)),
-	('Tarea 3' ,'Coordinaar auxiliares' ,1,'2021-05-23',NULL,2,3,ST_GeomFromText('POINT( -72.413 -35.347)',4326)),
+	('Tarea 3' ,'Coordinaar auxiliares' ,1,'2021-05-23',NULL,1,3,ST_GeomFromText('POINT( -72.413 -35.347)',4326)),
 	('Tarea 4' ,'Preparacion de perros',3,'2021-05-23',NULL,5,3,NULL),
 	('Tarea 5' ,'Preparacion de insumos',2,'2021-05-23',NULL,5,3,NULL),
 	('Tarea 6' ,'Busqueda de supervivientes' ,2,'2021-05-20',NULL,5,3,NULL),
@@ -181,8 +181,10 @@ INSERT INTO public.tarea_habilidad (id_tarea, id_habilidad)
 	VALUES
 	(1,1),
 	(1,2),
-	(2,3),
+	(2,1),
+	(2,2),
 	(2,4),
+	(3,1),
 	(3,5),
 	(3,6),
 	(4,7),
@@ -196,6 +198,7 @@ INSERT INTO public.tarea_habilidad (id_tarea, id_habilidad)
 	(8,7),
 	(9,8),
 	(10,1);
+	
 
 /* emergencia (5)*/
 INSERT INTO public.emergencia (nombre, descrip, finicio, ffin, id_institucion,location)

@@ -141,7 +141,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
                     " ORDER BY distancia_km ASC" +
                     " LIMIT :n";
 
-            List<TareaDTO> result= conn.createQuery(sql,false)
+            List<TareaDTO> result= conn.createQuery(sql,true)
                     .addParameter("id", id)
                     .addParameter("n", n)
                     .executeAndFetch(TareaDTO.class);                    

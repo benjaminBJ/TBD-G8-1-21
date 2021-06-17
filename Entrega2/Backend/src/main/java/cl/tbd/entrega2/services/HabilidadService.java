@@ -57,7 +57,9 @@ public class HabilidadService {
 	}
 
 	@GetMapping("/habilidades/{id}/{n}")
+	@ResponseBody
 	public List<HabilidadCount> countHabilidadEmergencia(@PathVariable int id, @PathVariable int n){
 		return habilidadRepository.countHabilidadEmergencia(id,n);
 	}
+
 }
