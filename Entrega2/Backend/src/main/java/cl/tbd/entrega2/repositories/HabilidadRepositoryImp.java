@@ -3,6 +3,7 @@ package cl.tbd.entrega2.repositories;
 import java.util.List;
 
 import cl.tbd.entrega2.models.Habilidad;
+import cl.tbd.entrega2.models.HabilidadCount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
@@ -104,6 +105,27 @@ public class HabilidadRepositoryImp implements HabilidadRepository{
             System.out.println(e.getMessage());
         }
 
+    }
+
+    @Override
+    public List<HabilidadCount> countHabilidadEmergencia(int id, int n){
+
+        try(Connection conn = sql2o.open()){
+            String sql = "SELECT h.id, h.descrip, COUNT(h.id) AS cant_tareas"+
+                        " FROM habilidad AS h, tarea AS t, tarea_habilidad AS th"+
+                        " WHERE t.id_emergencia = :id AND t.id = th.id_tarea AND h.id = th.id_habilidad"+
+                        " GROUP BY h.id"+
+                        " ORDER BY cant_tareas DESC"+
+                        " LIMIT :n";
+            List<HabilidadCount> result = conn.createQuery(sql, true)
+                    .addParameter("id", id)
+                    .addParameter("n", n)
+                    .executeAndFetch(HabilidadCount.class);
+            return result;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
 

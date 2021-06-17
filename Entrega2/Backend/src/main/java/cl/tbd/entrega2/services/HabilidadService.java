@@ -1,6 +1,7 @@
 package cl.tbd.entrega2.services;
 
 import cl.tbd.entrega2.models.Habilidad;
+import cl.tbd.entrega2.models.HabilidadCount;
 import cl.tbd.entrega2.repositories.HabilidadRepository;
 
 import org.springframework.web.bind.annotation.*;
@@ -53,5 +54,10 @@ public class HabilidadService {
 	@ResponseBody
 	public void deleteHabilidad(@PathVariable int id){
 		habilidadRepository.deleteHabilidad(id);
+	}
+
+	@GetMapping("/habilidades/{id}/{n}")
+	public List<HabilidadCount> countHabilidadEmergencia(@PathVariable int id, @PathVariable int n){
+		return habilidadRepository.countHabilidadEmergencia(id,n);
 	}
 }
