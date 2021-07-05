@@ -102,6 +102,11 @@ export default {
           icon: 'mdi-plus',
           title: 'Mapas',
           to: '/mapas'
+        },
+        {
+          icon: 'mdi-plus',
+          title: 'Requisitos',
+          to: '/mas solicitados'
         }
       ],
       miniVariant: false,

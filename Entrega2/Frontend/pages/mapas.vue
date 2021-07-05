@@ -37,8 +37,9 @@
         </div>
         <br>
         <div>{{message}}</div>
-        <div id="mapid"></div>
+        <div id="mapid" ></div>
     </div>
+    
     </v-container>
 </template>
 <script>
@@ -169,7 +170,7 @@ export default {
     //Se definen los mapas de bits de OSM
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     	attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-    	maxZoom: 10
+    	maxZoom: 15
     }).addTo(this.mymap);
 
     //Evento click obtiene lat y long actual
