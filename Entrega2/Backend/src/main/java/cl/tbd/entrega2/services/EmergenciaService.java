@@ -35,7 +35,7 @@ public class EmergenciaService {
 
 
     @GetMapping("/emergencias/count")
-    public int countDogs(){
+    public int countEmergencia(){
         int total = emergenciaRepository.countEmergencia();
         //return String.format("Tienes %d perros!!", total);
         return total;
