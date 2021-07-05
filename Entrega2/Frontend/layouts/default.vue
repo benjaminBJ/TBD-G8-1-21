@@ -97,6 +97,11 @@ export default {
           icon: 'mdi-plus',
           title: 'Mis Tareas',
           to: '/mis_tareas'
+        },
+        {
+          icon: 'mdi-plus',
+          title: 'Mapas',
+          to: '/mapas'
         }
       ],
       miniVariant: false,
