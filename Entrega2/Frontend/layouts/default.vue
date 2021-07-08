@@ -106,7 +106,7 @@ export default {
         {
           icon: 'mdi-plus',
           title: 'Requisitos',
-          to: '/mas solicitados'
+          to: '/mas_solicitados'
         }
       ],
       miniVariant: false,

@@ -167,6 +167,15 @@
     }),
     methods:{
        //Función asíncrona para consultar los datos
+       getData: async function(){
+           try {
+               let response = await this.$axios.get('/voluntario');
+               this.reclutas  = response.data;
+               console.log(response)
+           } catch (error) {
+               console.log('error', error);
+           }
+       },
        getTareasData: async function(){
            try {
                let response = await this.$axios.get('/tareas');
@@ -186,15 +195,7 @@
                console.log('error', error);
            }
        },
-       getData: async function(){
-           try {
-               let response = await this.$axios.get('/voluntario');
-               this.reclutas  = response.data;
-               console.log(response)
-           } catch (error) {
-               console.log('error', error);
-           }
-       },
+       
        finishTask: async function(){
            try {
                let response = await this.$axios.put("/tareas/cerrar_tarea/"+this.idTarea+"/"+this.idVoluntario);
