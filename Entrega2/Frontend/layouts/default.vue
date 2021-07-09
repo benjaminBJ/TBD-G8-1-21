@@ -99,9 +99,19 @@ export default {
           to: '/mis_tareas'
         },
         {
-          icon: 'mdi-plus',
-          title: 'Mapas',
-          to: '/mapas'
+          icon: 'mdi-alert-plus',
+          title: 'Nueva Emergencia',
+          to: '/nueva_emergencia'
+        },
+        {
+          icon: 'mdi-account-multiple-plus',
+          title: 'Nuevo Voluntario',
+          to: '/nuevo_voluntario'
+        },
+        {
+          icon: 'mdi-folder-multiple-plus',
+          title: 'Nueva Tarea',
+          to: '/nueva_tarea'
         },
         {
           icon: 'mdi-plus',

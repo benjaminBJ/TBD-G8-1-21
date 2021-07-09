@@ -1,19 +1,38 @@
 <template>
     <v-container>
     <div class="home">
-        <h1>Ejemplo Mapas</h1>
+        <h1>Ingresar Nueva Tarea</h1>
         <br>
-        <div>{{point}}
+        <div>
+        <h3>Seleccione la Emergencia.</h3>
         <v-form v-model="valid">
+            <v-select
+            v-model="select"
+            :items="emergencias"
+            item-text="nombre"
+            label="Select"
+            persistent-hint
+            return-object
+            single-line
+            
+            ></v-select>
+            <v-btn
+                color="blue lighten-1"
+                class="mr-4"
+                @click="clearMarkers(), getPoints(mymap)"
+                
+                >
+                Mostrar Tareas
+            </v-btn>
             <v-container>
             <v-row>
                 <v-col
                 >
                 <v-text-field
-                    v-model="firstname"
+                    v-model="taskName"
                     :rules="nameRules"
-                    :counter="10"
-                    label="Nombre Emergencia"
+                    :counter="100"
+                    label="Nombre Tarea"
                     required
                 ></v-text-field>
                 </v-col>
@@ -21,10 +40,21 @@
                 <v-col
                 >
                 <v-text-field
-                    v-model="lastname"
-                    :rules="nameRules"
-                    :counter="10"
+                    v-model="description"
+                    :rules="descripRules"
+                    :counter="400"
                     label="Descripción"
+                    required
+                ></v-text-field>
+                </v-col>
+                
+                <v-col
+                >
+                <v-text-field
+                    v-model="voluntariosReq"
+                    :rules="voluntariosRules"
+                    :counter="3"
+                    label="Voluntarios Requeridos"
                     required
                 ></v-text-field>
                 </v-col>
@@ -32,14 +62,15 @@
             </v-row>
             </v-container>
         </v-form>
-        <input type="text" v-model="name" placeholder="nombre" />
         <v-btn color="blue lighten-1" class="mr-4" @click="createPoint">Crear</v-btn>
         </div>
         <br>
+        <h3>Ingrese la ubicación de la Emergencia:</h3>
+        {{point}}
+        <br>
         <div>{{message}}</div>
-        <div id="mapid" ></div>
+        <div id="mapid"></div>
     </div>
-    
     </v-container>
 </template>
 <script>
@@ -53,30 +84,39 @@ var LeafIcon = L.Icon.extend({
       });
 var myIcon = new LeafIcon({iconUrl: icon});
 
+var today = new Date();
 //librería axios
 import axios from 'axios';
 export default {
   name: 'Home',
   data:function(){
     return{
+      marcada: null,
+      select: { nombre: 'Terremoto', id_tarea: '0', id: '0' },
       latitude:null, //Datos de nuevo punto
       longitude:null,
-      name:'',
-      points:[], //colección de puntos cargados de la BD
+      taskName:'',
+      emergencias:[], //colección de puntos cargados de la BD
+      points:[],
       message:'', 
       mymap:null, //objeto de mapa(DIV)
+      fecha: today,
       //FORMULARIO
       valid: false,
-      firstname: '',
-      lastname: '',
+      description: '',
       nameRules: [
-        v => !!v || 'Name is required',
-        v => v.length <= 10 || 'Name must be less than 10 characters',
+        v => !!v || 'Nombre es requerido',
+        v => v.length <= 100 || 'Nombre debe contener menos de 100 caracteres',
       ],
-      email: '',
-      emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+/.test(v) || 'E-mail must be valid',
+      descripRules: [
+        v => !!v || 'Descripción es requerida',
+        v => v.length <= 400 || 'Descripción debe contener menos de 400 caracteres',
+      ],
+      voluntariosReq: null,
+      voluntariosRules: [
+        v => !!v || 'Número de voluntarios es requerido',
+        v => v > 0 || 'Número de voluntarios debe ser mayor a 0',
+        v => v < 100 || 'Número de voluntarios debe ser menor a 100',
       ],
     }
   },
@@ -109,22 +149,31 @@ export default {
       }
 
       let newPoint2 ={
-        nombre: this.name,
+        nombre: this.taskName,
+        descrip: this.description,
+        vol_requeridos: this.voluntariosReq,
+        id_emergencia: this.select.id,
+        finicio: this.fecha,
+        id_estado: 3,
         latitude: this.latitude,
         longitude: this.longitude
       }
       
       try {
         //se llama el servicio para crear un punto perro 
-        let response = await axios.post('http://localhost:8080/emergencias/create' ,newPoint2);
+        let response = await axios.post('http://localhost:8080/tareas/create' ,newPoint2);
         //let response = await axios.post('http://localhost:8080/dogs/create' ,newPoint);
         console.log('response', response.data);
         let id = response.data.id;
-        this.message = `${this.nombre} fue creado con éxito con id: ${id}`;
+        this.message = `${this.taskName} fue creado con éxito con id: ${id}`;
         
         //this.message = `${this.name} fue creado con éxito con id: ${id}`;
         //limpiar
-        this.nombre = '';
+        this.taskName = '';
+        this.description = '';
+        this.voluntariosReq = null;
+        this.latitude = null;
+        this.longitude = null;
         //this.name = '';
         this.clearMarkers(this.mymap);
         this.getPoints(this.mymap)
@@ -134,23 +183,37 @@ export default {
        this.message = 'Ocurrió un error'
       }
     },
-    async getPoints(map){
+    async getEmergency(){
       try {
         //se llama el servicio para obtener perros 
         //let response = await axios.get('http://localhost:8080/dogs');
         let response = await axios.get('http://localhost:8080/emergencias');
+        this.emergencias = response.data;
+        console.log(response);
+      } catch (error) {
+       console.log('error', error); 
+      }
+      
+    },
+    async getPoints(map){
+      let id = this.select.id;
+      try {
+        //se llama el servicio para obtener perros 
+        //let response = await axios.get('http://localhost:8080/dogs');
+        let response = await axios.get('http://localhost:8080/tareas');
         let dataPoints = response.data;
         //Se itera por los puntos
         dataPoints.forEach(point => {
-
-          //Se crea un marcador por cada punto
-          let p =[point.latitude, point.longitude]
-          let marker = L.marker(p, {icon:myIcon}) //se define el ícono del marcador
-          .bindPopup(point.nombre) //Se agrega un popup con el nombre, atributo de clase
-          //.bindPopup(point.name) //Se agrega un popup con el nombre, atributo de clase
-          
-          //Se agrega a la lista
-          this.points.push(marker);
+          if(id == point.id_emergencia && point.id_estado == 3){
+            //Se crea un marcador por cada punto
+            let p =[point.latitude, point.longitude]
+            let marker = L.marker(p, {icon:myIcon}) //se define el ícono del marcador
+            .bindPopup(point.nombre) //Se agrega un popup con el nombre, atributo de clase
+            //.bindPopup(point.name) //Se agrega un popup con el nombre, atributo de clase
+            
+            //Se agrega a la lista
+            this.points.push(marker);
+          }
         });
 
         //Los puntos de la lista se agregan al mapa
@@ -170,7 +233,7 @@ export default {
     //Se definen los mapas de bits de OSM
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     	attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-    	maxZoom: 15
+    	maxZoom: 20
     }).addTo(this.mymap);
 
     //Evento click obtiene lat y long actual
@@ -178,7 +241,7 @@ export default {
       _this.latitude = e.latlng.lat;
       _this.longitude =e.latlng.lng;
     });
-
+    this.getEmergency();
     //Se agregan los puntos mediante llamada al servicio
     this.getPoints(this.mymap);
   }
