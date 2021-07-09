@@ -115,8 +115,18 @@ export default {
         },
         {
           icon: 'mdi-plus',
+<<<<<<< Updated upstream
           title: 'Requisitos',
           to: '/mas_solicitados'
+=======
+          title: 'Tareas cercanas',
+          to: '/tareas_cercanas'
+        },
+        {
+          icon: 'mdi-plus',
+          title: 'Mapas',
+          to: '/mapas'
+>>>>>>> Stashed changes
         }
       ],
       miniVariant: false,
