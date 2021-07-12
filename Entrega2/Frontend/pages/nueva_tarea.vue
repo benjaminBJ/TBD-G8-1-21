@@ -85,8 +85,10 @@ var LeafIcon = L.Icon.extend({
 var myIcon = new LeafIcon({iconUrl: icon});
 
 var today = new Date();
+
 //librería axios
 import axios from 'axios';
+
 export default {
   name: 'Home',
   data:function(){
@@ -120,6 +122,7 @@ export default {
       ],
     }
   },
+
   computed:{
     point(){ // función computada para representar el punto seleccionado
       if(this.latitude && this.longitude){
@@ -131,6 +134,7 @@ export default {
       }
     }
   },
+  
   methods:{
     clearMarkers:function(){ //eliminar marcadores
     
@@ -143,12 +147,6 @@ export default {
       this.message = '';
 
       let newPoint ={
-        name: this.name,
-        latitude: this.latitude,
-        longitude: this.longitude
-      }
-
-      let newPoint2 ={
         nombre: this.taskName,
         descrip: this.description,
         vol_requeridos: this.voluntariosReq,
@@ -160,46 +158,44 @@ export default {
       }
       
       try {
-        //se llama el servicio para crear un punto perro 
-        let response = await axios.post('http://localhost:8080/tareas/create' ,newPoint2);
-        //let response = await axios.post('http://localhost:8080/dogs/create' ,newPoint);
+        //se llama el servicio para crear un punto de tarea
+        let response = await axios.post('http://localhost:8080/tareas/create' ,newPoint);
         console.log('response', response.data);
         let id = response.data.id;
         this.message = `${this.taskName} fue creado con éxito con id: ${id}`;
-        
-        //this.message = `${this.name} fue creado con éxito con id: ${id}`;
+
         //limpiar
         this.taskName = '';
         this.description = '';
         this.voluntariosReq = null;
         this.latitude = null;
         this.longitude = null;
-        //this.name = '';
         this.clearMarkers(this.mymap);
         this.getPoints(this.mymap)
 
-      } catch (error) {
+      }
+      catch (error) {
        console.log('error', error); 
        this.message = 'Ocurrió un error'
       }
     },
+
     async getEmergency(){
       try {
-        //se llama el servicio para obtener perros 
-        //let response = await axios.get('http://localhost:8080/dogs');
+        //se llama el servicio para obtener las emergencias 
         let response = await axios.get('http://localhost:8080/emergencias');
         this.emergencias = response.data;
         console.log(response);
-      } catch (error) {
-       console.log('error', error); 
       }
-      
+      catch (error) {
+        console.log('error', error); 
+      }
     },
+
     async getPoints(map){
       let id = this.select.id;
       try {
-        //se llama el servicio para obtener perros 
-        //let response = await axios.get('http://localhost:8080/dogs');
+        //se llama el servicio para obtener las tareas
         let response = await axios.get('http://localhost:8080/tareas');
         let dataPoints = response.data;
         //Se itera por los puntos
@@ -209,7 +205,6 @@ export default {
             let p =[point.latitude, point.longitude]
             let marker = L.marker(p, {icon:myIcon}) //se define el ícono del marcador
             .bindPopup(point.nombre) //Se agrega un popup con el nombre, atributo de clase
-            //.bindPopup(point.name) //Se agrega un popup con el nombre, atributo de clase
             
             //Se agrega a la lista
             this.points.push(marker);
@@ -220,12 +215,14 @@ export default {
         this.points.forEach(p=>{
           p.addTo(map)
         })
-      } catch (error) {
+      }
+      catch (error) {
        console.log('error', error); 
       }
       
     }
   },
+
   mounted:function(){
     let _this = this;
     //Se asigna el mapa al elemento con id="mapid"

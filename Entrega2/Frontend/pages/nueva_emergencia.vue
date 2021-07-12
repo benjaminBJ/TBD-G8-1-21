@@ -58,6 +58,7 @@ var myIcon = new LeafIcon({iconUrl: icon});
 var today = new Date();
 //librería axios
 import axios from 'axios';
+
 export default {
   name: 'Home',
   data:function(){
@@ -114,13 +115,8 @@ export default {
     async createPoint(){ //Crear un nuevo punto
       this.message = '';
 
-      let newPoint ={
-        name: this.name,
-        latitude: this.latitude,
-        longitude: this.longitude
-      }
-
-      let newPoint2 ={
+      let newPoint =
+      {
         nombre: this.emergencia,
         descrip: this.description,
         latitude: this.latitude,
@@ -131,17 +127,14 @@ export default {
       }
       
       try {
-        //se llama el servicio para crear un punto perro 
-        let response = await axios.post('http://localhost:8080/emergencias/create' ,newPoint2);
-        //let response = await axios.post('http://localhost:8080/dogs/create' ,newPoint);
+        //se llama el servicio para crear un punto de emergencia
+        let response = await axios.post('http://localhost:8080/emergencias/create' ,newPoint);
         console.log('response', response.data);
         let id = response.data.id;
         this.message = `${this.emergencia} fue creado con éxito con id: ${id}`;
-        
-        //this.message = `${this.name} fue creado con éxito con id: ${id}`;
+
         //limpiar
         this.emergencia = '';
-        //this.name = '';
         this.clearMarkers(this.mymap);
         this.getPoints(this.mymap)
 
@@ -150,10 +143,10 @@ export default {
        this.message = 'Ocurrió un error'
       }
     },
+    
     async getPoints(map){
       try {
-        //se llama el servicio para obtener perros 
-        //let response = await axios.get('http://localhost:8080/dogs');
+        //se llama el servicio para obtener las emergencias vigentes
         let response = await axios.get('http://localhost:8080/emergencias');
         let dataPoints = response.data;
         //Se itera por los puntos
@@ -163,7 +156,6 @@ export default {
           let p =[point.latitude, point.longitude]
           let marker = L.marker(p, {icon:myIcon}) //se define el ícono del marcador
           .bindPopup(point.nombre) //Se agrega un popup con el nombre, atributo de clase
-          //.bindPopup(point.name) //Se agrega un popup con el nombre, atributo de clase
           
           //Se agrega a la lista
           this.points.push(marker);
@@ -173,7 +165,8 @@ export default {
         this.points.forEach(p=>{
           p.addTo(map)
         })
-      } catch (error) {
+      }
+      catch (error) {
        console.log('error', error); 
       }
       
@@ -187,11 +180,7 @@ export default {
     //Se definen los mapas de bits de OSM
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     	attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-<<<<<<< Updated upstream:Entrega2/Frontend/pages/mapas.vue
-    	maxZoom: 15
-=======
     	maxZoom: 20
->>>>>>> Stashed changes:Entrega2/Frontend/pages/nueva_emergencia.vue
     }).addTo(this.mymap);
 
     //Evento click obtiene lat y long actual

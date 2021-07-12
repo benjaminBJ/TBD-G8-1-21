@@ -78,6 +78,7 @@ var myIcon = new LeafIcon({iconUrl: icon});
 
 //librería axios
 import axios from 'axios';
+
 export default {
   name: 'Home',
   data:function(){
@@ -112,6 +113,7 @@ export default {
       ],
     }
   },
+
   computed:{
     point(){ // función computada para representar el punto seleccionado
       if(this.latitude && this.longitude){
@@ -123,6 +125,7 @@ export default {
       }
     }
   },
+  
   methods:{
     clearMarkers:function(){ //eliminar marcadores
     
@@ -135,12 +138,6 @@ export default {
       this.message = '';
 
       let newPoint ={
-        name: this.name,
-        latitude: this.latitude,
-        longitude: this.longitude
-      }
-
-      let newPoint2 ={
         nombre: this.firstname,
         rut: this.rut,
         email: this.email,
@@ -150,26 +147,24 @@ export default {
       }
       
       try {
-        //se llama el servicio para crear un punto perro 
-        let response = await axios.post('http://localhost:8080/voluntario/create' ,newPoint2);
-        //let response = await axios.post('http://localhost:8080/dogs/create' ,newPoint);
+        //se llama el servicio para crear un nuevo voluntario
+        let response = await axios.post('http://localhost:8080/voluntario/create' ,newPoint);
         console.log('response', response.data);
         let id = response.data.id;
         this.message = `${this.firstname} fue creado con éxito con id: ${id}`;
         
-        //this.message = `${this.name} fue creado con éxito con id: ${id}`;
         //limpiar
         this.firstname = '';
-        //this.name = '';
         this.clearMarkers(this.mymap);
-        //this.getPoints(this.mymap)
 
-      } catch (error) {
+      }
+      catch (error) {
        console.log('error', error); 
        this.message = 'Ocurrió un error'
       }
     }
   },
+
   mounted:function(){
     let _this = this;
     //Se asigna el mapa al elemento con id="mapid"
@@ -186,6 +181,7 @@ export default {
       _this.longitude =e.latlng.lng;
     });
   }
+
 }
 </script>
 <style>

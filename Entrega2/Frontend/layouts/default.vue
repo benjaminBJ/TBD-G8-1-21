@@ -114,19 +114,15 @@ export default {
           to: '/nueva_tarea'
         },
         {
-          icon: 'mdi-plus',
-<<<<<<< Updated upstream
+          icon: 'mdi-format-list-bulleted-type',
           title: 'Requisitos',
           to: '/mas_solicitados'
-=======
-          title: 'Tareas cercanas',
-          to: '/tareas_cercanas'
+          
         },
         {
-          icon: 'mdi-plus',
-          title: 'Mapas',
-          to: '/mapas'
->>>>>>> Stashed changes
+          icon: 'mdi-map-marker-radius',
+          title: 'Tareas cercanas',
+          to: '/tareas_cercanas'
         }
       ],
       miniVariant: false,
