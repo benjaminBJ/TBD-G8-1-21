@@ -94,7 +94,7 @@ export default {
   data:function(){
     return{
       marcada: null,
-      select: { nombre: 'Terremoto', id_tarea: '0', id: '0' },
+      select: { nombre: 'Terremoto', id_tarea: '0', id: '1' },
       latitude:null, //Datos de nuevo punto
       longitude:null,
       taskName:'',
@@ -143,6 +143,11 @@ export default {
       })
       this.points = [];
     },
+
+    successMessage:function(){
+      alert("La Emergencia fue guardada correctamente.")
+    },
+
     async createPoint(){ //Crear un nuevo punto
       this.message = '';
 
@@ -165,13 +170,14 @@ export default {
         this.message = `${this.taskName} fue creado con éxito con id: ${id}`;
 
         //limpiar
-        this.taskName = '';
-        this.description = '';
-        this.voluntariosReq = null;
+        this.taskName = ' ';
+        this.description = ' ';
+        this.voluntariosReq = 0;
         this.latitude = null;
         this.longitude = null;
         this.clearMarkers(this.mymap);
-        this.getPoints(this.mymap)
+        this.getPoints(this.mymap);
+        this.successMessage();
 
       }
       catch (error) {

@@ -1,38 +1,51 @@
 <template>
-    <v-container>
+  <v-container>
     <div class="home">
         <h1>Ingresar Nueva Emergencia</h1>
         <br>
         <div>
-        <v-form v-model="valid">
-            <v-container>
-            <v-row>
-                <v-col
-                >
-                <v-text-field
-                    v-model="emergencia"
-                    :rules="emergenciaRules"
-                    :counter="100"
-                    label="Nombre Emergencia"
-                    required
-                ></v-text-field>
-                </v-col>
+          <v-form 
+          ref="form"
+          v-model="valid"
+          >
+              <v-container>
+                <v-row>
+                    <v-col>
+                    <v-text-field
+                        v-model="emergencia"
+                        :rules="emergenciaRules"
+                        :counter="100"
+                        label="Nombre Emergencia"
+                        required
+                    ></v-text-field>
+                    </v-col>
 
-                <v-col
-                >
-                <v-text-field
-                    v-model="description"
-                    :rules="descripRules"
-                    :counter="400"
-                    label="Descripción"
-                    required
-                ></v-text-field>
-                </v-col>
+                    <v-col>
+                    <v-text-field
+                        v-model="description"
+                        :rules="descripRules"
+                        :counter="400"
+                        label="Descripción"
+                        required
+                    ></v-text-field>
+                    </v-col>
 
-            </v-row>
-            </v-container>
-        </v-form>
-        <v-btn color="blue lighten-1" class="mr-4" @click="createPoint">Crear</v-btn>
+                    <v-col>
+                    <v-select
+                      v-model="select"
+                      :items="instituciones"
+                      item-text="nombre"
+                      label="Institución"
+                      persistent-hint
+                      return-object
+                      single-line   
+                    ></v-select>
+                    </v-col>
+
+                </v-row>
+              </v-container>
+          </v-form>
+          <v-btn color="blue lighten-1" class="mr-4" @click="createPoint">Crear</v-btn>
         </div>
         <br>
         <h3>Ingrese la ubicación de la Emergencia:</h3>
@@ -41,8 +54,7 @@
         <div>{{message}}</div>
         <div id="mapid" ></div>
     </div>
-    
-    </v-container>
+  </v-container>
 </template>
 <script>
 //Importaciones
@@ -63,9 +75,12 @@ export default {
   name: 'Home',
   data:function(){
     return{
+      valid: true,
+      select: { nombre: 'Terremoto', id_tarea: '0', id: '0' },
       latitude:null, //Datos de nuevo punto
       longitude:null,
       name:'',
+      instituciones:[],
       points:[], //colección de puntos cargados de la BD
       message:'', 
       mymap:null, //objeto de mapa(DIV)
@@ -112,6 +127,11 @@ export default {
       })
       this.points = [];
     },
+
+    successMessage:function(){
+      alert("La Emergencia fue guardada correctamente.")
+    },
+
     async createPoint(){ //Crear un nuevo punto
       this.message = '';
 
@@ -121,7 +141,7 @@ export default {
         descrip: this.description,
         latitude: this.latitude,
         longitude: this.longitude,
-        id_institucion: '2',
+        id_institucion: this.select.id,
         finicio: this.fecha,
         ffin: ''
       }
@@ -131,19 +151,34 @@ export default {
         let response = await axios.post('http://localhost:8080/emergencias/create' ,newPoint);
         console.log('response', response.data);
         let id = response.data.id;
+        
         this.message = `${this.emergencia} fue creado con éxito con id: ${id}`;
 
         //limpiar
-        this.emergencia = '';
+        this.emergencia = ' ';
+        this.description = ' ';
+        this.select = null;
         this.clearMarkers(this.mymap);
-        this.getPoints(this.mymap)
-
+        this.getPoints(this.mymap);
+        this.successMessage();
       } catch (error) {
        console.log('error', error); 
        this.message = 'Ocurrió un error'
       }
     },
-    
+
+    async getInstitutions(){
+      try {
+        //se llama el servicio para obtener las emergencias 
+        let response = await axios.get('http://localhost:8080/institucions');
+        this.instituciones = response.data;
+        console.log(response);
+      }
+      catch (error) {
+        console.log('error', error); 
+      }
+    },
+
     async getPoints(map){
       try {
         //se llama el servicio para obtener las emergencias vigentes
@@ -189,6 +224,7 @@ export default {
       _this.longitude =e.latlng.lng;
     });
 
+    this.getInstitutions();
     //Se agregan los puntos mediante llamada al servicio
     this.getPoints(this.mymap);
   }

@@ -27,7 +27,7 @@ public class InstitucionService {
         return String.format("Tienes %d instituciones!!", total);
     }
 
-    @GetMapping("/intitucions")
+    @GetMapping("/institucions")
     public List<Institucion> getAllInstitucions() {
         return institucionRepository.getAllInstitucions();
     }

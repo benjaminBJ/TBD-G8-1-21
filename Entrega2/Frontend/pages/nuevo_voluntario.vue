@@ -125,7 +125,7 @@ export default {
       }
     }
   },
-  
+
   methods:{
     clearMarkers:function(){ //eliminar marcadores
     
@@ -134,6 +134,11 @@ export default {
       })
       this.points = [];
     },
+
+    successMessage:function(){
+      alert("La Emergencia fue guardada correctamente.")
+    },
+
     async createPoint(){ //Crear un nuevo punto
       this.message = '';
 
@@ -154,16 +159,50 @@ export default {
         this.message = `${this.firstname} fue creado con éxito con id: ${id}`;
         
         //limpiar
-        this.firstname = '';
+        this.firstname = ' ';
+        this.rut = ' ';
+        this.email = ' @ ';
+        this.telefono = ' ';
         this.clearMarkers(this.mymap);
-
+        this.getPoints(this.mymap);
+        this.successMessage();
       }
       catch (error) {
        console.log('error', error); 
        this.message = 'Ocurrió un error'
       }
+    },
+
+     async getPoints(map){
+      try {
+        //se llama el servicio para obtener las emergencias vigentes
+        let response = await axios.get('http://localhost:8080/voluntario');
+        let dataPoints = response.data;
+        //Se itera por los puntos
+        dataPoints.forEach(point => {
+
+          //Se crea un marcador por cada punto
+          let p =[point.latitude, point.longitude]
+          let marker = L.marker(p, {icon:myIcon}) //se define el ícono del marcador
+          .bindPopup(point.nombre) //Se agrega un popup con el nombre, atributo de clase
+          
+          //Se agrega a la lista
+          this.points.push(marker);
+        });
+
+        //Los puntos de la lista se agregan al mapa
+        this.points.forEach(p=>{
+          p.addTo(map)
+        })
+      }
+      catch (error) {
+       console.log('error', error); 
+      }
     }
+
   },
+
+  
 
   mounted:function(){
     let _this = this;
@@ -180,6 +219,9 @@ export default {
       _this.latitude = e.latlng.lat;
       _this.longitude =e.latlng.lng;
     });
+
+    //Se agregan los puntos mediante llamada al servicio
+    this.getPoints(this.mymap);
   }
 
 }
