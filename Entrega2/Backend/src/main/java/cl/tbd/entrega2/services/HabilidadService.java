@@ -56,8 +56,11 @@ public class HabilidadService {
 		habilidadRepository.deleteHabilidad(id);
 	}
 
+
+
 	@GetMapping("/habilidades/{id}/{n}")
 	@ResponseBody
+	//Entrada id de Emergencia x N de habilidades mas requeridas para esta emergencia
 	public List<HabilidadCount> countHabilidadEmergencia(@PathVariable int id, @PathVariable int n){
 		return habilidadRepository.countHabilidadEmergencia(id,n);
 	}

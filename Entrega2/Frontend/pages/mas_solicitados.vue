@@ -48,6 +48,8 @@
     </v-container>
 </template>
 <script>
+
+
   export default {
     data:()=>( {
       
@@ -87,6 +89,8 @@
       
     }),
     methods:{
+
+    
       getEmergencias: async function(){
            try {
                let response = await this.$axios.get('/emergencias');

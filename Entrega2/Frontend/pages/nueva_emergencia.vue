@@ -120,6 +120,7 @@ export default {
   },
 
   methods:{
+
     clearMarkers:function(){ //eliminar marcadores
     
       this.points.forEach(p=>{

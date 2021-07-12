@@ -380,7 +380,7 @@ INSERT INTO public.emergencia (nombre, descrip, finicio, ffin, id_institucion,lo
 	VALUES
 	('Terremoto','Sismo de mediana a alta magnitud en las cercanias','2021-05-23','2020-05-28',1,ST_GeomFromText('POINT(-73.062 -35.897)',4326)),
 	('Incendio','Incendio que cubre varias manzanas a la redonda','2021-05-20','2020-05-24',2,ST_GeomFromText('POINT(-70.646 -33.483)',4326)),
-	('Tsunami','Alerta Tsunami decretada por la onemi','2021-03-14','2020-03-16',3,ST_GeomFromText('POINT( -72.937 -34.521)',4326)),
+	('Tsunami','Alerta Tsunami decretada por la onemi','2021-03-14','2020-03-16',3,ST_GeomFromText('POINT( -72.002 -34.394)',4326)),
 	('Erupcion de volcan','Erupcion de volcan dentro de la zona','2021-05-21','2020-05-26',1,ST_GeomFromText('POINT( -71.93963539779801 -39.41966956602668)',4326)),
 	('Inundacion','Comunidad devastada por una inundacion','2021-04-10','2020-04-16',2,ST_GeomFromText('POINT( -73.247 -39.836)',4326));
 
