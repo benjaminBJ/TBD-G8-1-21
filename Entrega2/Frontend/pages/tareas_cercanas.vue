@@ -1,21 +1,15 @@
 <template>
   <v-container class="text-center grey lighten-5" >
-    <img
-      src="/blue-light-2020909_280.png"
-      alt="Luz azul de emergencia"
-      class="mb-5
-       ml-16"
-    >
+
     <v-col class="text-center">
         
-      <h1>Cambiar usuario</h1>
-
+      <h1>Listado de tareas cercanas</h1>
        <v-select
           v-model="select"
           :hint="`${select.nombre}`"
           :items="reclutas"
           item-text="nombre"
-          label="Select"
+          label="Usuario"
           persistent-hint
           return-object
           single-line
@@ -25,7 +19,7 @@
             v-model="quantity"
             :rules="numberRules"
             :counter="2"
-            label="Cantidad de emergencias"
+            label="Cantidad de tareas"
             required
         ></v-text-field>
         <v-btn
@@ -34,7 +28,7 @@
               @click="voluntario = select, idVoluntario = select.id, getIdData(), getNearbyTasks()"
               
             >
-              Cambiar
+              Mostrar
         </v-btn>
         <br>
       </v-col>
@@ -42,7 +36,8 @@
     <v-layout class="ml-16" row wrap>
           <br>
           <v-container>
-            <h1>Las {{quantity}} emergencias más cercanas son:</h1>
+            <h1>Las {{quantity}} tareas más cercanas al voluntario son:</h1>
+            <br>
             <v-flex class="d-flex justify-space-around mb-6"
                 v-for="(tarea,index) in tareasCercanas"
                     :key="index">

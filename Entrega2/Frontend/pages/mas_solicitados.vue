@@ -14,23 +14,23 @@
             return-object
             single-line
           ></v-select>
+          <br>
           <v-text-field
                 v-model="busqueda"
                 append-icon="mdi-magnify"
                 label="Numero de requisitos a mostrar"
-                single-line
-                hide-details
             
             
               ></v-text-field>
+          <br>
           <v-btn
                 color="blue lighten-1"
                 class="mr-4"
                 @click="emergencia = select, idEmergencia = select.id, getXRequisitos()"
                 
               >
-                Cambiar
-          </v-btn> 
+                Mostrar
+          </v-btn>
           <!--Modulo para seleccionar cuantos requisitos a mostrar-->
         <v-card>
             <v-card-title>
@@ -51,7 +51,7 @@
   export default {
     data:()=>( {
       
-      busqueda: '1',
+      busqueda: null,
       headers: [
         {
           text: 'Id requisito',
