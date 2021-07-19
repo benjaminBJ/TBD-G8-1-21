@@ -40,7 +40,7 @@ Requisitos previos: Tener instalado la base de datos PostgreSQL
 
 Enlace de video:
 
-- 
+- https://youtu.be/r5SuvNinBRQ
 
 
 ## Entrega 1:
