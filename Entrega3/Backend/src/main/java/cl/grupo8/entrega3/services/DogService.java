@@ -19,8 +19,9 @@ public class DogService {
     public List<DogModel> getAllDogs(){
         return dogRepository.findAll();
     }
-
-    public DogModel saveDog(@RequestBody DogModel dog){
+    public DogModel saveDog(DogModel dog){
         return dogRepository.save(dog);
     }
+
+
 }
