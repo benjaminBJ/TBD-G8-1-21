@@ -1,14 +1,12 @@
 package cl.grupo8.entrega3;
 
-import cl.grupo8.entrega3.models.Dog;
+import cl.grupo8.entrega3.models.DogModel;
 import cl.grupo8.entrega3.repositories.DogRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,7 +30,7 @@ public class Entrega3Application {
 	CommandLineRunner runner(DogRepository repository, MongoTemplate mongoTemplate){
 
 		return args ->{
-			Dog dog = new Dog(
+			DogModel dog = new DogModel(
 					"pedro",
 					2,
 					"cafe",

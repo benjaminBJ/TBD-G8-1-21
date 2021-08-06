@@ -8,18 +8,18 @@ import java.time.LocalDateTime;
 
 @Data
 @Document
-public class Dog {
+public class DogModel {
+    //ID
     @Id
     private String id;
-
+    //Atributos
     private String name;
     private int age;
     private String color;
     private LocalDateTime created;
 
     //Constructor
-
-    public Dog(String name, int age, String color, LocalDateTime created) {
+    public DogModel(String name, int age, String color, LocalDateTime created) {
         this.name = name;
         this.age = age;
         this.color = color;
@@ -27,7 +27,6 @@ public class Dog {
     }
 
     //Getters and setters
-
     public String getId() {
         return id;
     }
