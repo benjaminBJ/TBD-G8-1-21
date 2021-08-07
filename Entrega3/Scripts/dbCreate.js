@@ -2,7 +2,7 @@ conn = Mongo("localhost");
 db = conn.getDB("voluntariado");
 db.dropDatabase();
 
-
+//Crear colecciones
 db.createCollection("emergencias", {
     validator:{
         $jsonSchema: {
@@ -58,7 +58,6 @@ db.createCollection("voluntarios", {
     }
 });
 
-
 db.createCollection("tareas", {
     validator: {
         $jsonSchema: {
@@ -95,6 +94,33 @@ db.createCollection("tareas", {
 });
 
 
+db.createCollection("vol_habilidad", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            
+            required: ["voluntario","habilidad"],
+            properties: {
+
+                voluntario: {
+                    bsonType: "string",
+                    description: "debe ser un id de objeto y es requerido"
+                },
+                habilidad: {
+                    bsonType: "string",
+                    description: "debe ser un string y es requerido" 
+                }
+
+            }
+            
+        }   
+    }
+});
+
+
+
+
+//Insertar elementos
 
 db.emergencias.insertMany( [
     { nombre:'Terremoto', descrip:'Sismo de mediana a alta magnitud en las cercanias', finicio:'2021-05-23', ffin:'2020-05-28'},
@@ -144,4 +170,18 @@ db.voluntarios.insertMany( [
     { nombre:'Ramiro Méndez', rut:'18569098-9', email:'jerdenechuluun_eu@klttec.com', telefono:'62625145'},
     { nombre:'Efren Gomez', rut:'19132415-3', email:'pjoce_fs22w@freeallapp.com', telefono:'25145555'},
     { nombre:'Eulalia Saez', rut:'13340059-1', email:'anaka@cuenmex.com', telefono:'20332000'}
+] );
+
+
+db.vol_habilidad.insertMany( [
+    { voluntario:'Hector Campos', habilidad:'Primeros auxilios'},
+    { voluntario:'Hector Campos', habilidad:'Excavacion'},
+    { voluntario:'Hector Campos', habilidad:'Preparacion canina'},
+    { voluntario:'Edgar Ruiz', habilidad:'Capacitacion'},
+    { voluntario:'Edgar Ruiz', habilidad:'Afinidad con los animales'},
+    { voluntario:'Juan Ferrer', habilidad:'Liderazgo'},
+    { voluntario:'Eulalia Saez', habilidad:'Creatividad'},
+    { voluntario:'Eulalia Saez', habilidad:'Comunicacion efectiva'},
+    { voluntario:'Ricardo Saez', habilidad:'Responsabilidad'},
+    { voluntario:'Ricardo Saez', habilidad:'Preparacion canina'},
 ] );
