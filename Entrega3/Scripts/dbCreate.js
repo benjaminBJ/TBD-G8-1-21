@@ -20,11 +20,11 @@ db.createCollection("emergencias", {
                 },
                 finicio: {
                     bsonType: "string",
-                    description: "debe ser una fecha y es requerido"
+                    description: "debe ser una string y es requerido"
                 },
                 ffin: {
                     bsonType: "string",
-                    description: "debe ser una fecha y es requerido"    
+                    description: "debe ser una string y es requerido"    
                 }, 
             } 
         }
@@ -123,7 +123,11 @@ db.createCollection("vol_habilidad", {
 //Insertar elementos
 
 db.emergencias.insertMany( [
-    { nombre:'Terremoto', descrip:'Sismo de mediana a alta magnitud en las cercanias', finicio:'2021-05-23', ffin:'2020-05-28'},
+    { nombre:'Terremoto', 
+      descrip:'Sismo de mediana a alta magnitud en las cercanias', 
+      finicio:'2021-05-23', 
+      ffin:'2020-05-28'
+    },
     { nombre:'Incendio', descrip:'Incendio que cubre varias manzanas a la redonda', finicio:'2021-05-28', ffin:'2020-05-30'},
     { nombre:'Tsunami', descrip:'Alerta Tsunami decretada por la onemi', finicio:'2021-05-23', ffin:'2020-05-26'},
     { nombre:'Erupcion de volcan', descrip:'Erupcion de volcan dentro de la zona', finicio:'2021-06-14', ffin:'2020-06-26'},
@@ -131,7 +135,12 @@ db.emergencias.insertMany( [
 ] );
 
 db.tareas.insertMany( [
-    { nombre:'Tarea 1', descrip:'Limpieza de escombros', vol_requeridos:3, finicio:'2021-05-23', ffin:null, emergencia:'Terremoto'},
+    { nombre:'Tarea 1', 
+      descrip:'Limpieza de escombros', 
+      vol_requeridos:3, 
+      finicio:'2021-05-23', ffin:null, 
+      emergencia:'Terremoto'
+    },
     { nombre:'Tarea 2', descrip:'Manejo de maquinaria', vol_requeridos:4, finicio:'2021-05-23', ffin:null, emergencia:'Terremoto'},
     { nombre:'Tarea 3', descrip:'Busqueda terrestre', vol_requeridos:3, finicio:'2021-05-23', ffin:null, emergencia:'Tsunami'},
     { nombre:'Tarea 4', descrip:'Busqueda de sobrevivientes', vol_requeridos:3, finicio:'2021-05-23', ffin:null, emergencia:'Terremoto'},
@@ -150,7 +159,11 @@ db.tareas.insertMany( [
 ] )
 
 db.voluntarios.insertMany( [
-    { nombre:'Hector Campos', rut:'20467238-5', email:'tbrahim.amin.9630@gmail.com', telefono:'25252655'},
+    { nombre:'Hector Campos', 
+      rut:'20467238-5', 
+      email:'tbrahim.amin.9630@gmail.com', 
+      telefono:'25252655'
+    },
     { nombre:'Edgar Ruiz', rut:'10134071-6', email:'jmalik1127c@live.cl', telefono:'11225443'},
     { nombre:'Arturo Garrido', rut:'22420886-3', email:'cfilipe@googleappsmail.com', telefono:'88451111'},
     { nombre:'Dorotea Morales', rut:'8190374-3', email:'t4roka@hotmail.cl', telefono:'25202222'},
@@ -174,7 +187,9 @@ db.voluntarios.insertMany( [
 
 
 db.vol_habilidad.insertMany( [
-    { voluntario:'Hector Campos', habilidad:'Primeros auxilios'},
+    { voluntario:'Hector Campos', 
+      habilidad:'Primeros auxilios'
+    },
     { voluntario:'Hector Campos', habilidad:'Excavacion'},
     { voluntario:'Hector Campos', habilidad:'Preparacion canina'},
     { voluntario:'Edgar Ruiz', habilidad:'Capacitacion'},

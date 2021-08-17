@@ -5,7 +5,7 @@ import cl.grupo8.entrega3.repositories.DogRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
+
 
 import java.util.List;
 
@@ -19,9 +19,16 @@ public class DogService {
     public List<DogModel> getAllDogs(){
         return dogRepository.findAll();
     }
+
     public DogModel saveDog(DogModel dog){
         return dogRepository.save(dog);
     }
 
+    public DogModel getDog(String id){
+        return dogRepository.findById(id).get();
+    }
 
+    public void deleteDog(String id){
+        dogRepository.deleteById(id);
+    }
 }

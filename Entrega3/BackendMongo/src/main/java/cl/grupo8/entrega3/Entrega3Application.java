@@ -28,6 +28,7 @@ public class Entrega3Application {
     }
 
 	@Bean
+	//Prueba de faker
 	CommandLineRunner runner(DogRepository repository, MongoTemplate mongoTemplate){
 
 		return args ->{
@@ -38,7 +39,7 @@ public class Entrega3Application {
 					LocalDateTime.now()
 			);
 
-			//Query de Mongo
+			//Query de Mongo Prueba
 			//Query query = new Query();
 			//query.addCriteria(Criteria.where("email").is(email));
 			//Ocupar el template
@@ -59,6 +60,7 @@ public class Entrega3Application {
 			 */
 
 			repository.insert(dog);
+
 		};
 	}
 
