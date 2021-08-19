@@ -50,8 +50,8 @@ def get_txtInByCol(table, col):
 
 ###############################################################################
 def iniConfig():
-    print 'Cantidad de argumentos:', len(sys.argv)
-    print 'Lista de argumentos:', str(sys.argv)
+    print('Cantidad de argumentos:', len(sys.argv))
+    print('Lista de argumentos:', str(sys.argv))
 
     if len(sys.argv) < 2:
         print("error, debe ingresar el nombre del archivo de configuracion")

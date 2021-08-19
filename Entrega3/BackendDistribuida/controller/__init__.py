@@ -14,11 +14,11 @@ app = create_app()
 def welcome():
     return "Consultas sobre Base de Datos Distribuida => myId ="+str(myId)+" ,primaryId="+str(primaryId)
 
-import general
-import parallelInsert
-import parallelDelete
-import parallelByPrimary
-import parallelByBSP
+from controller import general
+from controller import parallelInsert
+from controller import parallelDelete
+from controller import parallelByPrimary
+from controller import parallelByBSP
 
 
 def run_app():
