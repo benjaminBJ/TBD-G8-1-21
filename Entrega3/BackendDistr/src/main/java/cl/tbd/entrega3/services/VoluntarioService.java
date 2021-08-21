@@ -26,6 +26,11 @@ public class VoluntarioService {
 		return voluntarioRepository.getAllVoluntarios();
 	}
 
+	@GetMapping("/voluntario/count")
+    public int countVoluntarios(){
+        int total = voluntarioRepository.countVoluntarios();
+        return total;
+    }
 
 	@GetMapping(value = "/voluntario/{id}")
 	public Voluntario getVoluntario(@PathVariable int id){

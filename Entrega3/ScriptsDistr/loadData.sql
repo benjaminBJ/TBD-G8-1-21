@@ -8,25 +8,25 @@ INSERT INTO public.dog (name, descrip,location)
 	('Pascal',NULL,ST_GeomFromText('POINT( -72.413 -35.347)',4326));
 
 /* voluntario0 */
-INSERT INTO public.voluntario0 (nombre, rut, email, telefono,location, tabla)
+INSERT INTO public.voluntario0 (nombre, rut, email, telefono, tabla)
 	VALUES
-	('Ramiro Méndez','18569098-9','jerdenechuluun_eu@klttec.com','62625145',ST_GeomFromText('POINT( -73.142 -40.593)',4326),'voluntario0'),
-	('Efren Gomez','19132415-3','pjoce_fs22w@freeallapp.com','25145555',ST_GeomFromText('POINT( -73.050 -41.124)',4326),'voluntario0'),
-	('Eulalia Saez','13340059-1','anaka@cuenmex.com','20332000',ST_GeomFromText('POINT( -73.050 -41.124)',4326),'voluntario0');
+	('Ramiro Méndez','18569098-9','jerdenechuluun_eu@klttec.com','62625145','voluntario0'),
+	('Efren Gomez','19132415-3','pjoce_fs22w@freeallapp.com','25145555','voluntario0'),
+	('Eulalia Saez','13340059-1','anaka@cuenmex.com','20332000','voluntario0');
 
 /* voluntario0 */
-INSERT INTO public.voluntario1 (nombre, rut, email, telefono,location, tabla)
+INSERT INTO public.voluntario1 (nombre, rut, email, telefono, tabla)
 	VALUES
-	('Marina Mora','6826443-k','isubin@audiophileusa.net','66332214',ST_GeomFromText('POINT( -71.214 -30.615)',4326),'voluntario1'),
-	('Almudena Hidalgo','15652736-k','0moham@rifo.ru','65252515',ST_GeomFromText('POINT( -73.216 -39.864)',4326),'voluntario1'),
-	('Manuela Ruiz','17053702-5','9rbnm@horizen.cf','78452102',ST_GeomFromText('POINT( -72.811 -39.870)',4326),'voluntario1');
+	('Marina Mora','6826443-k','isubin@audiophileusa.net','66332214','voluntario1'),
+	('Almudena Hidalgo','15652736-k','0moham@rifo.ru','65252515','voluntario1'),
+	('Manuela Ruiz','17053702-5','9rbnm@horizen.cf','78452102','voluntario1');
 
 /* voluntario2 */
-INSERT INTO public.voluntario2 (nombre, rut, email, telefono,location, tabla)
+INSERT INTO public.voluntario2 (nombre, rut, email, telefono, tabla)
 	VALUES
-	('Cirino Gutierrez','18186122-3','urehammansourrh@tubidu.com','56322412',ST_GeomFromText('POINT( -72.853 -40.082)',4326),'voluntario2'),
-	('Rufo Jiménez','14885956-6','wzaidjnpn@greendike.com','25143214',ST_GeomFromText('POINT( -73.051 -40.312)',4326),'voluntario2'),
-	('Ricardo Saez','15989338-3','2bihnam.attallahr@litrt.site','85454512',ST_GeomFromText('POINT( -72.980 -40.425)',4326),'voluntario2');
+	('Cirino Gutierrez','18186122-3','urehammansourrh@tubidu.com','56322412','voluntario2'),
+	('Rufo Jiménez','14885956-6','wzaidjnpn@greendike.com','25143214','voluntario2'),
+	('Ricardo Saez','15989338-3','2bihnam.attallahr@litrt.site','85454512','voluntario2');
 
 
 /* habilidad */

@@ -15,11 +15,24 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
     private Sql2o sql2o;
 
     @Override
+    public int countVoluntarios() {
+        int total0 = 0;
+        int total1 = 0;
+        int total2 = 0;
+        int total = 0;
+        try(Connection conn = sql2o.open()){
+            total0 = conn.createQuery("SELECT COUNT(*) FROM voluntario0").executeScalar(Integer.class);
+            total1 = conn.createQuery("SELECT COUNT(*) FROM voluntario1").executeScalar(Integer.class);
+            total2 = conn.createQuery("SELECT COUNT(*) FROM voluntario2").executeScalar(Integer.class);
+        }
+        total = total0 + total1 + total2;
+        return total;
+    }
+
+    @Override
     public List<Voluntario> getAllVoluntarios() {
         try(Connection conn = sql2o.open()){
-            String sql = "SELECT id, nombre, rut, email, telefono" +
-                    ", st_x(st_astext( location)) AS longitude, st_y(st_astext(location)) AS latitude" +
-                    " FROM voluntario";
+            String sql = "SELECT id, nombre, rut, email, telefono, tabla" + " FROM voluntario";
             return conn.createQuery(sql)
                     .executeAndFetch(Voluntario.class);
         } catch (Exception e) {
@@ -32,9 +45,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
     public Voluntario getVoluntario(int id) {
         try(Connection conn = sql2o.open()){
 
-            String sql = "SELECT id, nombre, rut, email, telefono" +
-                    ", st_x(st_astext( location)) AS longitude, st_y(st_astext(location)) AS latitude" +
-                    " FROM voluntario WHERE id = :id";
+            String sql = "SELECT id, nombre, rut, email, telefono, tabla" + " FROM voluntario WHERE id = :id";
 
             Voluntario voluntario = conn.createQuery(sql, true)
                     .addParameter("id", id)
@@ -48,23 +59,54 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
 
     @Override
     public Voluntario createVoluntario(Voluntario voluntario) {
+        int modulo = (countVoluntarios() + 1) % 3;
         try(Connection conn = sql2o.open()){
-            String sql =
-                    "INSERT INTO voluntario (nombre, rut, email, telefono,location)" +
-                            "values (:nombre, :rut, :email, :telefono, ST_GeomFromText(:point, 4326))";
+            if(modulo == 0){
+                String sql =
+                    "INSERT INTO voluntario0 (nombre, rut, email, telefono,tabla)" +
+                            "values (:nombre, :rut, :email, :telefono, :tabla)";
 
-            String point = "POINT("+voluntario.getLongitude()+" "+voluntario.getLatitude()+")";
-            System.out.println("point: "+point);
+                int insertedId = (int) conn.createQuery(sql, true)
+                        .addParameter("nombre", voluntario.getNombre())
+                        .addParameter("rut", voluntario.getRut())
+                        .addParameter("email", voluntario.getEmail())
+                        .addParameter("telefono", voluntario.getTelefono())
+                        .addParameter("tabla","voluntario0")
+                        .executeUpdate().getKey();
 
-            int insertedId = (int) conn.createQuery(sql, true)
-                    .addParameter("nombre", voluntario.getNombre())
-                    .addParameter("point", point)
-                    .addParameter("rut", voluntario.getRut())
-                    .addParameter("email", voluntario.getEmail())
-                    .addParameter("telefono", voluntario.getTelefono())
-                    .executeUpdate().getKey();
+                voluntario.setId(insertedId);
+            }
+            else if(modulo == 1){
+                String sql =
+                    "INSERT INTO voluntario1 (nombre, rut, email, telefono,tabla)" +
+                            "values (:nombre, :rut, :email, :telefono, :tabla)";
 
-            voluntario.setId(insertedId);
+                int insertedId = (int) conn.createQuery(sql, true)
+                        .addParameter("nombre", voluntario.getNombre())
+                        .addParameter("rut", voluntario.getRut())
+                        .addParameter("email", voluntario.getEmail())
+                        .addParameter("telefono", voluntario.getTelefono())
+                        .addParameter("tabla","voluntario1")
+                        .executeUpdate().getKey();
+
+                voluntario.setId(insertedId);
+            }
+            else if(modulo == 2){
+                String sql =
+                    "INSERT INTO voluntario2 (nombre, rut, email, telefono,tabla)" +
+                            "values (:nombre, :rut, :email, :telefono, :tabla)";
+
+                int insertedId = (int) conn.createQuery(sql, true)
+                        .addParameter("nombre", voluntario.getNombre())
+                        .addParameter("rut", voluntario.getRut())
+                        .addParameter("email", voluntario.getEmail())
+                        .addParameter("telefono", voluntario.getTelefono())
+                        .addParameter("tabla","voluntario2")
+                        .executeUpdate().getKey();
+
+                voluntario.setId(insertedId);
+               
+            }
             return voluntario;
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -78,14 +120,10 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
 
             String sql =
                     "UPDATE voluntario SET nombre = :nombre, rut = :rut , email = :email , " +
-                            "telefono =:telefono, location = ST_GeomFromText(:point, 4326) WHERE id = :id";
-
-            String point = "POINT("+voluntario.getLongitude()+" "+voluntario.getLatitude()+")";
-            System.out.println("point: "+point);
+                            "telefono = :telefono, tabla = :tabla";
 
             conn.createQuery(sql, true)
                     .addParameter("id", voluntario.getId())
-                    .addParameter("point", point)
                     .addParameter("nombre", voluntario.getNombre())
                     .addParameter("rut", voluntario.getRut())
                     .addParameter("email", voluntario.getEmail())

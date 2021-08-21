@@ -38,8 +38,6 @@ CREATE TABLE public.voluntario0 (
     tabla character varying(100) NOT NULL
 );
 
-SELECT
-AddGeometryColumn('voluntario0','location','4326','point',2);
 ALTER TABLE public.voluntario0 OWNER TO postgres;
 
 CREATE TABLE public.voluntario1 (
@@ -51,8 +49,6 @@ CREATE TABLE public.voluntario1 (
     tabla character varying(100) NOT NULL
 );
 
-SELECT
-AddGeometryColumn('voluntario1','location','4326','point',2);
 ALTER TABLE public.voluntario1 OWNER TO postgres;
 
 CREATE TABLE public.voluntario2 (
@@ -64,8 +60,6 @@ CREATE TABLE public.voluntario2 (
     tabla character varying(100) NOT NULL
 );
 
-SELECT
-AddGeometryColumn('voluntario2','location','4326','point',2);
 ALTER TABLE public.voluntario2 OWNER TO postgres;
 
 CREATE TABLE public.vol_habilidad0 (
