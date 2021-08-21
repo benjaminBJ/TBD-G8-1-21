@@ -4,6 +4,7 @@ public class Voluntario_Habilidad {
 	private Integer id;
 	private Integer id_voluntario;
 	private Integer id_habilidad;
+	private String tabla;
 
 	public Integer getId() { return id; }
 
@@ -17,4 +18,11 @@ public class Voluntario_Habilidad {
 
 	public void setId_habilidad(Integer id_habilidad) { this.id_habilidad = id_habilidad; }
 
+	public String getTabla() {
+		return tabla;
+	}
+
+	public void setTabla(String tabla) {
+		this.tabla = tabla;
+	}
 }

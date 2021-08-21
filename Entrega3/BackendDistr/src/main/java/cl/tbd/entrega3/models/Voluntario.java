@@ -6,6 +6,7 @@ public class Voluntario {
     private String rut;
     private String email;
     private String telefono;
+    private String tabla;
     private double longitude;
     private double latitude;
 
@@ -59,5 +60,12 @@ public class Voluntario {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
+    public String getTabla() {
+        return tabla;
+    }
+
+    public void setTabla(String tabla) {
+        this.tabla = tabla;
+    }
 }
