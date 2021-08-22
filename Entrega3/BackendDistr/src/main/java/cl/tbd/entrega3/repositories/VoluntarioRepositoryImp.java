@@ -14,6 +14,18 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
     @Autowired
     private Sql2o sql2o;
 
+    private final Voluntario_HabilidadRepository voluntario_habilidadRepository;
+    public VoluntarioRepositoryImp(Voluntario_HabilidadRepository voluntario_habilidadRepository) {
+        this.voluntario_habilidadRepository = voluntario_habilidadRepository;
+    }
+
+
+    //Funcion de hash que distribuira
+    //por columna rut
+    private Integer hashFunction(Integer rut){
+        return rut % 3;
+    }
+
     @Override
     public int countVoluntarios() {
         int total0 = 0;
@@ -43,6 +55,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
 
     @Override
     public Voluntario getVoluntario(int id) {
+
         try(Connection conn = sql2o.open()){
 
             String sql = "SELECT id, nombre, rut, email, telefono, tabla" + " FROM voluntario WHERE id = :id";
@@ -59,11 +72,15 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
 
     @Override
     public Voluntario createVoluntario(Voluntario voluntario) {
-        int modulo = (countVoluntarios() + 1) % 3;
+
         try(Connection conn = sql2o.open()){
-            if(modulo == 0){
+
+                String rut = voluntario.getRut().split("-")[0];
+                Integer index = hashFunction( Integer.parseInt(rut));
+                String tabla = "voluntario"+index;
+
                 String sql =
-                    "INSERT INTO voluntario0 (nombre, rut, email, telefono, tabla)" +
+                    "INSERT INTO "+ tabla +" (nombre, rut, email, telefono,tabla)" +
                             "values (:nombre, :rut, :email, :telefono, :tabla)";
 
                 int insertedId = (int) conn.createQuery(sql, true)
@@ -71,43 +88,18 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
                         .addParameter("rut", voluntario.getRut())
                         .addParameter("email", voluntario.getEmail())
                         .addParameter("telefono", voluntario.getTelefono())
-                        .addParameter("tabla","voluntario0")
+                        .addParameter("tabla",tabla)
                         .executeUpdate().getKey();
-
                 voluntario.setId(insertedId);
-            }
-            else if(modulo == 1){
-                String sql =
-                    "INSERT INTO voluntario1 (nombre, rut, email, telefono, tabla)" +
-                            "values (:nombre, :rut, :email, :telefono, :tabla)";
+                voluntario.setTabla(tabla);
 
-                int insertedId = (int) conn.createQuery(sql, true)
-                        .addParameter("nombre", voluntario.getNombre())
-                        .addParameter("rut", voluntario.getRut())
-                        .addParameter("email", voluntario.getEmail())
-                        .addParameter("telefono", voluntario.getTelefono())
-                        .addParameter("tabla","voluntario1")
-                        .executeUpdate().getKey();
+            // Crear modelo intermedio
+            voluntario_habilidadRepository.createVoluntario_Habilidad2(insertedId);
 
-                voluntario.setId(insertedId);
-            }
-            else if(modulo == 2){
-                String sql =
-                    "INSERT INTO voluntario2 (nombre, rut, email, telefono, tabla)" +
-                            "values (:nombre, :rut, :email, :telefono, :tabla)";
-
-                int insertedId = (int) conn.createQuery(sql, true)
-                        .addParameter("nombre", voluntario.getNombre())
-                        .addParameter("rut", voluntario.getRut())
-                        .addParameter("email", voluntario.getEmail())
-                        .addParameter("telefono", voluntario.getTelefono())
-                        .addParameter("tabla","voluntario2")
-                        .executeUpdate().getKey();
-
-                voluntario.setId(insertedId);
-               
-            }
             return voluntario;
+
+
+
         }catch(Exception e){
             System.out.println(e.getMessage());
             return null;

@@ -7,6 +7,7 @@ public class Voluntario_Habilidad {
 	private String tabla;
 	private String tabla_voluntario;
 
+
 	public Integer getId() { return id; }
 
 	public void setId(Integer id) { this.id = id; }

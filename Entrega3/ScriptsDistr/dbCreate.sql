@@ -64,24 +64,24 @@ ALTER TABLE public.voluntario2 OWNER TO postgres;
 
 CREATE TABLE public.vol_habilidad0 (
     id SERIAL PRIMARY KEY,
-    id_voluntario SERIAl references voluntario0(id),
-    id_habilidad SERIAl references habilidad(id),
+    id_voluntario integer,
+    id_habilidad integer,
     tabla character varying(100) NOT NULL
 );
 ALTER TABLE public.vol_habilidad0 OWNER TO postgres;
 
 CREATE TABLE public.vol_habilidad1 (
     id SERIAL PRIMARY KEY,
-    id_voluntario SERIAl references voluntario1(id),
-    id_habilidad SERIAl references habilidad(id),
+    id_voluntario integer,
+    id_habilidad integer,
     tabla character varying(100) NOT NULL
 );
 ALTER TABLE public.vol_habilidad1 OWNER TO postgres;
 
 CREATE TABLE public.vol_habilidad2 (
     id SERIAL PRIMARY KEY,
-    id_voluntario SERIAl references voluntario2(id),
-    id_habilidad SERIAl references habilidad(id),
+    id_voluntario integer,
+    id_habilidad integer,
     tabla character varying(100) NOT NULL
 );
 ALTER TABLE public.vol_habilidad2 OWNER TO postgres;
