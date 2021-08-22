@@ -63,7 +63,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
         try(Connection conn = sql2o.open()){
             if(modulo == 0){
                 String sql =
-                    "INSERT INTO voluntario0 (nombre, rut, email, telefono,tabla)" +
+                    "INSERT INTO voluntario0 (nombre, rut, email, telefono, tabla)" +
                             "values (:nombre, :rut, :email, :telefono, :tabla)";
 
                 int insertedId = (int) conn.createQuery(sql, true)
@@ -78,7 +78,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
             }
             else if(modulo == 1){
                 String sql =
-                    "INSERT INTO voluntario1 (nombre, rut, email, telefono,tabla)" +
+                    "INSERT INTO voluntario1 (nombre, rut, email, telefono, tabla)" +
                             "values (:nombre, :rut, :email, :telefono, :tabla)";
 
                 int insertedId = (int) conn.createQuery(sql, true)
@@ -93,7 +93,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
             }
             else if(modulo == 2){
                 String sql =
-                    "INSERT INTO voluntario2 (nombre, rut, email, telefono,tabla)" +
+                    "INSERT INTO voluntario2 (nombre, rut, email, telefono, tabla)" +
                             "values (:nombre, :rut, :email, :telefono, :tabla)";
 
                 int insertedId = (int) conn.createQuery(sql, true)

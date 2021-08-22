@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface Voluntario_HabilidadRepository {
 
+    public int countVoluntario_Habilidad();
     public List<Voluntario_Habilidad> getAllVoluntario_Habilidad();
     public Voluntario_Habilidad getVoluntario_Habilidad(int id);
     public Voluntario_Habilidad createVoluntario_Habilidad(Voluntario_Habilidad voluntario_habilidad);

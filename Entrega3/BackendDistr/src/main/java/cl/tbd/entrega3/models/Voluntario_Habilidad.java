@@ -5,6 +5,7 @@ public class Voluntario_Habilidad {
 	private Integer id_voluntario;
 	private Integer id_habilidad;
 	private String tabla;
+	private String tabla_voluntario;
 
 	public Integer getId() { return id; }
 
@@ -24,5 +25,13 @@ public class Voluntario_Habilidad {
 
 	public void setTabla(String tabla) {
 		this.tabla = tabla;
+	}
+
+	public String getTabla_voluntario() {
+		return tabla_voluntario;
+	}
+
+	public void setTabla_voluntario(String tabla_voluntario) {
+		this.tabla_voluntario = tabla_voluntario;
 	}
 }
