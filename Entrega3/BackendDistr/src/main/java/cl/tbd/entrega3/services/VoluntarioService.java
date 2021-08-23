@@ -38,6 +38,20 @@ public class VoluntarioService {
 		return result;
 	}
 
+	@GetMapping(value = "/voluntario/get")
+	@ResponseBody
+	public Voluntario getVoluntarioNombre(@RequestBody String nombre){
+		Voluntario result = voluntarioRepository.getVoluntarioNombre(nombre);
+		return result;
+	}
+
+	@GetMapping(value = "/voluntario/habilidades")
+	@ResponseBody
+	public String habilidadesVoluntario(@RequestBody String nombre){
+		String result = voluntarioRepository.habilidadesVoluntario(nombre);
+		return result;
+	}
+
 	@PostMapping("/voluntario/create")
 	@ResponseBody
 	public Voluntario createVoluntario(@RequestBody Voluntario voluntario){

@@ -47,27 +47,27 @@ INSERT INTO public.habilidad(descrip)
 	
 
 /* vol_habilidad0 */
-INSERT INTO public.vol_habilidad0 (id_voluntario, id_habilidad, tabla)
+INSERT INTO public.vol_habilidad0 (id_voluntario, tabla_voluntario, id_habilidad, tabla)
 	VALUES
-	(1,1,'vol_habilidad0'),
-	(1,2,'vol_habilidad0'),
-	(2,2,'vol_habilidad0'),
-	(2,3,'vol_habilidad0'),
-	(3,1,'vol_habilidad0'),
-	(3,2,'vol_habilidad0'),
-	(3,3,'vol_habilidad0');
+	(1,'voluntario0',1,'vol_habilidad0'),
+	(1,'voluntario1',2,'vol_habilidad0'),
+	(2,'voluntario0',2,'vol_habilidad0'),
+	(2,'voluntario1',3,'vol_habilidad0'),
+	(3,'voluntario0',1,'vol_habilidad0'),
+	(3,'voluntario1',2,'vol_habilidad0'),
+	(3,'voluntario2',3,'vol_habilidad0');
 
 /* vol_habilidad1 */
-INSERT INTO public.vol_habilidad1 (id_voluntario, id_habilidad, tabla)
+INSERT INTO public.vol_habilidad1 (id_voluntario, tabla_voluntario, id_habilidad, tabla)
 	VALUES
-	(1,4,'vol_habilidad1'),
-	(2,5,'vol_habilidad1'),
-	(3,6,'vol_habilidad1'),
-	(3,7,'vol_habilidad1');
+	(1,'voluntario0',4,'vol_habilidad1'),
+	(2,'voluntario0',5,'vol_habilidad1'),
+	(3,'voluntario0',6,'vol_habilidad1'),
+	(3,'voluntario1',7,'vol_habilidad1');
 
 /* vol_habilidad2 */
-INSERT INTO public.vol_habilidad2 (id_voluntario, id_habilidad, tabla)
+INSERT INTO public.vol_habilidad2 (id_voluntario, tabla_voluntario, id_habilidad, tabla)
 	VALUES
-	(1,8,'vol_habilidad2'),
-	(2,9,'vol_habilidad2'),
-	(3,10,'vol_habilidad2');
+	(1,'voluntario0',8,'vol_habilidad2'),
+	(2,'voluntario1',9,'vol_habilidad2'),
+	(3,'voluntario2',10,'vol_habilidad2');

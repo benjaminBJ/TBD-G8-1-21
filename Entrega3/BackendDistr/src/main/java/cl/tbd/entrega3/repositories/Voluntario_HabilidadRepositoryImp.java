@@ -48,54 +48,7 @@ public class Voluntario_HabilidadRepositoryImp implements Voluntario_HabilidadRe
     }
 
     @Override
-    public Voluntario_Habilidad createVoluntario_Habilidad(Voluntario_Habilidad voluntario_habilidad) {
-        int modulo = (countVoluntario_Habilidad() + 1) % 3;
-        try(Connection conn = sql2o.open()){
-            String sql =
-                    "INSERT INTO vol_habilidad (id_voluntario,id_habilidad,tabla) values (:id_voluntario,:id_habilidad,:tabla)";
-
-            int insertedId = (int) conn.createQuery(sql, true)
-                    .addParameter("id_voluntario", voluntario_habilidad.getId_voluntario())
-                    .addParameter("id_habilidad", voluntario_habilidad.getId_habilidad())
-                    .addParameter("tabla",voluntario_habilidad.getTabla())
-                    .executeUpdate().getKey();
-
-                voluntario_habilidad.setId(insertedId);
-            }
-            else if(modulo == 1){
-                String sql =
-                    "INSERT INTO vol_habilidad1 (id_voluntario,id_habilidad, tabla) values (:id_voluntario,:id_habilidad, :tabla)";
-
-                int insertedId = (int) conn.createQuery(sql, true)
-                        .addParameter("id_voluntario", voluntario_habilidad.getId_voluntario())
-                        .addParameter("id_habilidad", voluntario_habilidad.getId_habilidad())
-                        .addParameter("tabla","vol_habilidad1")
-                        .executeUpdate().getKey();
-
-                voluntario_habilidad.setId(insertedId);
-            }
-            else if(modulo == 2){
-                String sql =
-                    "INSERT INTO vol_habilidad2 (id_voluntario,id_habilidad, tabla) values (:id_voluntario,:id_habilidad, :tabla)";
-
-                int insertedId = (int) conn.createQuery(sql, true)
-                        .addParameter("id_voluntario", voluntario_habilidad.getId_voluntario())
-                        .addParameter("id_habilidad", voluntario_habilidad.getId_habilidad())
-                        .addParameter("tabla","vol_habilidad2")
-                        .executeUpdate().getKey();
-
-                voluntario_habilidad.setId(insertedId);
-            }
-            
-            return voluntario_habilidad;
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-            return null;
-        }
-    }
-
-    @Override
-    public void createVoluntario_Habilidad2(int id_voluntario) {
+    public void createVoluntario_Habilidad(int id_voluntario, String tabla_voluntario) {
         try(Connection conn = sql2o.open()){
 
             Voluntario_Habilidad voluntario_habilidad = new Voluntario_Habilidad();
@@ -103,7 +56,7 @@ public class Voluntario_HabilidadRepositoryImp implements Voluntario_HabilidadRe
             String tabla = "vol_habilidad"+index;
 
             String sql =
-                    "INSERT INTO "+tabla +" (id_voluntario,id_habilidad,tabla) values (:id_voluntario,:id_habilidad,:tabla)";
+                    "INSERT INTO "+tabla +" (id_voluntario,tabla_voluntario,id_habilidad,tabla) values (:id_voluntario,:tabla_voluntario,:id_habilidad,:tabla)";
 
             String sql2 = "SELECT COUNT(*) FROM habilidad ";
 
@@ -114,6 +67,7 @@ public class Voluntario_HabilidadRepositoryImp implements Voluntario_HabilidadRe
             int insertedId = (int) conn.createQuery(sql, true)
 
                     .addParameter("id_voluntario", id_voluntario)
+                    .addParameter("tabla_voluntario", tabla_voluntario)
                     .addParameter("id_habilidad", indexh)
                     .addParameter("tabla",tabla)
                     .executeUpdate().getKey();

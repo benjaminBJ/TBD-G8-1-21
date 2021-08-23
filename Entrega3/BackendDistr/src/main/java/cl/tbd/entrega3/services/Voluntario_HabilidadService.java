@@ -36,17 +36,11 @@ public class Voluntario_HabilidadService {
         return result;
     }
 
+
     @PostMapping("/vol_habilidad/create")
     @ResponseBody
-    public Voluntario_Habilidad createVoluntario_Habilidad(@RequestBody Voluntario_Habilidad voluntario_habilidad){
-        Voluntario_Habilidad result = voluntario_habilidadRepository.createVoluntario_Habilidad(voluntario_habilidad);
-        return result;
-    }
-
-    @PostMapping("/vol_habilidad/create2")
-    @ResponseBody
-    public void createVoluntario_Habilidad2(@PathVariable int id){
-        voluntario_habilidadRepository.createVoluntario_Habilidad2(id);
+    public void createVoluntario_Habilidad(@PathVariable int id, String tabla){
+        voluntario_habilidadRepository.createVoluntario_Habilidad(id, tabla);
 
     }
 

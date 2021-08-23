@@ -1,12 +1,14 @@
 package cl.tbd.entrega3.repositories;
 
 import cl.tbd.entrega3.models.Voluntario;
+import cl.tbd.entrega3.models.Respuesta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
-
+import java.util.ArrayList;
 import java.util.List;
+
 
 @Repository
 public class VoluntarioRepositoryImp implements VoluntarioRepository{
@@ -71,6 +73,23 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
     }
 
     @Override
+    public Voluntario getVoluntarioNombre(String nombre) {
+
+        try(Connection conn = sql2o.open()){
+
+            String sql = "SELECT VO.id, VO.nombre, VO.tabla FROM (SELECT * FROM voluntario0 UNION SELECT * FROM voluntario1 UNION SELECT * FROM voluntario2) VO WHERE VO.nombre = :nombre";
+
+            Voluntario voluntario = conn.createQuery(sql, true)
+                    .addParameter("nombre", nombre)
+                    .executeAndFetchFirst(Voluntario.class);
+            return voluntario;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
     public Voluntario createVoluntario(Voluntario voluntario) {
 
         try(Connection conn = sql2o.open()){
@@ -94,7 +113,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
                 voluntario.setTabla(tabla);
 
             // Crear modelo intermedio
-            voluntario_habilidadRepository.createVoluntario_Habilidad2(insertedId);
+            voluntario_habilidadRepository.createVoluntario_Habilidad(insertedId, tabla);
 
             return voluntario;
 
@@ -143,6 +162,34 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository{
         }
 
 
+    }
+
+    @Override
+    public String habilidadesVoluntario(String nombre){
+        
+
+        try(Connection conn = sql2o.open()){
+            Voluntario voluntario = getVoluntarioNombre(nombre);
+
+            String sql = "SELECT HA.descrip as descrip, VA.tabla as tabla_habilidad FROM (SELECT * FROM vol_habilidad0 UNION SELECT * FROM vol_habilidad1 UNION SELECT * FROM vol_habilidad2) VA INNER JOIN habilidad AS HA ON VA.id_voluntario = :id_voluntario AND VA.tabla_voluntario = :tabla_voluntario AND VA.id_habilidad = HA.id";
+        
+            List<Respuesta> respuestas = (List<Respuesta>) conn.createQuery(sql)
+                    .addParameter("id_voluntario", voluntario.getId())
+                    .addParameter("tabla_voluntario", voluntario.getTabla())
+                    .executeAndFetch(Respuesta.class);
+
+            String lista = "Habilidades: \n";
+            for(int i = 0; i < respuestas.size(); i++){
+                lista = lista + respuestas.get(i).getDescrip() + "      Tabla voluntario_habilidad: " + respuestas.get(i).getName() + "\n";
+            }
+
+            String resultado ="Nombre: " + voluntario.getNombre() + "\nTabla Voluntario: " + voluntario.getTabla() + "\n" + lista;
+            return resultado;
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override

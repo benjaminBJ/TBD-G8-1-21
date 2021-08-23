@@ -65,6 +65,7 @@ ALTER TABLE public.voluntario2 OWNER TO postgres;
 CREATE TABLE public.vol_habilidad0 (
     id SERIAL PRIMARY KEY,
     id_voluntario integer,
+    tabla_voluntario character varying(100) NOT NULL,
     id_habilidad integer,
     tabla character varying(100) NOT NULL
 );
@@ -73,6 +74,7 @@ ALTER TABLE public.vol_habilidad0 OWNER TO postgres;
 CREATE TABLE public.vol_habilidad1 (
     id SERIAL PRIMARY KEY,
     id_voluntario integer,
+    tabla_voluntario character varying(100) NOT NULL,
     id_habilidad integer,
     tabla character varying(100) NOT NULL
 );
@@ -81,6 +83,7 @@ ALTER TABLE public.vol_habilidad1 OWNER TO postgres;
 CREATE TABLE public.vol_habilidad2 (
     id SERIAL PRIMARY KEY,
     id_voluntario integer,
+    tabla_voluntario character varying(100) NOT NULL,
     id_habilidad integer,
     tabla character varying(100) NOT NULL
 );
