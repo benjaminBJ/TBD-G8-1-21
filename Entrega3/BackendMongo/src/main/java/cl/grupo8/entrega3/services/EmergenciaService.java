@@ -60,7 +60,13 @@ public class EmergenciaService {
                                 .append("tareas_emergencia",
                                         new Document("$addToSet", "$tareas")))));
         /*
-
+        //Extrae las relaciones 1 a muchos con el campo "foraneo"
+        //emergencia en coleccion tareas y lo dejamos en un capo llamado "tareas"
+        //dentro de cada emergencia
+        luego
+        //"aplanamos" los arrays con unwind por el campo "tareas"
+        Finalmente 
+         //Agrupamos para mostrar las tareas de una emergencia
         for (Document dbObject : result)
         {
             System.out.println(dbObject);

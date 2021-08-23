@@ -1,5 +1,31 @@
 # TBD-G8-1-21
 
+## Entrega 3:
+Instrucciónes para poder ejecutar el proyecto
+
+Son dos backend por ende para levantar cualquiera de los dos primero abrir una consola
+dentro de su directorio y luego ejecutar los siguientes comandos
+
+- "gradlew build"
+- "gradlew bootRun"
+
+Para poblar la base distribuida debera encontrase en el directorio "ScriptsDistr" y abrir una consola.
+
+- Ingresar a postgreSQL
+    - Cargar los scripts de dbCreate.sql y loadData.sql
+    - Similar a la entrega anterior lo mas rapido es abrir una consola en el mismo directorio y ejecutar los comandos
+        - Cargar DB y tablas: \i dbCreate.sql
+        - Poblar tablas: \i loadData.sql
+
+Para poblar la base de mongoDb debera encontrase en el directorio "ScriptsMongo" y abrir una consola, luego escribir lo siguiente.
+
+- "mongosh"
+Y luego de que se ejecute mongosh escribir lo siguiente
+- load("dbCreate.js")
+
+Si lo requiere puede probar la consulta con - load("query.js").
+
+
 ## Entrega 2:
 
 Instrucciónes para poder ejecutar el proyecto
